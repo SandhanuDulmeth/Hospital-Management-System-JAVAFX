@@ -5,31 +5,25 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import model.Patient;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PatientFormController implements Initializable {
 
-    public JFXTextField TxtTitle1;
 
-    public JFXTextField TxtDate1;
     public TableView tblPatient;
 
     public JFXTextField TxtId11;
     public JFXTextField TxtName11;
-    public JFXTextField TxtAddress11;
-    public JFXTextField TxtSalary11;
-    public JFXTextField TxtCity11;
-    public JFXTextField TxtProvince11;
-    public JFXTextField TxtPostalCode11;
-    public JFXTextField TxtTitle11;
-    public JFXTextField TxtDate11;
+
     public TableColumn colID;
     public TableColumn colName;
     public TableColumn colAge;
@@ -37,6 +31,22 @@ public class PatientFormController implements Initializable {
     public TableColumn colContactDetails;
     public TableColumn colEmergencyContact;
     public TableColumn colMedicalHistory;
+    public JFXTextField TxtContactDetails11;
+    public JFXTextField TxtGender11;
+    public JFXTextField TxtEmegencyContact11;
+    public JFXTextField TxtMedicalHistory11;
+    public JFXTextField TxtAge11;
+    public JFXTextField TxtContactDetails;
+    public JFXTextField TxtAge;
+    public JFXTextField TxtGender;
+    public JFXTextField TxtEmegencyContact;
+    public JFXTextField TxtMedicalHistory;
+    public JFXTextField TxtGender1;
+    public JFXTextField TxtMedicalHistory1;
+    public JFXTextField TxtEmegencyContact1;
+
+    public JFXTextField TxtContactDetails1;
+    public JFXTextField TxtAge1;
     @FXML
     private JFXComboBox ComboBoxTitle;
 
@@ -95,29 +105,27 @@ public class PatientFormController implements Initializable {
     @FXML
     public void btnAddOnAction(ActionEvent event) {
 
+        if (!(TxtId.getText().isEmpty())) {
+            Patient patient = new Patient(
+                    Integer.valueOf(TxtId.getText()),
+                    TxtName.getText(),
+                    Integer.valueOf(TxtAge.getText()),
+                    TxtGender.getText(),
+                    TxtContactDetails.getText(),
+                    TxtEmegencyContact.getText(),
+                    TxtMedicalHistory.getText());
+            if (PatientController.getInstance().addCustomer(patient)) {
+                new Alert(Alert.AlertType.INFORMATION, "Added").show();
+                clearAddForm();
+                loadTable();
+                setNextId();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Not Added").show();
+            }
 
-//        if (ComboBoxTitle.getValue() != null) {
-//           // PatientService customerService= ServiceFactory.getInstance().getServiceType(ServiceType.CUSTOMER);
-//            Patient patient = new Patient(TxtId.getText(),
-//                    (String) ComboBoxTitle.getValue(),
-//                    TxtName.getText(),
-//                    Date.valueOf(DatePickerDOB.getValue()),
-//                    Double.parseDouble(TxtSalary.getText()),
-//                    TxtAddress.getText(), TxtCity.getText(),
-//                    TxtProvince.getText(),
-//                    TxtPostalCode.getText());
-//            //if (CustomerController.getInstance().addCustomer()) {
-//            if(PatientController.getInstance().addCustomer(patient)){
-//                new Alert(Alert.AlertType.INFORMATION, "Added").show();
-//                clearAddForm();
-//                loadTable();
-//            } else {
-//                new Alert(Alert.AlertType.ERROR, "Not Added").show();
-//            }
-//
-//        } else {
-//            new Alert(Alert.AlertType.ERROR, "Please Select a Title").show();
-//        }
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Please Enter A ID").show();
+        }
 
     }
 
@@ -127,40 +135,23 @@ public class PatientFormController implements Initializable {
     }
 
     public void clearAddForm() {
-//        Connection connection = null;
-//        try {
-//            connection = DBConnection.getINSTANCE().getConnection();
-//            PreparedStatement preparedStatement = connection.prepareStatement("SELECT CustID FROM customer ORDER BY CustID DESC LIMIT 1");
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//            resultSet.next();
-//
-//            String nextIndex = String.format("C%03d", Integer.parseInt(resultSet.getString(1).split("[C]")[1]) + 1);
-//            TxtId.setText(nextIndex);
-//
-//
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//        ComboBoxTitle.setValue(null);
-//        TxtName.setText(null);
-//        TxtAddress.setText(null);
-//        DatePickerDOB.setValue(null);
-//        TxtSalary.setText(null);
-//        TxtAddress.setText(null);
-//        TxtCity.setText(null);
-//        TxtProvince.setText(null);
-//        TxtPostalCode.setText(null);
+        TxtName.clear();
+        TxtAge.clear();
+        TxtGender.clear();
+        TxtContactDetails.clear();
+        TxtEmegencyContact.clear();
+        TxtMedicalHistory.clear();
 
     }
-//    private Integer id;
-//    private String name;
-//    private Integer age;
-//    private String gender;
-//    private String contactDetails;
-//    private String emergencyContact ;
-//    private String medicalHistory;
+
+    public void setNextId() {
+        TxtId.setText(String.valueOf(PatientController.getInstance().getNextId()));
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setNextId();
+
         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colAge.setCellValueFactory(new PropertyValueFactory<>("age"));
@@ -170,60 +161,56 @@ public class PatientFormController implements Initializable {
         colMedicalHistory.setCellValueFactory(new PropertyValueFactory<>("medicalHistory"));
 
         loadTable();
-        //clearAddForm();
-        //ComboBoxTitle.setItems(FXCollections.observableArrayList("Mr.", "Mrs.", "Miss", "Ms"));
+        clearAddForm();
+
 
     }
 
     public void btnSearchRemoveOnAction(ActionEvent actionEvent) {
 
 
-//        if (PatientController.getInstance().deleteCustomer(TxtId1.getText()))
-//            new Alert(Alert.AlertType.INFORMATION, "Removed " + TxtId1.getText()).show();
-//        else new Alert(Alert.AlertType.INFORMATION, "Not Removed " + TxtId1.getText()).show();
-//
-//
-//        TxtId1.setText(null);
-//        TxtTitle1.setText(null);
-//        TxtName1.setText(null);
-//        TxtDate1.setText(null);
-//        TxtSalary1.setText(null);
-//        TxtAddress1.setText(null);
-//        TxtCity1.setText(null);
-//        TxtPostalCode1.setText(null);
-//        TxtProvince1.setText(null);
-//
-//        clearAddForm();
-//        loadTable();
+        if (PatientController.getInstance().deleteCustomer(Integer.valueOf(TxtId1.getText())))
+            new Alert(Alert.AlertType.INFORMATION, "Removed " + TxtId1.getText()).show();
+        else new Alert(Alert.AlertType.INFORMATION, "Not Removed " + TxtId1.getText()).show();
+
+        TxtId1.clear();
+        TxtName1.clear();
+        TxtAge1.clear();
+        TxtGender1.clear();
+        TxtContactDetails1.clear();
+        TxtEmegencyContact1.clear();
+        TxtMedicalHistory1.clear();
+
+        setNextId();
+        loadTable();
 
 
     }
 
     public void OnSreachKeyReleased(KeyEvent keyEvent) {
 
-//        Patient patient = PatientController.getInstance().searchCustomer(TxtId1.getText());
-//
-//        if (null != patient) {
-//            TxtTitle1.setText(patient.getCustTitle());
-//            TxtName1.setText(patient.getCustName());
-//            TxtDate1.setText(String.valueOf(patient.getDOB()));
-//            TxtSalary1.setText(String.valueOf(patient.getSalary()));
-//            TxtAddress1.setText(patient.getCustAddress());
-//            TxtCity1.setText(patient.getCity());
-//            TxtProvince1.setText(patient.getProvince());
-//            TxtPostalCode1.setText(patient.getPostalCode());
-//        }else{
-//            TxtTitle1.setText(null);
-//            TxtName1.setText(null);
-//            TxtDate1.setText(null);
-//            TxtSalary1.setText(null);
-//            TxtAddress1.setText(null);
-//            TxtCity1.setText(null);
-//            TxtProvince1.setText(null);
-//            TxtPostalCode1.setText(null);
-//
-//        }
+        Patient patient = PatientController.getInstance().searchCustomer(Integer.valueOf("0" + TxtId1.getText()));
+
+        if (null != patient) {
+
+            TxtName1.setText(patient.getName());
+            TxtAge1.setText(String.valueOf(patient.getAge()));
+            TxtGender1.setText(patient.getGender());
+            TxtContactDetails1.setText(patient.getContactDetails());
+            TxtEmegencyContact1.setText(patient.getEmergencyContact());
+            TxtMedicalHistory1.setText(patient.getMedicalHistory());
+
+        } else {
+            TxtName1.clear();
+            TxtAge1.clear();
+            TxtGender1.clear();
+            TxtContactDetails1.clear();
+            TxtEmegencyContact1.clear();
+            TxtMedicalHistory1.clear();
+
+        }
     }
+
 
     private void loadTable() {
         tblPatient.getItems().clear();
@@ -233,46 +220,43 @@ public class PatientFormController implements Initializable {
 
     public void btnSearchUpdateOnAction(ActionEvent actionEvent) {
 
-//        if (PatientController.getInstance().UpdateCustomer(new Patient(
-//                TxtId11.getText(),
-//                TxtTitle11.getText(),
-//                TxtName11.getText(),
-//                Date.valueOf(TxtDate11.getText()) ,
-//                Double.parseDouble(TxtSalary11.getText()),
-//                TxtAddress11.getText(), TxtCity11.getText(),
-//                TxtProvince11.getText(),
-//                TxtPostalCode11.getText()
-//        ))) {
-//            new Alert(Alert.AlertType.INFORMATION, "Updated " ).show();
-//        } else {
-//            new Alert(Alert.AlertType.ERROR, "Not Updated " ).show();
-//        }
-//
-//        loadTable();
+        if (PatientController.getInstance().UpdateCustomer(new Patient(
+                Integer.valueOf(TxtId11.getText()),
+                TxtName11.getText(),
+                Integer.valueOf(TxtAge11.getText()),
+                TxtGender11.getText(),
+                TxtContactDetails11.getText(),
+                TxtEmegencyContact11.getText(),
+                TxtMedicalHistory11.getText()
+        ))) {
+            new Alert(Alert.AlertType.INFORMATION, "Updated ").show();
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Not Updated ").show();
+        }
+
+        loadTable();
     }
 
     public void OnSreachUpdateKeyReleased(KeyEvent keyEvent) {
-//        Patient patient = PatientController.getInstance().searchCustomer(TxtId11.getText());
-//
-//        if (null != patient) {
-//            TxtTitle11.setText(patient.getCustTitle());
-//            TxtName11.setText(patient.getCustName());
-//            TxtDate11.setText(String.valueOf(patient.getDOB()));
-//            TxtSalary11.setText(String.valueOf(patient.getSalary()));
-//            TxtAddress11.setText(patient.getCustAddress());
-//            TxtCity11.setText(patient.getCity());
-//            TxtProvince11.setText(patient.getProvince());
-//            TxtPostalCode11.setText(patient.getPostalCode());
-//        }else{
-//            TxtTitle11.setText(null);
-//            TxtName11.setText(null);
-//            TxtDate11.setText(null);
-//            TxtSalary11.setText(null);
-//            TxtAddress11.setText(null);
-//            TxtCity11.setText(null);
-//            TxtProvince11.setText(null);
-//            TxtPostalCode11.setText(null);
-//
-//        }
+        Patient patient = PatientController.getInstance().searchCustomer(Integer.valueOf("0" + TxtId11.getText()));
+
+        if (null != patient) {
+
+            TxtName11.setText(patient.getName());
+            TxtAge11.setText(String.valueOf(patient.getAge()));
+            TxtGender11.setText(patient.getGender());
+            TxtContactDetails11.setText(patient.getContactDetails());
+            TxtEmegencyContact11.setText(patient.getEmergencyContact());
+            TxtMedicalHistory11.setText(patient.getMedicalHistory());
+
+        } else {
+            TxtName11.clear();
+            TxtAge11.clear();
+            TxtGender11.clear();
+            TxtContactDetails11.clear();
+            TxtEmegencyContact11.clear();
+            TxtMedicalHistory11.clear();
+
+        }
     }
 }

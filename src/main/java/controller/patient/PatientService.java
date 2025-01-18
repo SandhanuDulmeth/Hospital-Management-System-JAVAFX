@@ -6,11 +6,11 @@ import model.Patient;
 public interface PatientService {
     boolean addCustomer(Patient patient);
 
-    boolean deleteCustomer(String id);
+    boolean deleteCustomer(Integer id);
 
     ObservableList<Patient> getAll();
 
     boolean UpdateCustomer(Patient patient);
 
-    Patient searchCustomer(String CusID);
+    Patient searchCustomer(Integer id);
 }

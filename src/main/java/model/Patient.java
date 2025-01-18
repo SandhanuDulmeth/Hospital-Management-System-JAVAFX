@@ -19,4 +19,13 @@ public class Patient {
     private String contactDetails;
     private String emergencyContact ;
     private String medicalHistory;
+
+    public Patient(String name, Integer age, String gender, String contactDetails, String emergencyContact, String medicalHistory) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.contactDetails = contactDetails;
+        this.emergencyContact = emergencyContact;
+        this.medicalHistory = medicalHistory;
+    }
 }
