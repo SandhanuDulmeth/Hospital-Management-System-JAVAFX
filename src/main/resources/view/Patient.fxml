@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="521.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.patient.PatientFormController">
+    <children>
+        <ImageView fitHeight="592.0" fitWidth="884.0" pickOnBounds="true" preserveRatio="true" />
+        <TabPane layoutX="44.0" layoutY="43.0" prefHeight="489.0" prefWidth="789.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Add Customer Form">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="449.0" prefWidth="764.0">
+                            <children>
+                                <Text fill="#161294" layoutX="203.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Customer Form" wrappingWidth="466.13671875">
+                                    <font>
+                                        <Font name="System Bold" size="34.0" />
+                                    </font>
+                                </Text>
+                                <JFXTextField fx:id="TxtId" editable="false" layoutX="49.0" layoutY="106.0" prefHeight="25.0" prefWidth="268.0" promptText="Customer ID" />
+                                <JFXTextField fx:id="TxtName" layoutX="49.0" layoutY="206.0" prefHeight="25.0" prefWidth="268.0" promptText="Customer Name" />
+                                <JFXTextField fx:id="TxtAddress" layoutX="429.0" layoutY="106.0" prefHeight="25.0" prefWidth="268.0" promptText="Customer Address" />
+                                <JFXTextField fx:id="TxtSalary" layoutX="49.0" layoutY="302.0" prefHeight="25.0" prefWidth="268.0" promptText="Customer Salary" />
+                                <JFXButton layoutX="539.0" layoutY="357.0" onAction="#btnClearOnAction" prefHeight="41.0" prefWidth="85.0" ripplerFill="#ee0909" style="-fx-background-color: #E3DC03;" text="Clear" textFill="#3c0000">
+                                    <font>
+                                        <Font name="Book Antiqua Bold" size="12.0" />
+                                    </font>
+                                </JFXButton>
+                                <JFXButton layoutX="403.0" layoutY="357.0" onAction="#btnAddOnAction" prefHeight="41.0" prefWidth="112.0" ripplerFill="#f2f2f2" style="-fx-background-color: green;" text="Add" textFill="WHITE">
+                                    <font>
+                                        <Font name="Book Antiqua Bold" size="12.0" />
+                                    </font>
+                                </JFXButton>
+                                <JFXComboBox fx:id="ComboBoxTitle" accessibleRole="CHECK_BOX" layoutX="49.0" layoutY="158.0" promptText="Customer Title" />
+                                <DatePicker fx:id="DatePickerDOB" layoutX="49.0" layoutY="259.0" />
+                                <JFXTextField fx:id="TxtCity" layoutX="429.0" layoutY="158.0" prefHeight="25.0" prefWidth="268.0" promptText="City" />
+                                <JFXTextField fx:id="TxtProvince" layoutX="429.0" layoutY="206.0" prefHeight="25.0" prefWidth="268.0" promptText="Province" />
+                                <JFXTextField fx:id="TxtPostalCode" layoutX="429.0" layoutY="259.0" prefHeight="25.0" prefWidth="268.0" promptText="Postal Code" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Search/Remove Customers">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="227.0" prefWidth="278.0">
+                            <children>
+                                <Text fill="#161294" layoutX="135.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search/Remove Customer Form" wrappingWidth="530.13671875">
+                                    <font>
+                                        <Font name="System Bold" size="34.0" />
+                                    </font>
+                                </Text>
+                                <JFXTextField fx:id="TxtId1" layoutX="59.0" layoutY="116.0" onKeyReleased="#OnSreachKeyReleased" prefHeight="25.0" prefWidth="268.0" promptText="Customer ID" />
+                                <JFXTextField fx:id="TxtName1" editable="false" layoutX="59.0" layoutY="216.0" prefHeight="25.0" prefWidth="268.0" promptText="Customer Name" />
+                                <JFXTextField fx:id="TxtAddress1" editable="false" layoutX="445.0" layoutY="116.0" prefHeight="25.0" prefWidth="268.0" promptText="Customer Address" />
+                                <JFXTextField fx:id="TxtSalary1" editable="false" layoutX="59.0" layoutY="312.0" prefHeight="25.0" prefWidth="268.0" promptText="Customer Salary" />
+                                <JFXTextField fx:id="TxtCity1" layoutX="445.0" layoutY="168.0" prefHeight="25.0" prefWidth="268.0" promptText="City" />
+                                <JFXTextField fx:id="TxtProvince1" editable="false" layoutX="445.0" layoutY="216.0" prefHeight="25.0" prefWidth="268.0" promptText="Province" />
+                                <JFXTextField fx:id="TxtPostalCode1" editable="false" layoutX="445.0" layoutY="269.0" prefHeight="25.0" prefWidth="268.0" promptText="Postal Code" />
+                                <JFXButton layoutX="413.0" layoutY="358.0" onAction="#btnSearchRemoveOnAction" prefHeight="41.0" prefWidth="112.0" ripplerFill="#f2f2f2" style="-fx-background-color: green;" text="Remove" textFill="WHITE">
+                                    <font>
+                                        <Font name="Book Antiqua Bold" size="12.0" />
+                                    </font></JFXButton>
+                                <JFXTextField fx:id="TxtTitle1" layoutX="59.0" layoutY="168.0" prefHeight="25.0" prefWidth="268.0" promptText="Customer Title" />
+                                <JFXTextField fx:id="TxtDate1" editable="false" layoutX="59.0" layoutY="269.0" prefHeight="25.0" prefWidth="268.0" promptText="Date" />
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Search/Update Customers">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="227.0" prefWidth="278.0">
+                            <children>
+                                <Text fill="#161294" layoutX="136.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search/Update Customer Form" wrappingWidth="503.13671875">
+                                    <font>
+                                        <Font name="System Bold" size="34.0" />
+                                    </font>
+                                </Text>
+                                <JFXTextField fx:id="TxtId11" layoutX="62.0" layoutY="114.0" onKeyReleased="#OnSreachUpdateKeyReleased" prefHeight="25.0" prefWidth="268.0" promptText="Customer ID" />
+                                <JFXTextField fx:id="TxtName11" layoutX="62.0" layoutY="216.0" prefHeight="25.0" prefWidth="268.0" promptText="Customer Name" />
+                                <JFXTextField fx:id="TxtAddress11" layoutX="442.0" layoutY="114.0" prefHeight="25.0" prefWidth="268.0" promptText="Customer Address" />
+                                <JFXTextField fx:id="TxtSalary11" layoutX="62.0" layoutY="306.0" prefHeight="25.0" prefWidth="268.0" promptText="Customer Salary" />
+                                <JFXTextField fx:id="TxtCity11" layoutX="442.0" layoutY="166.0" prefHeight="25.0" prefWidth="268.0" promptText="City" />
+                                <JFXTextField fx:id="TxtProvince11" layoutX="442.0" layoutY="216.0" prefHeight="25.0" prefWidth="268.0" promptText="Province" />
+                                <JFXTextField fx:id="TxtPostalCode11" layoutX="442.0" layoutY="264.0" prefHeight="25.0" prefWidth="268.0" promptText="Postal Code" />
+                                <JFXTextField fx:id="TxtTitle11" layoutX="62.0" layoutY="166.0" prefHeight="25.0" prefWidth="268.0" promptText="Customer Title" />
+                                <JFXButton layoutX="413.0" layoutY="342.0" onAction="#btnSearchUpdateOnAction" prefHeight="41.0" prefWidth="112.0" ripplerFill="#f2f2f2" style="-fx-background-color: green;" text="Update" textFill="WHITE">
+                                    <font>
+                                        <Font name="Book Antiqua Bold" size="12.0" />
+                                    </font>
+                                </JFXButton>
+                                <JFXTextField fx:id="TxtDate11" layoutX="62.0" layoutY="264.0" prefHeight="25.0" prefWidth="268.0" promptText="Date" />
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="View Customers">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="227.0" prefWidth="278.0">
+                            <children>
+                                <TableView fx:id="tblPatient" layoutX="26.0" layoutY="49.0" prefHeight="335.0" prefWidth="738.0">
+                                    <columns>
+                                        <TableColumn fx:id="colID" prefWidth="75.0" text="ID" />
+                                        <TableColumn fx:id="colName" prefWidth="64.0" text="Name" />
+                                        <TableColumn fx:id="colAge" prefWidth="74.0" text="Age" />
+                                        <TableColumn fx:id="colGender" prefWidth="90.0" text="Gender" />
+                                        <TableColumn fx:id="colContactDetails" prefWidth="72.0" text="ContactDetails " />
+                                        <TableColumn fx:id="colEmergencyContact" prefWidth="132.0" text="EmergencyContact" />
+                                        <TableColumn fx:id="colMedicalHistory" prefWidth="230.0" text="MedicalHistory" />
+                                    </columns>
+                                </TableView>
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>
