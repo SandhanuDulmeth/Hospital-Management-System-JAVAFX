@@ -1,0 +1,42 @@
+.table-view {
+    -fx-background-color: #ffffff; /* White background for the entire table */
+    -fx-border-color: #004d40; /* Dark teal border for the table */
+    -fx-border-width: 2; /* Border thickness */
+    -fx-padding: 10; /* Padding around the table */
+    -fx-table-cell-border-color: #e0f2f1; /* Light teal cell borders */
+    -fx-table-header-border-color: #00796b; /* Medium teal header border */
+}
+
+.column-header-background {
+    -fx-background-color: #00796b; /* Medium teal background for column headers */
+    -fx-border-color: #004d40; /* Dark teal border for headers */
+    -fx-border-width: 0 0 2 0; /* Bottom border for headers */
+    -fx-text-fill: #ffffff; /* White text for column headers */
+    -fx-font-size: 14px; /* Font size for headers */
+    -fx-font-weight: bold; /* Bold text for headers */
+    -fx-alignment: CENTER; /* Center align text in headers */
+}
+
+.table-row-cell {
+    -fx-background-color: #f0f8ff; /* Light blue-white background for rows */
+    -fx-border-color: #e0f2f1; /* Light teal border for cells */
+    -fx-text-fill: #004d40; /* Dark teal text color for rows */
+    -fx-font-size: 13px; /* Font size for rows */
+    -fx-alignment: CENTER; /* Center align text in rows */
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #e8f5e9; /* Light green background for odd rows */
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #b2dfdb; /* Light teal for row hover effect */
+}
+
+.table-cell {
+    -fx-padding: 8 12 8 12; /* Padding inside each cell */
+}
+
+.table-view:focused .table-row-cell:focused {
+    -fx-background-color: #b2ebf2; /* Highlighted row when focused */
+}
