@@ -47,29 +47,6 @@ public class PatientFormController implements Initializable {
 
     public JFXTextField TxtContactDetails1;
     public JFXTextField TxtAge1;
-    @FXML
-    private JFXComboBox ComboBoxTitle;
-
-    @FXML
-    private JFXComboBox ComboBoxTitle1;
-
-    @FXML
-    private DatePicker DatePickerDOB;
-
-    @FXML
-    private DatePicker DatePickerDOB1;
-
-    @FXML
-    private JFXTextField TxtAddress;
-
-    @FXML
-    private JFXTextField TxtAddress1;
-
-    @FXML
-    private JFXTextField TxtCity;
-
-    @FXML
-    private JFXTextField TxtCity1;
 
     @FXML
     private JFXTextField TxtId;
@@ -82,24 +59,6 @@ public class PatientFormController implements Initializable {
 
     @FXML
     private JFXTextField TxtName1;
-
-    @FXML
-    private JFXTextField TxtPostalCode;
-
-    @FXML
-    private JFXTextField TxtPostalCode1;
-
-    @FXML
-    private JFXTextField TxtProvince;
-
-    @FXML
-    private JFXTextField TxtProvince1;
-
-    @FXML
-    private JFXTextField TxtSalary;
-
-    @FXML
-    private JFXTextField TxtSalary1;
 
 
     @FXML
