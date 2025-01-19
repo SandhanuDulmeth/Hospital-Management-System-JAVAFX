@@ -8,5 +8,6 @@
    <children>
       <JFXButton layoutX="248.0" layoutY="80.0" onAction="#btnPatientOnAction" text="Patient" />
       <JFXButton layoutX="249.0" layoutY="128.0" onAction="#btnDoctorOnAction" text="Doctor" />
+      <JFXButton layoutX="242.0" layoutY="175.0" onAction="#btnResourceOnAction" text="Resource" />
    </children>
 </AnchorPane>
