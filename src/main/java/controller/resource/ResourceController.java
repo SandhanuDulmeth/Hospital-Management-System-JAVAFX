@@ -130,7 +130,6 @@ public class ResourceController implements ResourceService {
                         resultSet.getString(4),
                         resultSet.getInt(5)
 
-
                 );
 
                 return resource;
