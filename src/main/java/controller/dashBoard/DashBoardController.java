@@ -41,6 +41,16 @@ public class DashBoardController {
             throw new RuntimeException(e);
         }
     }
+
+    public void btnAppointmentOnAction(ActionEvent actionEvent) {
+        Stage stage = new Stage();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../../view/Appointment.fxml"))));
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
 

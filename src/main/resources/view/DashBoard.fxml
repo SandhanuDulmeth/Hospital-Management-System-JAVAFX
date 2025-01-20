@@ -3,11 +3,11 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.dashBoard.DashBoardController">
    <children>
       <JFXButton layoutX="248.0" layoutY="80.0" onAction="#btnPatientOnAction" text="Patient" />
       <JFXButton layoutX="249.0" layoutY="128.0" onAction="#btnDoctorOnAction" text="Doctor" />
       <JFXButton layoutX="242.0" layoutY="175.0" onAction="#btnResourceOnAction" text="Resource" />
+      <JFXButton layoutX="231.0" layoutY="219.0" onAction="#btnAppointmentOnAction" text="Appointment" />
    </children>
 </AnchorPane>
