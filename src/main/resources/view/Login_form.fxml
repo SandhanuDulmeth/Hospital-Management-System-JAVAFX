@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="241.0" prefWidth="376.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Login.LoginFormController">
+   <children>
+      <ImageView fitHeight="356.0" fitWidth="551.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/loginUi.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnLogin" layoutX="172.0" layoutY="228.0" mnemonicParsing="false" onAction="#btnLoginOnAction" style="-fx-background-color: #123577;" text="Login" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="59.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/login.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <JFXTextField fx:id="txtEmail" layoutX="227.0" layoutY="119.0" promptText="Enter Email" />
+      <JFXTextField fx:id="txtPassword" layoutX="226.0" layoutY="162.0" promptText="Enter Password" />
+      <JFXButton fx:id="btnAdd" layoutX="369.0" layoutY="227.0" onAction="#btnAddOnAction" ripplerFill="WHITE" style="-fx-background-color: #c00026;" text="Add" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="59.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/add.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <Label layoutX="227.0" layoutY="71.0" text="User Login">
+         <font>
+            <Font name="Bodoni MT Black" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDate" layoutX="369.0" layoutY="8.0" prefHeight="55.0" prefWidth="150.0">
+         <font>
+            <Font name="Blackadder ITC" size="33.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblTime" layoutX="66.0" layoutY="27.0" prefHeight="17.0" prefWidth="116.0" />
+   </children>
+</AnchorPane>

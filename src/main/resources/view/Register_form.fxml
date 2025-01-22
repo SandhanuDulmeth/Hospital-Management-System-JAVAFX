@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="514.0" prefWidth="225.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.register.registerFormController">
+   <children>
+      <ImageView fitHeight="514.0" fitWidth="311.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/AddUi.jpg" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnAdd" layoutX="108.0" layoutY="356.0" onAction="#btnAddOnAction" prefHeight="36.0" prefWidth="74.0" style="-fx-background-color: #ef2121;" text="add" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></JFXButton>
+      <JFXTextField fx:id="txtId" editable="false" layoutX="77.0" layoutY="138.0" />
+      <JFXTextField fx:id="txtName" layoutX="78.0" layoutY="186.0" promptText="Enter Name" />
+      <JFXTextField fx:id="txtEmail" layoutX="77.0" layoutY="231.0" promptText="Enter Email" />
+      <JFXTextField fx:id="txtPassword" layoutX="78.0" layoutY="280.0" promptText="Enter Password" />
+      <Label layoutX="54.0" layoutY="70.0" prefHeight="36.0" prefWidth="207.0" text="Add New User">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="28.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
