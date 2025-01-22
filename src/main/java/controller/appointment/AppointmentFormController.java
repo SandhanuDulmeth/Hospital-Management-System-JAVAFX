@@ -1,16 +1,22 @@
 package controller.appointment;
 
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import controller.appointment.AppointmentController;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import model.Appointment;
+import model.Doctor;
+import model.Patient;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,41 +29,7 @@ public class AppointmentFormController implements Initializable {
     public JFXTextField TxtId11;
     public JFXTextField TxtName11;
 
-    public TableColumn colID;
-    public TableColumn colName;
-    public TableColumn colAge;
-    public TableColumn colGender;
-    public TableColumn colContactDetails;
-    public TableColumn colEmergencyContact;
 
-    public JFXTextField TxtContactDetails11;
-    public JFXTextField TxtContactDetails;
-
-
-    public JFXTextField TxtContactDetails1;
-
-    public JFXTextField TxtQualifications;
-    public JFXTextField TxtSpecialty;
-    public JFXTextField TxtAvailability;
-    public JFXTextField TxtAvailability1;
-    public JFXTextField TxtSpecialty1;
-    public JFXTextField TxtQualifications1;
-    public JFXTextField TxtQualifications11;
-    public JFXTextField TxtAvailability11;
-    public JFXTextField TxtSpecialty11;
-    public TableColumn colSpecialty;
-    public TableColumn colAvailability;
-    public TableColumn colQualifications;
-    public JFXTextField TxtType;
-    public JFXTextField TxtAllocatedTo;
-    public JFXTextField TxtStatus;
-    public JFXTextField TxtStatus1;
-    public JFXTextField TxtAllocatedTo1;
-    public JFXTextField TxtType1;
-    public JFXTextField TxtType11;
-    public JFXTextField TxtAllocatedTo11;
-    public JFXTextField TxtStatus11;
-    public JFXTextField TxtPId;
     public JFXTextField TxtTime;
     public JFXTextField TxtDId;
     public JFXTextField TxtDate;
@@ -69,6 +41,15 @@ public class AppointmentFormController implements Initializable {
     public JFXTextField TxtTime1;
     public JFXTextField TxtDId11;
     public JFXTextField TxtDate11;
+    public JFXComboBox PIdComboBox;
+    public JFXComboBox DIdComboBox;
+    public javafx.scene.control.DatePicker DatePicker;
+    public TableColumn colAppointmentID;
+    public TableColumn colPatientId;
+    public TableColumn colDoctorId;
+    public TableColumn colAppointmentDate;
+    public TableColumn colTime;
+
 
     @FXML
     private JFXTextField TxtId;
@@ -88,12 +69,17 @@ public class AppointmentFormController implements Initializable {
         if (!(TxtId.getText().isEmpty())) {
             Appointment appointment = new Appointment(
                     Integer.valueOf(TxtId.getText()),
-                    Integer.valueOf(TxtPId.getText()),
-                    Integer.valueOf(TxtDId.getText()),
-                    TxtDate.getText(),
+                    getId((String) PIdComboBox.getValue()) ,
+                    getId((String)  DIdComboBox.getValue()),
+                   // Integer.valueOf(TxtPId.getText()),
+                    //Integer.valueOf(TxtDId.getText()),
+                    String.valueOf(DatePicker.getValue()),
+
                     TxtTime.getText()
             );
-
+            System.out.println( getId((String) PIdComboBox.getValue()) +"><"+getId((String)  DIdComboBox.getValue()));
+            System.out.println(DatePicker.getValue());
+            System.out.println();
             if (AppointmentController.getInstance().addCustomer(appointment)) {
                 new Alert(Alert.AlertType.INFORMATION, "Added").show();
                 clearAddForm();
@@ -108,16 +94,22 @@ public class AppointmentFormController implements Initializable {
         }
 
     }
-
+    public static int getId(String input) {
+        // Split the string by spaces and hyphens
+        String[] parts = input.split("[ -]");
+        // Parse the second part (the ID number) as an integer and return it
+        return Integer.parseInt(parts[1]);
+    }
     @FXML
     public void btnClearOnAction(ActionEvent event) {
         clearAddForm();
     }
 
     public void clearAddForm() {
-        TxtPId.clear();
-        TxtDId.clear();
-        TxtDate.clear();
+
+       // TxtPId.clear();
+       // TxtDId.clear();
+        //TxtDate.clear();
         TxtTime.clear();
 
     }
@@ -135,11 +127,24 @@ public class AppointmentFormController implements Initializable {
 //        private String date;
 //        private String time;
 
-        colID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colName.setCellValueFactory(new PropertyValueFactory<>("pId"));
-        colSpecialty.setCellValueFactory(new PropertyValueFactory<>("dID"));
-        colAvailability.setCellValueFactory(new PropertyValueFactory<>("date"));
-        colQualifications.setCellValueFactory(new PropertyValueFactory<>("time"));
+        ObservableList<Object> objectsPatient = FXCollections.observableArrayList();
+        for (Patient patient : AppointmentController.getInstance().getPatientsID()) {
+            objectsPatient.add("ID-"+patient.getId()+" Name-"+patient.getName());
+        }
+        PIdComboBox.setItems(objectsPatient);
+        //PIdComboBox.setItems(AppointmentController.getInstance().getPatientsID());
+
+        ObservableList<Object> objectsDoc = FXCollections.observableArrayList();
+        for (Doctor doctor : AppointmentController.getInstance().getDocID()) {
+            objectsDoc.add("ID-"+doctor.getId()+" Name-"+doctor.getName());
+        }
+        DIdComboBox.setItems(objectsDoc);
+
+        colAppointmentID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colPatientId.setCellValueFactory(new PropertyValueFactory<>("pId"));
+        colDoctorId.setCellValueFactory(new PropertyValueFactory<>("dID"));
+        colAppointmentDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
 
         loadTable();
         clearAddForm();
@@ -196,10 +201,11 @@ public class AppointmentFormController implements Initializable {
 
         if (AppointmentController.getInstance().UpdateCustomer(new Appointment(
                 Integer.valueOf(TxtId11.getText()),
-                Integer.valueOf(TxtPId1.getText()),
+                Integer.valueOf(TxtPId11.getText()),
                 Integer.valueOf(TxtDId11.getText()),
-                TxtName11.getText(),
-                TxtDate11.getText()
+                TxtDate11.getText(),
+                TxtTime11.getText()
+
 
         ))) {
             new Alert(Alert.AlertType.INFORMATION, "Updated ").show();

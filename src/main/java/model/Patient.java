@@ -28,4 +28,9 @@ public class Patient {
         this.emergencyContact = emergencyContact;
         this.medicalHistory = medicalHistory;
     }
+
+    public Patient(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

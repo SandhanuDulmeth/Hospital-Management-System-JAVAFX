@@ -24,4 +24,9 @@ public class Doctor {
         this.qualifications = qualifications;
         this.contact_details = contact_details;
     }
+
+    public Doctor(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

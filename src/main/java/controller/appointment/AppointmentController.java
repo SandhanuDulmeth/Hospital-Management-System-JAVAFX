@@ -5,11 +5,14 @@ import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointment;
+import model.Doctor;
+import model.Patient;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class AppointmentController implements AppointmentService {
     public static AppointmentController insance;
@@ -121,7 +124,7 @@ public class AppointmentController implements AppointmentService {
         Connection connection = null;
         try {
             connection = DBConnection.getINSTANCE().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Appointments WHERE appointment_id=? ");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Appointment WHERE appointment_id=? ");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -142,6 +145,57 @@ public class AppointmentController implements AppointmentService {
         }
         return null;
     }
+
+//    @Override
+//    public ObservableList<Patient> getPatientsID() {
+//        ObservableList<Patient> appointmentPatientsIDList = FXCollections.observableArrayList();
+//        try {
+//            ResultSet resultSet = DBConnection.getINSTANCE().getConnection().createStatement().executeQuery("SELECT patient_id FROM Patient");
+//
+//            while ( resultSet.next()){
+//                appointmentPatientsIDList.add(new Patient(resultSet.getInt(1)));
+//                System.out.println(appointmentPatientsIDList);
+//            }
+//
+//            return appointmentPatientsIDList ;
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+@Override
+public ArrayList<Patient> getPatientsID() {
+    ArrayList<Patient> appointmentPatientsIDList = new ArrayList<>();
+    try {
+        ResultSet resultSet = DBConnection.getINSTANCE().getConnection().createStatement().executeQuery("SELECT patient_id,name FROM Patient");
+
+        while (resultSet.next()) {
+            appointmentPatientsIDList.add(new Patient(resultSet.getInt(1),resultSet.getString(2)));
+            System.out.println(appointmentPatientsIDList);
+        }
+
+        return appointmentPatientsIDList;
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
+}
+
+    @Override
+    public ArrayList<Doctor> getDocID() {
+        ArrayList<Doctor> appointmentDoctorIDList = new ArrayList<>();
+        try {
+            ResultSet resultSet = DBConnection.getINSTANCE().getConnection().createStatement().executeQuery("SELECT doctor_id,name FROM doctor");
+
+            while (resultSet.next()) {
+                appointmentDoctorIDList.add(new Doctor(resultSet.getInt(1),resultSet.getString(2)));
+                System.out.println(appointmentDoctorIDList);
+            }
+
+            return appointmentDoctorIDList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     public Integer getNextId() {
         try {
