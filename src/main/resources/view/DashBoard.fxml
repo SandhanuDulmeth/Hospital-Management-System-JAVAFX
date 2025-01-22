@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.dashBoard.DashBoardController">
+<AnchorPane prefHeight="466.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.dashBoard.DashBoardController">
    <children>
-      <JFXButton layoutX="248.0" layoutY="80.0" onAction="#btnPatientOnAction" text="Patient" />
-      <JFXButton layoutX="249.0" layoutY="128.0" onAction="#btnDoctorOnAction" text="Doctor" />
-      <JFXButton layoutX="242.0" layoutY="175.0" onAction="#btnResourceOnAction" text="Resource" />
-      <JFXButton layoutX="231.0" layoutY="219.0" onAction="#btnAppointmentOnAction" text="Appointment" />
+      <ImageView fitHeight="480.0" fitWidth="512.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/DashBoardUI.png" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="188.0" layoutY="61.0" onAction="#btnPatientOnAction" style="-fx-background-color: #A6CDC6;" text="Patient" textFill="#070707">
+         <font>
+            <Font size="24.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="188.0" layoutY="126.0" onAction="#btnDoctorOnAction" style="-fx-background-color: #FBF5DD;" text="Doctor">
+         <font>
+            <Font size="24.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="176.0" layoutY="189.0" onAction="#btnResourceOnAction" style="-fx-background-color: #DDA853;" text="Resource">
+         <font>
+            <Font size="24.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="154.0" layoutY="255.0" onAction="#btnAppointmentOnAction" style="-fx-background-color: #16404D;" text="Appointment" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font></JFXButton>
    </children>
 </AnchorPane>

@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="241.0" prefWidth="376.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Login.LoginFormController">
+<AnchorPane prefHeight="476.0" prefWidth="636.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Login.LoginFormController">
    <children>
-      <ImageView fitHeight="356.0" fitWidth="551.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="552.0" fitWidth="843.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/loginUi.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="btnLogin" layoutX="172.0" layoutY="228.0" mnemonicParsing="false" onAction="#btnLoginOnAction" style="-fx-background-color: #123577;" text="Login" textFill="WHITE">
+      <Button fx:id="btnLogin" layoutX="198.0" layoutY="378.0" mnemonicParsing="false" onAction="#btnLoginOnAction" prefHeight="55.0" prefWidth="162.0" style="-fx-background-color: #123577;" text="Login" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="59.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -22,9 +25,15 @@
             </ImageView>
          </graphic>
       </Button>
-      <JFXTextField fx:id="txtEmail" layoutX="227.0" layoutY="119.0" promptText="Enter Email" />
-      <JFXTextField fx:id="txtPassword" layoutX="226.0" layoutY="162.0" promptText="Enter Password" />
-      <JFXButton fx:id="btnAdd" layoutX="369.0" layoutY="227.0" onAction="#btnAddOnAction" ripplerFill="WHITE" style="-fx-background-color: #c00026;" text="Add" textFill="WHITE">
+      <JFXTextField fx:id="txtEmail" layoutX="302.0" layoutY="191.0" promptText="Enter Email">
+         <font>
+            <Font size="26.0" />
+         </font></JFXTextField>
+      <JFXTextField fx:id="txtPassword" layoutX="302.0" layoutY="268.0" promptText="Enter Password">
+         <font>
+            <Font size="26.0" />
+         </font></JFXTextField>
+      <JFXButton fx:id="btnAdd" layoutX="491.0" layoutY="378.0" onAction="#btnAddOnAction" prefHeight="55.0" prefWidth="184.0" ripplerFill="WHITE" style="-fx-background-color: #c00026;" text="Add New User" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="59.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -33,16 +42,19 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Label layoutX="227.0" layoutY="71.0" text="User Login">
+      <Label layoutX="302.0" layoutY="91.0" text="User Login">
          <font>
-            <Font name="Bodoni MT Black" size="24.0" />
+            <Font name="Bodoni MT Black" size="50.0" />
          </font>
       </Label>
-      <Label fx:id="lblDate" layoutX="369.0" layoutY="8.0" prefHeight="55.0" prefWidth="150.0">
+      <Label fx:id="lblDate" layoutX="679.0" prefHeight="55.0" prefWidth="150.0">
          <font>
             <Font name="Blackadder ITC" size="33.0" />
          </font>
       </Label>
-      <Label fx:id="LblTime" layoutX="66.0" layoutY="27.0" prefHeight="17.0" prefWidth="116.0" />
+      <Label fx:id="LblTime" layoutX="72.0" layoutY="21.0" prefHeight="42.0" prefWidth="150.0">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
    </children>
 </AnchorPane>
