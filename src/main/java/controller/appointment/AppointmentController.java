@@ -146,22 +146,7 @@ public class AppointmentController implements AppointmentService {
         return null;
     }
 
-//    @Override
-//    public ObservableList<Patient> getPatientsID() {
-//        ObservableList<Patient> appointmentPatientsIDList = FXCollections.observableArrayList();
-//        try {
-//            ResultSet resultSet = DBConnection.getINSTANCE().getConnection().createStatement().executeQuery("SELECT patient_id FROM Patient");
-//
-//            while ( resultSet.next()){
-//                appointmentPatientsIDList.add(new Patient(resultSet.getInt(1)));
-//                System.out.println(appointmentPatientsIDList);
-//            }
-//
-//            return appointmentPatientsIDList ;
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+
 @Override
 public ArrayList<Patient> getPatientsID() {
     ArrayList<Patient> appointmentPatientsIDList = new ArrayList<>();
