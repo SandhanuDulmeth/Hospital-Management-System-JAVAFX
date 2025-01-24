@@ -8,18 +8,17 @@ import model.Patient;
 import java.util.ArrayList;
 
 public interface AppointmentService {
-    boolean addCustomer(Appointment appointment);
+    boolean addAppointment(Appointment appointment);
 
-    boolean deleteCustomer(Integer id);
+    boolean deleteAppointment(Integer id);
 
     ObservableList<Appointment> getAll();
 
-    boolean UpdateCustomer(Appointment appointment);
+    boolean updateAppointment(Appointment appointment);
 
-    Appointment searchCustomer(Integer id);
-
-   // ObservableList<Patient> getPatientsID();
+    Appointment searchAppointment(Integer id);
 
     ArrayList<Patient> getPatientsID();
+
     ArrayList<Doctor> getDocID();
 }

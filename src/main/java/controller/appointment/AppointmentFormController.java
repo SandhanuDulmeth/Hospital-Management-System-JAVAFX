@@ -74,7 +74,7 @@ public class AppointmentFormController implements Initializable {
             System.out.println( getId((String) PIdComboBox.getValue()) +"><"+getId((String)  DIdComboBox.getValue()));
             System.out.println(DatePicker.getValue());
             System.out.println();
-            if (AppointmentController.getInstance().addCustomer(appointment)) {
+            if (AppointmentController.getInstance().addAppointment(appointment)) {
                 new Alert(Alert.AlertType.INFORMATION, "Added").show();
                 clearAddForm();
                 loadTable();
@@ -142,7 +142,7 @@ public class AppointmentFormController implements Initializable {
     public void btnSearchRemoveOnAction(ActionEvent actionEvent) {
 
 
-        if (AppointmentController.getInstance().deleteCustomer(Integer.valueOf(TxtId1.getText())))
+        if (AppointmentController.getInstance().deleteAppointment(Integer.valueOf(TxtId1.getText())))
             new Alert(Alert.AlertType.INFORMATION, "Removed " + TxtId1.getText()).show();
         else new Alert(Alert.AlertType.INFORMATION, "Not Removed " + TxtId1.getText()).show();
 
@@ -161,7 +161,7 @@ public class AppointmentFormController implements Initializable {
 
     public void OnSreachKeyReleased(KeyEvent keyEvent) {
 
-        Appointment appointment = AppointmentController.getInstance().searchCustomer(Integer.valueOf("0" + TxtId1.getText()));
+        Appointment appointment = AppointmentController.getInstance().searchAppointment(Integer.valueOf("0" + TxtId1.getText()));
 
         if (null != appointment) {
             TxtPId1.setText(String.valueOf(appointment.getPId()));
@@ -187,7 +187,7 @@ public class AppointmentFormController implements Initializable {
 
     public void btnSearchUpdateOnAction(ActionEvent actionEvent) {
 
-        if (AppointmentController.getInstance().UpdateCustomer(new Appointment(
+        if (AppointmentController.getInstance().updateAppointment(new Appointment(
                 Integer.valueOf(TxtId11.getText()),
                 Integer.valueOf(TxtPId11.getText()),
                 Integer.valueOf(TxtDId11.getText()),
@@ -205,7 +205,7 @@ public class AppointmentFormController implements Initializable {
     }
 
     public void OnSreachUpdateKeyReleased(KeyEvent keyEvent) {
-        Appointment appointment = AppointmentController.getInstance().searchCustomer(Integer.valueOf("0" + TxtId11.getText()));
+        Appointment appointment = AppointmentController.getInstance().searchAppointment(Integer.valueOf("0" + TxtId11.getText()));
 
         if (null != appointment) {
 

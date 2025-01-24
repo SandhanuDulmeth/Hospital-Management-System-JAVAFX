@@ -1,46 +1,41 @@
 package controller.appointment;
 
-import controller.appointment.AppointmentService;
+import controller.CurdUtil.CrudUtil;
 import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointment;
 import model.Doctor;
 import model.Patient;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class AppointmentController implements AppointmentService {
-    public static AppointmentController insance;
+    private static AppointmentController instance;
 
     private AppointmentController() {
     }
 
     public static AppointmentController getInstance() {
-        return insance == null ? insance = new AppointmentController() : insance;
+        return instance == null ? instance = new AppointmentController() : instance;
 
     }
 
     @Override
-    public boolean addCustomer(Appointment appointment) {
+    public boolean addAppointment(Appointment appointment) {
 
-        Connection connection = null;
+
         try {
-            connection = DBConnection.getINSTANCE().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Appointment VALUES(?,?,?,?,?)");
-            preparedStatement.setInt(1, appointment.getId());
-            preparedStatement.setInt(2, appointment.getPId());
-            preparedStatement.setInt(3, appointment.getDID());
-            preparedStatement.setString(4, appointment.getDate());
-            preparedStatement.setString(5, appointment.getTime());
 
+            return CrudUtil.execute("INSERT INTO Appointment VALUES(?,?,?,?,?)",
+                    appointment.getId(),
+                    appointment.getPId(),
+                    appointment.getDID(),
+                    appointment.getDate(),
+                    appointment.getTime()
+            );
 
-
-            return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -48,17 +43,11 @@ public class AppointmentController implements AppointmentService {
     }
 
     @Override
-    public boolean deleteCustomer(Integer id) {
+    public boolean deleteAppointment(Integer id) {
 
-        Connection connection = null;
 
         try {
-            connection = DBConnection.getINSTANCE().getConnection();
-
-            PreparedStatement stm = connection.prepareStatement("DELETE FROM Appointment WHERE appointment_id = ?");
-            stm.setObject(1, id);
-
-            return stm.executeUpdate() > 0;
+            return CrudUtil.execute("DELETE FROM Appointment WHERE appointment_id = ?", id);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -72,10 +61,8 @@ public class AppointmentController implements AppointmentService {
 
         ObservableList<Appointment> appointmentObservableList = FXCollections.observableArrayList();
         try {
-            ResultSet resultSet = DBConnection.getINSTANCE()
-                    .getConnection().
-                    createStatement()
-                    .executeQuery("SELECT * FROM Appointment");
+
+            ResultSet resultSet = CrudUtil.execute("SELECT * FROM Appointment");
 
             while (resultSet.next()) {
 
@@ -98,21 +85,17 @@ public class AppointmentController implements AppointmentService {
     }
 
     @Override
-    public boolean UpdateCustomer(Appointment appointment) {
-        Connection connection = null;
+    public boolean updateAppointment(Appointment appointment) {
+
         try {
-            connection = DBConnection.getINSTANCE().getConnection();
+            return CrudUtil.execute("UPDATE Appointment SET patient_id = ?, doctor_id = ?, appointment_date = ?,time=? WHERE appointment_id = ?;",
+                    appointment.getPId(),
+                    appointment.getDID(),
+                    appointment.getDate(),
+                    appointment.getTime(),
+                    appointment.getId()
+            );
 
-            PreparedStatement stm = connection.prepareStatement("UPDATE Appointment SET patient_id = ?, doctor_id = ?, appointment_date = ?,time=? WHERE appointment_id = ?;");
-            stm.setObject(5, appointment.getId());
-            stm.setObject(1, appointment.getPId());
-            stm.setObject(2, appointment.getDID());
-            stm.setObject(3, appointment.getDate());
-            stm.setObject(4, appointment.getTime());
-
-
-            System.out.println("UpdateCustomer Ok");
-            return stm.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -120,26 +103,20 @@ public class AppointmentController implements AppointmentService {
     }
 
     @Override
-    public Appointment searchCustomer(Integer id) {
-        Connection connection = null;
+    public Appointment searchAppointment(Integer id) {
+
         try {
-            connection = DBConnection.getINSTANCE().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Appointment WHERE appointment_id=? ");
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
+
+            ResultSet resultSet = CrudUtil.execute("SELECT * FROM Appointment WHERE appointment_id=? ", id);
             if (resultSet.next()) {
-                Appointment appointment = new Appointment(
+                return new Appointment(
                         resultSet.getInt(2),
                         resultSet.getInt(3),
                         resultSet.getString(4),
                         resultSet.getString(5)
 
                 );
-
-                return appointment;
             }
-
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -147,34 +124,30 @@ public class AppointmentController implements AppointmentService {
     }
 
 
-@Override
-public ArrayList<Patient> getPatientsID() {
-    ArrayList<Patient> appointmentPatientsIDList = new ArrayList<>();
-    try {
-        ResultSet resultSet = DBConnection.getINSTANCE().getConnection().createStatement().executeQuery("SELECT patient_id,name FROM Patient");
-
-        while (resultSet.next()) {
-            appointmentPatientsIDList.add(new Patient(resultSet.getInt(1),resultSet.getString(2)));
-            System.out.println(appointmentPatientsIDList);
+    @Override
+    public ArrayList<Patient> getPatientsID() {
+        ArrayList<Patient> appointmentPatientsIDList = new ArrayList<>();
+        try {
+            ResultSet resultSet = CrudUtil.execute("SELECT patient_id,name FROM Patient");
+            while (resultSet.next()) {
+                appointmentPatientsIDList.add(new Patient(resultSet.getInt(1), resultSet.getString(2)));
+                System.out.println(appointmentPatientsIDList);
+            }
+            return appointmentPatientsIDList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-
-        return appointmentPatientsIDList;
-    } catch (SQLException e) {
-        throw new RuntimeException(e);
     }
-}
 
     @Override
     public ArrayList<Doctor> getDocID() {
         ArrayList<Doctor> appointmentDoctorIDList = new ArrayList<>();
         try {
-            ResultSet resultSet = DBConnection.getINSTANCE().getConnection().createStatement().executeQuery("SELECT doctor_id,name FROM doctor");
-
+            ResultSet resultSet = CrudUtil.execute("SELECT doctor_id,name FROM doctor");
             while (resultSet.next()) {
-                appointmentDoctorIDList.add(new Doctor(resultSet.getInt(1),resultSet.getString(2)));
+                appointmentDoctorIDList.add(new Doctor(resultSet.getInt(1), resultSet.getString(2)));
                 System.out.println(appointmentDoctorIDList);
             }
-
             return appointmentDoctorIDList;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -186,9 +159,7 @@ public ArrayList<Patient> getPatientsID() {
         try {
             ResultSet resultSet = DBConnection.getINSTANCE().getConnection().createStatement().executeQuery(" SELECT IFNULL(MAX(appointment_id), 0) + 1 AS next_id FROM Appointment");
             resultSet.next();
-
             return resultSet.getInt(1);
-
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
