@@ -8,12 +8,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
+
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
+
 import model.Appointment;
 import model.Doctor;
 import model.Patient;
@@ -25,14 +25,8 @@ public class AppointmentFormController implements Initializable {
 
 
     public TableView tblAppointment;
-
     public JFXTextField TxtId11;
-    public JFXTextField TxtName11;
-
-
     public JFXTextField TxtTime;
-    public JFXTextField TxtDId;
-    public JFXTextField TxtDate;
     public JFXTextField TxtDate1;
     public JFXTextField TxtDId1;
     public JFXTextField TxtPId1;
@@ -95,9 +89,9 @@ public class AppointmentFormController implements Initializable {
 
     }
     public static int getId(String input) {
-        // Split the string by spaces and hyphens
+
         String[] parts = input.split("[ -]");
-        // Parse the second part (the ID number) as an integer and return it
+
         return Integer.parseInt(parts[1]);
     }
     @FXML
@@ -107,9 +101,7 @@ public class AppointmentFormController implements Initializable {
 
     public void clearAddForm() {
 
-       // TxtPId.clear();
-       // TxtDId.clear();
-        //TxtDate.clear();
+
         TxtTime.clear();
 
     }
@@ -121,18 +113,14 @@ public class AppointmentFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle appointmentBundle) {
         setNextId();
-//        private Integer id;
-//        private Integer pId;
-//        private Integer dID;
-//        private String date;
-//        private String time;
+
 
         ObservableList<Object> objectsPatient = FXCollections.observableArrayList();
         for (Patient patient : AppointmentController.getInstance().getPatientsID()) {
             objectsPatient.add("ID-"+patient.getId()+" Name-"+patient.getName());
         }
         PIdComboBox.setItems(objectsPatient);
-        //PIdComboBox.setItems(AppointmentController.getInstance().getPatientsID());
+
 
         ObservableList<Object> objectsDoc = FXCollections.observableArrayList();
         for (Doctor doctor : AppointmentController.getInstance().getDocID()) {

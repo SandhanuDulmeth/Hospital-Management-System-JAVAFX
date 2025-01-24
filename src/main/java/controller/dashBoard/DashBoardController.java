@@ -51,6 +51,16 @@ public class DashBoardController {
             throw new RuntimeException(e);
         }
     }
+
+    public void btnPrescriptionOnAction(ActionEvent actionEvent) {
+        Stage stage = new Stage();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../../view/Prescription.fxml"))));
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
 

@@ -6,28 +6,33 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="466.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.dashBoard.DashBoardController">
+<AnchorPane prefHeight="507.0" prefWidth="540.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.dashBoard.DashBoardController">
    <children>
-      <ImageView fitHeight="480.0" fitWidth="512.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="541.0" fitWidth="540.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/DashBoardUI.png" />
          </image>
       </ImageView>
-      <JFXButton layoutX="188.0" layoutY="61.0" onAction="#btnPatientOnAction" style="-fx-background-color: #A6CDC6;" text="Patient" textFill="#070707">
+      <JFXButton layoutX="218.0" layoutY="14.0" onAction="#btnPatientOnAction" style="-fx-background-color: #A6CDC6;" text="Patient" textFill="#070707">
          <font>
             <Font size="24.0" />
          </font></JFXButton>
-      <JFXButton layoutX="188.0" layoutY="126.0" onAction="#btnDoctorOnAction" style="-fx-background-color: #FBF5DD;" text="Doctor">
+      <JFXButton layoutX="219.0" layoutY="84.0" onAction="#btnDoctorOnAction" style="-fx-background-color: #FBF5DD;" text="Doctor">
          <font>
             <Font size="24.0" />
          </font></JFXButton>
-      <JFXButton layoutX="176.0" layoutY="189.0" onAction="#btnResourceOnAction" style="-fx-background-color: #DDA853;" text="Resource">
+      <JFXButton layoutX="206.0" layoutY="160.0" onAction="#btnResourceOnAction" style="-fx-background-color: #DDA853;" text="Resource">
          <font>
             <Font size="24.0" />
          </font></JFXButton>
-      <JFXButton layoutX="154.0" layoutY="255.0" onAction="#btnAppointmentOnAction" style="-fx-background-color: #16404D;" text="Appointment" textFill="WHITE">
+      <JFXButton layoutX="184.0" layoutY="245.0" onAction="#btnAppointmentOnAction" style="-fx-background-color: #16404D;" text="Appointment" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font></JFXButton>
+      <JFXButton layoutX="185.0" layoutY="333.0" onAction="#btnPrescriptionOnAction" prefHeight="51.0" prefWidth="173.0" style="-fx-background-color: #77B254;" text="Prescription">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>
