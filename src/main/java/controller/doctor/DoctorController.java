@@ -1,6 +1,7 @@
 package controller.doctor;
 
 
+import controller.CurdUtil.CrudUtil;
 import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,19 +26,17 @@ public class DoctorController implements DoctorService {
     @Override
     public boolean addCustomer(Doctor doctor) {
 
-        Connection connection = null;
+
         try {
-            connection = DBConnection.getINSTANCE().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Doctor VALUES(?,?,?,?,?,?)");
-            preparedStatement.setInt(1, doctor.getId());
-            preparedStatement.setString(2, doctor.getName());
-            preparedStatement.setString(3, doctor.getAvailability());
-            preparedStatement.setString(4, doctor.getAvailability());
-            preparedStatement.setString(5, doctor.getQualifications());
-            preparedStatement.setString(6, doctor.getContact_details());
+            return CrudUtil.execute("INSERT INTO Doctor VALUES(?,?,?,?,?,?)",
+                    doctor.getId(),
+                    doctor.getName(),
+                    doctor.getSpecialty(),
+                    doctor.getAvailability(),
+                    doctor.getQualifications(),
+                    doctor.getContact_details()
+            );
 
-
-            return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -47,15 +46,9 @@ public class DoctorController implements DoctorService {
     @Override
     public boolean deleteCustomer(Integer id) {
 
-        Connection connection = null;
 
         try {
-            connection = DBConnection.getINSTANCE().getConnection();
-
-            PreparedStatement stm = connection.prepareStatement("DELETE FROM Doctor WHERE doctor_id = ?");
-            stm.setObject(1, id);
-
-            return stm.executeUpdate() > 0;
+            return CrudUtil.execute("DELETE FROM Doctor WHERE doctor_id = ?", id);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -69,10 +62,7 @@ public class DoctorController implements DoctorService {
 
         ObservableList<Doctor> doctorObservableList = FXCollections.observableArrayList();
         try {
-            ResultSet resultSet = DBConnection.getINSTANCE()
-                    .getConnection().
-                    createStatement()
-                    .executeQuery("SELECT * FROM Doctor");
+            ResultSet resultSet = CrudUtil.execute("SELECT * FROM Doctor");
 
             while (resultSet.next()) {
 
@@ -96,20 +86,17 @@ public class DoctorController implements DoctorService {
 
     @Override
     public boolean UpdateCustomer(Doctor doctor) {
-        Connection connection = null;
+
         try {
-            connection = DBConnection.getINSTANCE().getConnection();
+            return CrudUtil.execute("UPDATE doctor SET name = ?, specialty = ?, availability = ?, qualifications = ?, contact_details = ? WHERE doctor_id = ?;",
+                    doctor.getName(),
+                    doctor.getSpecialty(),
+                    doctor.getAvailability(),
+                    doctor.getQualifications(),
+                    doctor.getContact_details(),
+                    doctor.getId()
+            );
 
-            PreparedStatement stm = connection.prepareStatement("UPDATE doctor SET name = ?, specialty = ?, availability = ?, qualifications = ?, contact_details = ? WHERE doctor_id = ?;");
-            stm.setObject(6, doctor.getId());
-            stm.setObject(1, doctor.getName());
-            stm.setObject(2, doctor.getSpecialty());
-            stm.setObject(3, doctor.getAvailability());
-            stm.setObject(4, doctor.getQualifications());
-            stm.setObject(5, doctor.getContact_details());
-
-            System.out.println("UpdateCustomer Ok");
-            return stm.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -118,14 +105,12 @@ public class DoctorController implements DoctorService {
 
     @Override
     public Doctor searchCustomer(Integer id) {
-        Connection connection = null;
+
         try {
-            connection = DBConnection.getINSTANCE().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM doctor WHERE doctor_id=? ");
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            ResultSet resultSet = CrudUtil.execute("SELECT * FROM doctor WHERE doctor_id=? ", id);
+
             if (resultSet.next()) {
-                Doctor doctor = new Doctor(
+                return new Doctor(
                         resultSet.getString(2),
                         resultSet.getString(3),
                         resultSet.getString(4),
@@ -133,8 +118,6 @@ public class DoctorController implements DoctorService {
                         resultSet.getString(6)
 
                 );
-
-                return doctor;
             }
 
 
@@ -146,11 +129,11 @@ public class DoctorController implements DoctorService {
 
     public Integer getNextId() {
         try {
-            ResultSet resultSet = DBConnection.getINSTANCE().getConnection().createStatement().executeQuery(" SELECT IFNULL(MAX(doctor_id), 0) + 1 AS next_id FROM doctor");
+            ResultSet resultSet = CrudUtil.execute("SELECT IFNULL (MAX(doctor_id), 0) + 1 AS next_id FROM doctor");
+
             resultSet.next();
 
             return resultSet.getInt(1);
-
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

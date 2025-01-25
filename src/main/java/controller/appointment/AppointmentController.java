@@ -18,8 +18,7 @@ public class AppointmentController implements AppointmentService {
     }
 
     public static AppointmentController getInstance() {
-        return instance == null ? instance = new AppointmentController() : instance;
-
+        return (instance == null) ? (instance = new AppointmentController()) : instance;
     }
 
     @Override
@@ -157,7 +156,8 @@ public class AppointmentController implements AppointmentService {
 
     public Integer getNextId() {
         try {
-            ResultSet resultSet = DBConnection.getINSTANCE().getConnection().createStatement().executeQuery(" SELECT IFNULL(MAX(appointment_id), 0) + 1 AS next_id FROM Appointment");
+           ResultSet resultSet= CrudUtil.execute("SELECT IFNULL(MAX(appointment_id), 0) + 1 AS next_id FROM Appointment");
+
             resultSet.next();
             return resultSet.getInt(1);
 

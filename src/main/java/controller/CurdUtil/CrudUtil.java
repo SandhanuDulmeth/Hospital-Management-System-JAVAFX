@@ -13,8 +13,10 @@ public class CrudUtil {
         for (int i = 0; i < val.length; i++) {
             psTm.setObject(i+1,val[i]);
         }
-        if(SQL.startsWith("SELECT") || SQL.startsWith("select")|| SQL.startsWith("Select")) return (T) psTm.executeQuery();
+        if(SQL.startsWith("SELECT") || SQL.startsWith("select")|| SQL.startsWith("Select") ) return (T) psTm.executeQuery();
         else return (T) (Boolean) (psTm.executeUpdate()>0);
+
+//
 
     }
 }
