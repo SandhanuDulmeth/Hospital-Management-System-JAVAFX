@@ -1,16 +1,14 @@
 package controller.prescription;
 
 import controller.CurdUtil.CrudUtil;
-import controller.prescription.PrescriptionService;
-import db.DBConnection;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Prescription;
 import model.Doctor;
 import model.Patient;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

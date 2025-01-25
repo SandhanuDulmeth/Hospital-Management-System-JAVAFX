@@ -1,7 +1,6 @@
 package controller.appointment;
 
 import controller.CurdUtil.CrudUtil;
-import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointment;

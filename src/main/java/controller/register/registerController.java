@@ -1,10 +1,9 @@
 package controller.register;
 
 import controller.CurdUtil.CrudUtil;
-import db.DBConnection;
 import model.Users;
 
-import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

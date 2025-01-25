@@ -37,7 +37,7 @@ public class registerFormController implements Initializable {
             return;
         }
         Stage stageClose =(Stage) btnAdd.getScene().getWindow() ;
-        //Stage stage=new Stage();
+
         try {
             stageClose.setScene(new Scene(FXMLLoader.load(getClass().getResource("../../view/Login_form.fxml"))));
             stageClose.show();
