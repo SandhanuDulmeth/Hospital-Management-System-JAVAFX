@@ -16,5 +16,10 @@ public class Billing {
     private String paymentStatus;
     private String date;
 
-
+    public Billing(Integer pId, Double totalAmount, String paymentStatus, String date) {
+        this.pId = pId;
+        this.totalAmount = totalAmount;
+        this.paymentStatus = paymentStatus;
+        this.date = date;
+    }
 }

@@ -129,7 +129,7 @@ public class AppointmentController implements AppointmentService {
             ResultSet resultSet = CrudUtil.execute("SELECT patient_id,name FROM Patient");
             while (resultSet.next()) {
                 appointmentPatientsIDList.add(new Patient(resultSet.getInt(1), resultSet.getString(2)));
-                System.out.println(appointmentPatientsIDList);
+
             }
             return appointmentPatientsIDList;
         } catch (SQLException e) {
@@ -144,7 +144,7 @@ public class AppointmentController implements AppointmentService {
             ResultSet resultSet = CrudUtil.execute("SELECT doctor_id,name FROM doctor");
             while (resultSet.next()) {
                 appointmentDoctorIDList.add(new Doctor(resultSet.getInt(1), resultSet.getString(2)));
-                System.out.println(appointmentDoctorIDList);
+
             }
             return appointmentDoctorIDList;
         } catch (SQLException e) {

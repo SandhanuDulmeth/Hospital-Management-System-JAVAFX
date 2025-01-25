@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="402.0" prefWidth="812.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.billing.BillingFormController">
+    <children>
+        <ImageView fitHeight="372.0" fitWidth="812.0" layoutX="-10.0" pickOnBounds="true" preserveRatio="true" />
+        <TabPane layoutX="34.0" layoutY="14.0" prefHeight="359.0" prefWidth="756.0" stylesheets="@../css/PatientTabPain.css" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Add Billing Form">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="424.0" prefWidth="756.0">
+                            <children>
+                                <Text fill="#161294" layoutX="203.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Billing Form" wrappingWidth="466.13671875">
+                                    <font>
+                                        <Font name="System Bold" size="34.0" />
+                                    </font>
+                                </Text>
+                                <JFXTextField fx:id="TxtId" editable="false" layoutX="49.0" layoutY="106.0" prefHeight="25.0" prefWidth="268.0" promptText="Billing ID" />
+                                <JFXButton layoutX="574.0" layoutY="243.0" onAction="#btnClearOnAction" prefHeight="41.0" prefWidth="85.0" ripplerFill="#ee0909" style="-fx-background-color: #E3DC03;" text="Clear" textFill="#3c0000">
+                                    <font>
+                                        <Font name="Book Antiqua Bold" size="12.0" />
+                                    </font>
+                                </JFXButton>
+                                <JFXButton layoutX="451.0" layoutY="243.0" onAction="#btnAddOnAction" prefHeight="41.0" prefWidth="112.0" ripplerFill="#f2f2f2" style="-fx-background-color: green;" text="Add" textFill="WHITE">
+                                    <font>
+                                        <Font name="Book Antiqua Bold" size="12.0" />
+                                    </font>
+                                </JFXButton>
+                                <JFXComboBox fx:id="PIdComboBox" layoutX="49.0" layoutY="162.0" promptText="Patient" />
+                                <DatePicker fx:id="DatePicker" layoutX="443.0" layoutY="106.0" />
+                        <JFXTextField fx:id="TxtTotalAmount" layoutX="49.0" layoutY="209.0" prefHeight="25.0" prefWidth="268.0" promptText="TotalAmount" />
+                        <JFXComboBox fx:id="PaymentStatusComboBox" layoutX="48.0" layoutY="259.0" promptText="PaymentStatus" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Search/Remove Billings">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="227.0" prefWidth="278.0">
+                            <children>
+                                <Text fill="#161294" layoutX="105.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search/Remove Billing Form" wrappingWidth="568.13671875">
+                                    <font>
+                                        <Font name="System Bold" size="34.0" />
+                                    </font>
+                                </Text>
+                                <JFXTextField fx:id="TxtId1" layoutX="59.0" layoutY="116.0" onKeyReleased="#OnSreachKeyReleased" prefHeight="25.0" prefWidth="268.0" promptText="Billing ID" />
+                                <JFXTextField fx:id="TxtPaymentStatus1" editable="false" layoutX="59.0" layoutY="253.0" prefHeight="25.0" prefWidth="268.0" promptText="Date" />
+                                <JFXButton layoutX="502.0" layoutY="253.0" onAction="#btnSearchRemoveOnAction" prefHeight="41.0" prefWidth="112.0" ripplerFill="#f2f2f2" style="-fx-background-color: green;" text="Remove" textFill="WHITE">
+                                    <font>
+                                        <Font name="Book Antiqua Bold" size="12.0" />
+                                    </font></JFXButton>
+                                <JFXTextField fx:id="TxtTotalAmount1" layoutX="59.0" layoutY="205.0" prefHeight="25.0" prefWidth="268.0" promptText="Doctor ID" />
+                                <JFXTextField fx:id="TxtDate1" editable="false" layoutX="424.0" layoutY="116.0" prefHeight="25.0" prefWidth="268.0" promptText="Time" />
+                                <JFXTextField fx:id="TxtPId1" layoutX="59.0" layoutY="161.0" prefHeight="25.0" prefWidth="268.0" promptText="Patient ID" />
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Search/Update Billings">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="227.0" prefWidth="278.0">
+                            <children>
+                                <Text fill="#161294" layoutX="88.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search/Update Billing Form" wrappingWidth="576.13671875">
+                                    <font>
+                                        <Font name="System Bold" size="34.0" />
+                                    </font>
+                                </Text>
+                                <JFXTextField fx:id="TxtId11" layoutX="62.0" layoutY="114.0" onKeyReleased="#OnSreachUpdateKeyReleased" prefHeight="25.0" prefWidth="268.0" promptText="Billing ID" />
+                                <JFXTextField fx:id="TxtPId11" layoutX="62.0" layoutY="166.0" prefHeight="25.0" prefWidth="268.0" promptText="Patient ID" />
+                                <JFXTextField fx:id="TxtDate11" layoutX="442.0" layoutY="114.0" prefHeight="25.0" prefWidth="268.0" promptText="Time" />
+                                <JFXTextField fx:id="TxtPaymentStatus11" layoutX="62.0" layoutY="277.0" prefHeight="25.0" prefWidth="268.0" promptText="Date" />
+                                <JFXButton layoutX="511.0" layoutY="269.0" onAction="#btnSearchUpdateOnAction" prefHeight="41.0" prefWidth="112.0" ripplerFill="#f2f2f2" style="-fx-background-color: green;" text="Update" textFill="WHITE">
+                                    <font>
+                                        <Font name="Book Antiqua Bold" size="12.0" />
+                                    </font>
+                                </JFXButton>
+                                <JFXTextField fx:id="TxtTotalAmount11" layoutX="62.0" layoutY="218.0" prefHeight="25.0" prefWidth="268.0" promptText="Doctor ID" />
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="View Billings">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="306.0" prefWidth="752.0">
+                            <children>
+                                <TableView fx:id="tblBilling" layoutX="-2.0" layoutY="-3.0" prefHeight="327.0" prefWidth="756.0" stylesheets="@../css/PatientTable.css">
+                                    <columns>
+                                        <TableColumn fx:id="colID" prefWidth="117.0" text="ID" />
+                                        <TableColumn fx:id="colPatientId" prefWidth="130.0" text="PatientId" />
+                                        <TableColumn fx:id="colTotalAmount" prefWidth="129.0" text="TotalAmount" />
+                                        <TableColumn fx:id="colPaymentStatus" prefWidth="224.0" text="PaymentStatus" />
+                                        <TableColumn fx:id="colGeneratedDate" prefWidth="133.0" text="GeneratedDate" />
+                                    </columns>
+                                </TableView>
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>

@@ -61,6 +61,16 @@ public class DashBoardController {
             throw new RuntimeException(e);
         }
     }
+
+    public void btnBillingOnAction(ActionEvent actionEvent) {
+        Stage stage = new Stage();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../../view/Billing.fxml"))));
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
 

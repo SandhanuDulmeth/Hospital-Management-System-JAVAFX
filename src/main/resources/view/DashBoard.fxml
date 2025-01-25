@@ -34,5 +34,10 @@
             <Font size="24.0" />
          </font>
       </JFXButton>
+      <JFXButton layoutX="219.0" layoutY="461.0" onAction="#btnBillingOnAction" prefHeight="51.0" prefWidth="105.0" style="-fx-background-color: #EB5A3C;" text="Billing">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>
