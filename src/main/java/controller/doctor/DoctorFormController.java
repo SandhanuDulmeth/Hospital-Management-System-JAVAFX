@@ -1,18 +1,16 @@
 package controller.doctor;
 
-import com.jfoenix.controls.JFXComboBox;
+
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import model.Doctor;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,21 +18,16 @@ public class DoctorFormController implements Initializable {
 
 
     public TableView tblDoctor;
-
     public JFXTextField TxtId11;
     public JFXTextField TxtName11;
-
     public TableColumn colID;
     public TableColumn colName;
     public TableColumn colAge;
     public TableColumn colGender;
     public TableColumn colContactDetails;
     public TableColumn colEmergencyContact;
-
     public JFXTextField TxtContactDetails11;
     public JFXTextField TxtContactDetails;
-
-
     public JFXTextField TxtContactDetails1;
 
     public JFXTextField TxtQualifications;
@@ -109,12 +102,7 @@ public class DoctorFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setNextId();
-//        private Integer id;
-//        private String name;
-//        private String specialty ;
-//        private String availability ;
-//        private String qualifications ;
-//        private String contact_details  ;
+
         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colSpecialty.setCellValueFactory(new PropertyValueFactory<>("specialty"));
@@ -135,15 +123,19 @@ public class DoctorFormController implements Initializable {
         else new Alert(Alert.AlertType.INFORMATION, "Not Removed " + TxtId1.getText()).show();
 
 
+        clearRemoveForm();
+
+        setNextId();
+        loadTable();
+
+
+    }
+    public void clearRemoveForm(){
         TxtName1.clear();
         TxtSpecialty1.clear();
         TxtAvailability1.clear();
         TxtQualifications1.clear();
         TxtContactDetails1.clear();
-
-        setNextId();
-        loadTable();
-
 
     }
 
@@ -160,11 +152,7 @@ public class DoctorFormController implements Initializable {
             TxtContactDetails1.setText(doctor.getContact_details());
 
         } else {
-            TxtName1.clear();
-            TxtSpecialty1.clear();
-            TxtAvailability1.clear();
-            TxtQualifications1.clear();
-            TxtContactDetails1.clear();
+            clearRemoveForm();
 
         }
     }

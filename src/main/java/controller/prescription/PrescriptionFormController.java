@@ -90,9 +90,9 @@ public class PrescriptionFormController implements Initializable {
     }
 
     public static int getId(String input) {
-        // Split the string by spaces and hyphens
+
         String[] parts = input.split("[ -]");
-        // Parse the second part (the ID number) as an integer and return it
+
         return Integer.parseInt(parts[1]);
     }
 
@@ -130,7 +130,6 @@ public class PrescriptionFormController implements Initializable {
             objectsDoc.add("ID-" + doctor.getId() + " Name-" + doctor.getName());
         }
         DIdComboBox.setItems(objectsDoc);
-
         colPrescriptionID.setCellValueFactory(new PropertyValueFactory<>("id"));
         colPatientId.setCellValueFactory(new PropertyValueFactory<>("pId"));
         colDoctorId.setCellValueFactory(new PropertyValueFactory<>("dID"));
@@ -151,11 +150,7 @@ public class PrescriptionFormController implements Initializable {
         else new Alert(Alert.AlertType.INFORMATION, "Not Removed " + TxtId1.getText()).show();
 
 
-        TxtPId1.clear();
-        TxtDId1.clear();
-        TxtMedicine1.clear();
-        TxtDosage1.clear();
-        TxtDuration1.clear();
+        clearRemoveForm();
 
 
         setNextId();
@@ -163,7 +158,14 @@ public class PrescriptionFormController implements Initializable {
 
 
     }
+    public void clearRemoveForm(){
+        TxtPId1.clear();
+        TxtDId1.clear();
+        TxtMedicine1.clear();
+        TxtDosage1.clear();
+        TxtDuration1.clear();
 
+    }
     public void OnSreachKeyReleased(KeyEvent keyEvent) {
 
         Prescription prescription = PrescriptionController.getInstance().searchCustomer(Integer.valueOf("0" + TxtId1.getText()));
@@ -177,11 +179,7 @@ public class PrescriptionFormController implements Initializable {
 
 
         } else {
-            TxtPId1.clear();
-            TxtDId1.clear();
-            TxtMedicine1.clear();
-            TxtDosage1.clear();
-            TxtDuration1.clear();
+            clearRemoveForm();
 
         }
     }

@@ -65,8 +65,6 @@ public class AppointmentFormController implements Initializable {
                     Integer.valueOf(TxtId.getText()),
                     getId((String) PIdComboBox.getValue()) ,
                     getId((String)  DIdComboBox.getValue()),
-                   // Integer.valueOf(TxtPId.getText()),
-                    //Integer.valueOf(TxtDId.getText()),
                     String.valueOf(DatePicker.getValue()),
 
                     TxtTime.getText()
@@ -100,7 +98,6 @@ public class AppointmentFormController implements Initializable {
     }
 
     public void clearAddForm() {
-
 
         TxtTime.clear();
 
@@ -146,16 +143,18 @@ public class AppointmentFormController implements Initializable {
             new Alert(Alert.AlertType.INFORMATION, "Removed " + TxtId1.getText()).show();
         else new Alert(Alert.AlertType.INFORMATION, "Not Removed " + TxtId1.getText()).show();
 
-
-        TxtPId1.clear();
-        TxtDId1.clear();
-        TxtDate1.clear();
-        TxtTime1.clear();
-
+        clearRemoveForm();
 
         setNextId();
         loadTable();
 
+
+    }
+    public void clearRemoveForm(){
+        TxtPId1.clear();
+        TxtDId1.clear();
+        TxtDate1.clear();
+        TxtTime1.clear();
 
     }
 
@@ -170,10 +169,7 @@ public class AppointmentFormController implements Initializable {
             TxtTime1.setText(String.valueOf(appointment.getTime()));
 
         } else {
-            TxtPId1.clear();
-            TxtDId1.clear();
-            TxtDate1.clear();
-            TxtTime1.clear();
+            clearRemoveForm();
 
         }
     }

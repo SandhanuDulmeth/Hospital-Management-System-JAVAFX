@@ -132,7 +132,15 @@ public class PatientFormController implements Initializable {
             new Alert(Alert.AlertType.INFORMATION, "Removed " + TxtId1.getText()).show();
         else new Alert(Alert.AlertType.INFORMATION, "Not Removed " + TxtId1.getText()).show();
 
-        TxtId1.clear();
+
+        clearRemoveForm();
+
+        setNextId();
+        loadTable();
+
+
+    }
+    public void clearRemoveForm(){
         TxtName1.clear();
         TxtAge1.clear();
         TxtGender1.clear();
@@ -140,12 +148,7 @@ public class PatientFormController implements Initializable {
         TxtEmegencyContact1.clear();
         TxtMedicalHistory1.clear();
 
-        setNextId();
-        loadTable();
-
-
     }
-
     public void OnSreachKeyReleased(KeyEvent keyEvent) {
 
         Patient patient = PatientController.getInstance().searchCustomer(Integer.valueOf("0" + TxtId1.getText()));
@@ -160,12 +163,7 @@ public class PatientFormController implements Initializable {
             TxtMedicalHistory1.setText(patient.getMedicalHistory());
 
         } else {
-            TxtName1.clear();
-            TxtAge1.clear();
-            TxtGender1.clear();
-            TxtContactDetails1.clear();
-            TxtEmegencyContact1.clear();
-            TxtMedicalHistory1.clear();
+            clearRemoveForm();
 
         }
     }

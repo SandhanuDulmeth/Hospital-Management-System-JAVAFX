@@ -1,5 +1,6 @@
 package controller.register;
 
+import controller.CurdUtil.CrudUtil;
 import db.DBConnection;
 import model.Users;
 
@@ -9,27 +10,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class registerController implements registerService{
+public class registerController implements registerService {
     public static registerController insance;
 
-    private registerController(){
+    private registerController() {
 
     }
 
-    public static registerController getInstance()  {
-        return  insance == null ? insance = new registerController(): insance;
+    public static registerController getInstance() {
+        return insance == null ? insance = new registerController() : insance;
 
     }
+
     @Override
     public List<Users> getAllUser() {
-        List<Users> UserList =new ArrayList<>();
+        List<Users> UserList = new ArrayList<>();
 
         try {
-         String  SQL ="SELECT * FROM users";
-            ResultSet resultSet = DBConnection.getINSTANCE().getConnection().createStatement().executeQuery(SQL);
+            ResultSet resultSet = CrudUtil.execute("SELECT * FROM users");
 
-            // ResultSet resultSet= CrudUtil.execute(SQL);
-            while (resultSet.next()){
+            while (resultSet.next()) {
 
                 UserList.add(new Users(resultSet.getInt(1),
                         resultSet.getString(2),
@@ -43,21 +43,20 @@ public class registerController implements registerService{
             throw new RuntimeException(e);
         }
 
-        if (UserList.isEmpty()){UserList.add(new Users(0));}
+        if (UserList.isEmpty()) {
+            UserList.add(new Users(0));
+        }
         return UserList;
     }
+
     @Override
     public Boolean addUser(Users users) {
 
-        Integer id = getAllUser().get(getAllUser().size()-1).getId()+1;
-        PreparedStatement preparedStatement = null;
+        Integer id = getAllUser().get(getAllUser().size() - 1).getId() + 1;
+
         try {
-            preparedStatement = DBConnection.getINSTANCE().getConnection().prepareStatement("INSERT INTO users VALUES(?,?,?,?)");
-            preparedStatement.setInt(1, id);
-            preparedStatement.setString(2, users.getName());
-            preparedStatement.setString(3, users.getEmail());
-            preparedStatement.setString(4, users.getPassword());
-            return  preparedStatement.executeUpdate()>0;
+            return CrudUtil.execute("INSERT INTO users VALUES(?,?,?,?)", id, users.getName(), users.getEmail(), users.getPassword());
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

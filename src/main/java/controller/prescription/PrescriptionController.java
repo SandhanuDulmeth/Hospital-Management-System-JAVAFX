@@ -1,5 +1,6 @@
 package controller.prescription;
 
+import controller.CurdUtil.CrudUtil;
 import controller.prescription.PrescriptionService;
 import db.DBConnection;
 import javafx.collections.FXCollections;
@@ -28,19 +29,18 @@ public class PrescriptionController implements PrescriptionService {
     @Override
     public boolean addCustomer(Prescription prescription) {
 
-        Connection connection = null;
+
         try {
-            connection = DBConnection.getINSTANCE().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO Prescription VALUES(?,?,?,?,?,?)");
-            preparedStatement.setInt(1, prescription.getId());
-            preparedStatement.setInt(2, prescription.getPId());
-            preparedStatement.setInt(3, prescription.getDID());
-            preparedStatement.setString(4, prescription.getMedicine());
-            preparedStatement.setString(5, prescription.getDosage());
-            preparedStatement.setString(6, prescription.getDuration());
+            return CrudUtil.execute("INSERT INTO Prescription VALUES(?,?,?,?,?,?)",
+                    prescription.getId(),
+                    prescription.getPId(),
+                    prescription.getDID(),
+                    prescription.getMedicine(),
+                    prescription.getDosage(),
+                    prescription.getDuration()
+            );
 
 
-            return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -50,15 +50,8 @@ public class PrescriptionController implements PrescriptionService {
     @Override
     public boolean deleteCustomer(Integer id) {
 
-        Connection connection = null;
-
         try {
-            connection = DBConnection.getINSTANCE().getConnection();
-
-            PreparedStatement stm = connection.prepareStatement("DELETE FROM Prescription WHERE prescription_id = ?");
-            stm.setObject(1, id);
-
-            return stm.executeUpdate() > 0;
+            return CrudUtil.execute("DELETE FROM Prescription WHERE prescription_id = ?", id);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -72,10 +65,7 @@ public class PrescriptionController implements PrescriptionService {
 
         ObservableList<Prescription> prescriptionObservableList = FXCollections.observableArrayList();
         try {
-            ResultSet resultSet = DBConnection.getINSTANCE()
-                    .getConnection().
-                    createStatement()
-                    .executeQuery("SELECT * FROM Prescription");
+            ResultSet resultSet = CrudUtil.execute("SELECT * FROM Prescription");
 
             while (resultSet.next()) {
 
@@ -100,21 +90,17 @@ public class PrescriptionController implements PrescriptionService {
 
     @Override
     public boolean UpdateCustomer(Prescription prescription) {
-        Connection connection = null;
+
         try {
-            connection = DBConnection.getINSTANCE().getConnection();
+            return CrudUtil.execute("UPDATE Prescription SET patient_id = ?, doctor_id = ?, medicine = ?, dosage= ?, duration= ? WHERE prescription_id = ?;",
+                    prescription.getPId(),
+                    prescription.getDID(),
+                    prescription.getMedicine(),
+                    prescription.getDosage(),
+                    prescription.getDuration(),
+                    prescription.getId()
+            );
 
-            PreparedStatement stm = connection.prepareStatement("UPDATE Prescription SET patient_id = ?, doctor_id = ?, medicine = ?, dosage= ?, duration= ? WHERE prescription_id = ?;");
-            stm.setObject(6, prescription.getId());
-            stm.setObject(1, prescription.getPId());
-            stm.setObject(2, prescription.getDID());
-            stm.setObject(3, prescription.getMedicine());
-            stm.setObject(4, prescription.getDosage());
-            stm.setObject(5, prescription.getDosage());
-
-
-            System.out.println("UpdatePrescription Ok");
-            return stm.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -123,14 +109,12 @@ public class PrescriptionController implements PrescriptionService {
 
     @Override
     public Prescription searchCustomer(Integer id) {
-        Connection connection = null;
+
         try {
-            connection = DBConnection.getINSTANCE().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Prescription WHERE prescription_id=? ");
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            ResultSet resultSet = CrudUtil.execute("SELECT * FROM Prescription WHERE prescription_id=? ", id);
+
             if (resultSet.next()) {
-                Prescription prescription = new Prescription(
+                return new Prescription(
                         resultSet.getInt(2),
                         resultSet.getInt(3),
                         resultSet.getString(4),
@@ -138,8 +122,6 @@ public class PrescriptionController implements PrescriptionService {
                         resultSet.getString(6)
 
                 );
-
-                return prescription;
             }
 
 
@@ -154,7 +136,8 @@ public class PrescriptionController implements PrescriptionService {
     public ArrayList<Patient> getPatientsID() {
         ArrayList<Patient> prescriptionPatientsIDList = new ArrayList<>();
         try {
-            ResultSet resultSet = DBConnection.getINSTANCE().getConnection().createStatement().executeQuery("SELECT patient_id,name FROM Patient");
+            ResultSet resultSet = CrudUtil.execute("SELECT patient_id,name FROM Patient");
+
 
             while (resultSet.next()) {
                 prescriptionPatientsIDList.add(new Patient(resultSet.getInt(1), resultSet.getString(2)));
@@ -171,13 +154,11 @@ public class PrescriptionController implements PrescriptionService {
     public ArrayList<Doctor> getDocID() {
         ArrayList<Doctor> prescriptionDoctorIDList = new ArrayList<>();
         try {
-            ResultSet resultSet = DBConnection.getINSTANCE().getConnection().createStatement().executeQuery("SELECT doctor_id,name FROM doctor");
+            ResultSet resultSet = CrudUtil.execute("SELECT doctor_id,name FROM doctor");
 
             while (resultSet.next()) {
                 prescriptionDoctorIDList.add(new Doctor(resultSet.getInt(1), resultSet.getString(2)));
-                System.out.println(prescriptionDoctorIDList);
             }
-
             return prescriptionDoctorIDList;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -187,11 +168,9 @@ public class PrescriptionController implements PrescriptionService {
 
     public Integer getNextId() {
         try {
-            ResultSet resultSet = DBConnection.getINSTANCE().getConnection().createStatement().executeQuery(" SELECT IFNULL(MAX(prescription_id), 0) + 1 AS next_id FROM Prescription");
+            ResultSet resultSet = CrudUtil.execute("SELECT IFNULL(MAX(prescription_id), 0) + 1 AS next_id FROM Prescription");
             resultSet.next();
-
             return resultSet.getInt(1);
-
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
