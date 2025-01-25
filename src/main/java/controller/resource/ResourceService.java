@@ -4,13 +4,13 @@ import javafx.collections.ObservableList;
 import model.Resource;
 
 public interface ResourceService {
-    boolean addCustomer(Resource resource);
+    boolean addResource(Resource resource);
 
-    boolean deleteCustomer(Integer id);
+    boolean deleteResource(Integer id);
 
     ObservableList<Resource> getAll();
 
-    boolean UpdateCustomer(Resource resource);
+    boolean UpdateResource(Resource resource);
 
-    Resource searchCustomer(Integer id);
+    Resource searchResource(Integer id);
 }

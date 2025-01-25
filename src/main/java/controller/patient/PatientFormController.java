@@ -1,12 +1,10 @@
 package controller.patient;
 
-import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -73,7 +71,7 @@ public class PatientFormController implements Initializable {
                     TxtContactDetails.getText(),
                     TxtEmegencyContact.getText(),
                     TxtMedicalHistory.getText());
-            if (PatientController.getInstance().addCustomer(patient)) {
+            if (PatientController.getInstance().addPatient(patient)) {
                 new Alert(Alert.AlertType.INFORMATION, "Added").show();
                 clearAddForm();
                 loadTable();
@@ -128,7 +126,7 @@ public class PatientFormController implements Initializable {
     public void btnSearchRemoveOnAction(ActionEvent actionEvent) {
 
 
-        if (PatientController.getInstance().deleteCustomer(Integer.valueOf(TxtId1.getText())))
+        if (PatientController.getInstance().deletePatient(Integer.valueOf(TxtId1.getText())))
             new Alert(Alert.AlertType.INFORMATION, "Removed " + TxtId1.getText()).show();
         else new Alert(Alert.AlertType.INFORMATION, "Not Removed " + TxtId1.getText()).show();
 
@@ -151,7 +149,7 @@ public class PatientFormController implements Initializable {
     }
     public void OnSreachKeyReleased(KeyEvent keyEvent) {
 
-        Patient patient = PatientController.getInstance().searchCustomer(Integer.valueOf("0" + TxtId1.getText()));
+        Patient patient = PatientController.getInstance().searchPatient(Integer.valueOf("0" + TxtId1.getText()));
 
         if (null != patient) {
 
@@ -177,7 +175,7 @@ public class PatientFormController implements Initializable {
 
     public void btnSearchUpdateOnAction(ActionEvent actionEvent) {
 
-        if (PatientController.getInstance().UpdateCustomer(new Patient(
+        if (PatientController.getInstance().UpdatePatient(new Patient(
                 Integer.valueOf(TxtId11.getText()),
                 TxtName11.getText(),
                 Integer.valueOf(TxtAge11.getText()),
@@ -195,7 +193,7 @@ public class PatientFormController implements Initializable {
     }
 
     public void OnSreachUpdateKeyReleased(KeyEvent keyEvent) {
-        Patient patient = PatientController.getInstance().searchCustomer(Integer.valueOf("0" + TxtId11.getText()));
+        Patient patient = PatientController.getInstance().searchPatient(Integer.valueOf("0" + TxtId11.getText()));
 
         if (null != patient) {
 

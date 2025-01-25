@@ -66,7 +66,7 @@ public class DoctorFormController implements Initializable {
                     TxtAvailability.getText(),
                     TxtQualifications.getText(),
                     TxtContactDetails.getText());
-            if (controller.doctor.DoctorController.getInstance().addCustomer(doctor)) {
+            if (controller.doctor.DoctorController.getInstance().addDoctor(doctor)) {
                 new Alert(Alert.AlertType.INFORMATION, "Added").show();
                 clearAddForm();
                 loadTable();
@@ -118,7 +118,7 @@ public class DoctorFormController implements Initializable {
     public void btnSearchRemoveOnAction(ActionEvent actionEvent) {
 
 
-        if (controller.doctor.DoctorController.getInstance().deleteCustomer(Integer.valueOf(TxtId1.getText())))
+        if (controller.doctor.DoctorController.getInstance().deleteDoctor(Integer.valueOf(TxtId1.getText())))
             new Alert(Alert.AlertType.INFORMATION, "Removed " + TxtId1.getText()).show();
         else new Alert(Alert.AlertType.INFORMATION, "Not Removed " + TxtId1.getText()).show();
 
@@ -141,7 +141,7 @@ public class DoctorFormController implements Initializable {
 
     public void OnSreachKeyReleased(KeyEvent keyEvent) {
 
-        Doctor doctor = controller.doctor.DoctorController.getInstance().searchCustomer(Integer.valueOf("0" + TxtId1.getText()));
+        Doctor doctor = controller.doctor.DoctorController.getInstance().searchDoctor(Integer.valueOf("0" + TxtId1.getText()));
 
         if (null != doctor) {
 
@@ -166,7 +166,7 @@ public class DoctorFormController implements Initializable {
 
     public void btnSearchUpdateOnAction(ActionEvent actionEvent) {
 
-        if (controller.doctor.DoctorController.getInstance().UpdateCustomer(new Doctor(
+        if (controller.doctor.DoctorController.getInstance().UpdateDoctor(new Doctor(
                 Integer.valueOf(TxtId11.getText()),
                 TxtName11.getText(),
                 TxtSpecialty11.getText(),
@@ -183,7 +183,7 @@ public class DoctorFormController implements Initializable {
     }
 
     public void OnSreachUpdateKeyReleased(KeyEvent keyEvent) {
-        Doctor doctor = DoctorController.getInstance().searchCustomer(Integer.valueOf("0" + TxtId11.getText()));
+        Doctor doctor = DoctorController.getInstance().searchDoctor(Integer.valueOf("0" + TxtId11.getText()));
 
         if (null != doctor) {
 

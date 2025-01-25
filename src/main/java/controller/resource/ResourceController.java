@@ -23,7 +23,7 @@ public class ResourceController implements ResourceService {
     }
 
     @Override
-    public boolean addCustomer(Resource resource) {
+    public boolean addResource(Resource resource) {
 
 
         try {
@@ -43,7 +43,7 @@ public class ResourceController implements ResourceService {
     }
 
     @Override
-    public boolean deleteCustomer(Integer id) {
+    public boolean deleteResource(Integer id) {
 
 
         try {
@@ -84,7 +84,7 @@ public class ResourceController implements ResourceService {
     }
 
     @Override
-    public boolean UpdateCustomer(Resource resource) {
+    public boolean UpdateResource(Resource resource) {
 
         try {
             return CrudUtil.execute("UPDATE Resources SET resource_type = ?, resource_name = ?, status = ?, allocated_to = ? WHERE resource_id = ?;",
@@ -102,7 +102,7 @@ public class ResourceController implements ResourceService {
     }
 
     @Override
-    public Resource searchCustomer(Integer id) {
+    public Resource searchResource(Integer id) {
 
         try {
             ResultSet resultSet = CrudUtil.execute("SELECT * FROM Resources WHERE resource_id=? ", id);

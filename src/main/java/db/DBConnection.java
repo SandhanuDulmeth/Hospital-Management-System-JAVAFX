@@ -14,7 +14,6 @@ public class DBConnection {
     @Getter
     private final Connection connection;
 
-
     private DBConnection() throws SQLException {
    connection= DriverManager.getConnection("jdbc:mysql://localhost:3306/HospitalManagement","root","1234");
     }

@@ -21,7 +21,7 @@ public class DoctorController implements DoctorService {
     }
 
     @Override
-    public boolean addCustomer(Doctor doctor) {
+    public boolean addDoctor(Doctor doctor) {
 
 
         try {
@@ -41,7 +41,7 @@ public class DoctorController implements DoctorService {
     }
 
     @Override
-    public boolean deleteCustomer(Integer id) {
+    public boolean deleteDoctor(Integer id) {
 
 
         try {
@@ -82,7 +82,7 @@ public class DoctorController implements DoctorService {
     }
 
     @Override
-    public boolean UpdateCustomer(Doctor doctor) {
+    public boolean UpdateDoctor(Doctor doctor) {
 
         try {
             return CrudUtil.execute("UPDATE doctor SET name = ?, specialty = ?, availability = ?, qualifications = ?, contact_details = ? WHERE doctor_id = ?;",
@@ -101,7 +101,7 @@ public class DoctorController implements DoctorService {
     }
 
     @Override
-    public Doctor searchCustomer(Integer id) {
+    public Doctor searchDoctor(Integer id) {
 
         try {
             ResultSet resultSet = CrudUtil.execute("SELECT * FROM doctor WHERE doctor_id=? ", id);

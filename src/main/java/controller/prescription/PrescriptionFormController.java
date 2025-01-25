@@ -74,7 +74,7 @@ public class PrescriptionFormController implements Initializable {
         if (!(TxtId.getText().isEmpty())) {
             Prescription prescription = new Prescription(Integer.valueOf(TxtId.getText()), getId((String) PIdComboBox.getValue()), getId((String) DIdComboBox.getValue()), TxtMedicine.getText(), TxtDosage.getText(), TxtDuration.getText());
 
-            if (PrescriptionController.getInstance().addCustomer(prescription)) {
+            if (PrescriptionController.getInstance().addPrescription(prescription)) {
                 new Alert(Alert.AlertType.INFORMATION, "Added").show();
                 clearAddForm();
                 loadTable();
@@ -145,7 +145,7 @@ public class PrescriptionFormController implements Initializable {
     public void btnSearchRemoveOnAction(ActionEvent actionEvent) {
 
 
-        if (PrescriptionController.getInstance().deleteCustomer(Integer.valueOf(TxtId1.getText())))
+        if (PrescriptionController.getInstance().deletePrescription(Integer.valueOf(TxtId1.getText())))
             new Alert(Alert.AlertType.INFORMATION, "Removed " + TxtId1.getText()).show();
         else new Alert(Alert.AlertType.INFORMATION, "Not Removed " + TxtId1.getText()).show();
 
@@ -168,7 +168,7 @@ public class PrescriptionFormController implements Initializable {
     }
     public void OnSreachKeyReleased(KeyEvent keyEvent) {
 
-        Prescription prescription = PrescriptionController.getInstance().searchCustomer(Integer.valueOf("0" + TxtId1.getText()));
+        Prescription prescription = PrescriptionController.getInstance().searchPrescription(Integer.valueOf("0" + TxtId1.getText()));
 
         if (null != prescription) {
             TxtPId1.setText(String.valueOf(prescription.getPId()));
@@ -193,7 +193,7 @@ public class PrescriptionFormController implements Initializable {
 
     public void btnSearchUpdateOnAction(ActionEvent actionEvent) {
 
-        if (PrescriptionController.getInstance().UpdateCustomer(new Prescription(Integer.valueOf(TxtId11.getText()), Integer.valueOf(TxtPId11.getText()), Integer.valueOf(TxtDId11.getText()), TxtMedicine11.getText(), TxtDosage11.getText(), TxtDuration11.getText()
+        if (PrescriptionController.getInstance().UpdatePrescription(new Prescription(Integer.valueOf(TxtId11.getText()), Integer.valueOf(TxtPId11.getText()), Integer.valueOf(TxtDId11.getText()), TxtMedicine11.getText(), TxtDosage11.getText(), TxtDuration11.getText()
 
 
         ))) {
@@ -206,7 +206,7 @@ public class PrescriptionFormController implements Initializable {
     }
 
     public void OnSreachUpdateKeyReleased(KeyEvent keyEvent) {
-        Prescription prescription = PrescriptionController.getInstance().searchCustomer(Integer.valueOf("0" + TxtId11.getText()));
+        Prescription prescription = PrescriptionController.getInstance().searchPrescription(Integer.valueOf("0" + TxtId11.getText()));
 
         if (null != prescription) {
 

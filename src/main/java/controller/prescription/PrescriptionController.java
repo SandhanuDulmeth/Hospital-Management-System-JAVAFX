@@ -25,7 +25,7 @@ public class PrescriptionController implements PrescriptionService {
     }
 
     @Override
-    public boolean addCustomer(Prescription prescription) {
+    public boolean addPrescription(Prescription prescription) {
 
 
         try {
@@ -46,7 +46,7 @@ public class PrescriptionController implements PrescriptionService {
     }
 
     @Override
-    public boolean deleteCustomer(Integer id) {
+    public boolean deletePrescription(Integer id) {
 
         try {
             return CrudUtil.execute("DELETE FROM Prescription WHERE prescription_id = ?", id);
@@ -87,7 +87,7 @@ public class PrescriptionController implements PrescriptionService {
     }
 
     @Override
-    public boolean UpdateCustomer(Prescription prescription) {
+    public boolean UpdatePrescription(Prescription prescription) {
 
         try {
             return CrudUtil.execute("UPDATE Prescription SET patient_id = ?, doctor_id = ?, medicine = ?, dosage= ?, duration= ? WHERE prescription_id = ?;",
@@ -106,7 +106,7 @@ public class PrescriptionController implements PrescriptionService {
     }
 
     @Override
-    public Prescription searchCustomer(Integer id) {
+    public Prescription searchPrescription(Integer id) {
 
         try {
             ResultSet resultSet = CrudUtil.execute("SELECT * FROM Prescription WHERE prescription_id=? ", id);

@@ -8,17 +8,15 @@ import model.Patient;
 import java.util.ArrayList;
 
 public interface PrescriptionService {
-    boolean addCustomer(Prescription prescription);
+    boolean addPrescription(Prescription prescription);
 
-    boolean deleteCustomer(Integer id);
+    boolean deletePrescription(Integer id);
 
     ObservableList<Prescription> getAll();
 
-    boolean UpdateCustomer(Prescription prescription);
+    boolean UpdatePrescription(Prescription prescription);
 
-    Prescription searchCustomer(Integer id);
-
-   // ObservableList<Patient> getPatientsID();
+    Prescription searchPrescription(Integer id);
 
     ArrayList<Patient> getPatientsID();
     ArrayList<Doctor> getDocID();

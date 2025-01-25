@@ -1,7 +1,6 @@
 package controller.resource;
 
 import com.jfoenix.controls.JFXTextField;
-import controller.resource.ResourceController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,29 +24,7 @@ public class ResourceFormController implements Initializable {
 
     public TableColumn colID;
     public TableColumn colName;
-    public TableColumn colAge;
-    public TableColumn colGender;
-    public TableColumn colContactDetails;
-    public TableColumn colEmergencyContact;
 
-    public JFXTextField TxtContactDetails11;
-    public JFXTextField TxtContactDetails;
-
-
-    public JFXTextField TxtContactDetails1;
-
-    public JFXTextField TxtQualifications;
-    public JFXTextField TxtSpecialty;
-    public JFXTextField TxtAvailability;
-    public JFXTextField TxtAvailability1;
-    public JFXTextField TxtSpecialty1;
-    public JFXTextField TxtQualifications1;
-    public JFXTextField TxtQualifications11;
-    public JFXTextField TxtAvailability11;
-    public JFXTextField TxtSpecialty11;
-    public TableColumn colSpecialty;
-    public TableColumn colAvailability;
-    public TableColumn colQualifications;
     public JFXTextField TxtType;
     public JFXTextField TxtAllocatedTo;
     public JFXTextField TxtStatus;
@@ -57,6 +34,9 @@ public class ResourceFormController implements Initializable {
     public JFXTextField TxtType11;
     public JFXTextField TxtAllocatedTo11;
     public JFXTextField TxtStatus11;
+    public TableColumn colType;
+    public TableColumn colStatus;
+    public TableColumn colAllocatedTo;
 
     @FXML
     private JFXTextField TxtId;
@@ -76,7 +56,7 @@ public class ResourceFormController implements Initializable {
         if (!(TxtId.getText().isEmpty())) {
             Resource resource = new Resource(Integer.valueOf(TxtId.getText()), TxtType.getText(), TxtName.getText(), TxtStatus.getText(), Integer.valueOf(TxtAllocatedTo.getText()));
 
-            if (controller.resource.ResourceController.getInstance().addCustomer(resource)) {
+            if (controller.resource.ResourceController.getInstance().addResource(resource)) {
                 new Alert(Alert.AlertType.INFORMATION, "Added").show();
                 clearAddForm();
                 loadTable();
@@ -111,16 +91,12 @@ public class ResourceFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setNextId();
-//        private Integer id;
-//    private String type;
-//    private String name ;
-//    private String status ;
-//    private Integer allocatedTo ;
+
         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colName.setCellValueFactory(new PropertyValueFactory<>("type"));
-        colSpecialty.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colAvailability.setCellValueFactory(new PropertyValueFactory<>("status"));
-        colQualifications.setCellValueFactory(new PropertyValueFactory<>("allocatedTo"));
+        colType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        colAllocatedTo.setCellValueFactory(new PropertyValueFactory<>("allocatedTo"));
 
         loadTable();
         clearAddForm();
@@ -130,7 +106,7 @@ public class ResourceFormController implements Initializable {
     public void btnSearchRemoveOnAction(ActionEvent actionEvent) {
 
 
-        if (controller.resource.ResourceController.getInstance().deleteCustomer(Integer.valueOf(TxtId1.getText())))
+        if (controller.resource.ResourceController.getInstance().deleteResource(Integer.valueOf(TxtId1.getText())))
             new Alert(Alert.AlertType.INFORMATION, "Removed " + TxtId1.getText()).show();
         else new Alert(Alert.AlertType.INFORMATION, "Not Removed " + TxtId1.getText()).show();
 
@@ -149,7 +125,7 @@ public class ResourceFormController implements Initializable {
 
     public void OnSreachKeyReleased(KeyEvent keyEvent) {
 
-        Resource resource = controller.resource.ResourceController.getInstance().searchCustomer(Integer.valueOf("0" + TxtId1.getText()));
+        Resource resource = controller.resource.ResourceController.getInstance().searchResource(Integer.valueOf("0" + TxtId1.getText()));
 
         if (null != resource) {
             TxtType1.setText(resource.getType());
@@ -175,7 +151,7 @@ public class ResourceFormController implements Initializable {
 
     public void btnSearchUpdateOnAction(ActionEvent actionEvent) {
 
-        if (controller.resource.ResourceController.getInstance().UpdateCustomer(new Resource(
+        if (controller.resource.ResourceController.getInstance().UpdateResource(new Resource(
                 Integer.valueOf(TxtId11.getText()),
                 TxtType11.getText(),
                 TxtName11.getText(),
@@ -191,7 +167,7 @@ public class ResourceFormController implements Initializable {
     }
 
     public void OnSreachUpdateKeyReleased(KeyEvent keyEvent) {
-        Resource resource = ResourceController.getInstance().searchCustomer(Integer.valueOf("0" + TxtId11.getText()));
+        Resource resource = ResourceController.getInstance().searchResource(Integer.valueOf("0" + TxtId11.getText()));
 
         if (null != resource) {
 

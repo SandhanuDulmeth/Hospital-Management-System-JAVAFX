@@ -20,7 +20,7 @@ public class PatientController implements PatientService {
     }
 
     @Override
-    public boolean addCustomer(Patient patient) {
+    public boolean addPatient(Patient patient) {
 
 
         try {
@@ -41,7 +41,7 @@ public class PatientController implements PatientService {
     }
 
     @Override
-    public boolean deleteCustomer(Integer id) {
+    public boolean deletePatient(Integer id) {
 
 
         try {
@@ -83,7 +83,7 @@ public class PatientController implements PatientService {
     }
 
     @Override
-    public boolean UpdateCustomer(Patient patient) {
+    public boolean UpdatePatient(Patient patient) {
 
         try {
             return CrudUtil.execute("UPDATE patient SET name = ?, age = ?, gender = ?, contact_details = ?, emergency_contact = ?, medical_history = ? WHERE patient_id = ?;",
@@ -103,7 +103,7 @@ public class PatientController implements PatientService {
     }
 
     @Override
-    public Patient searchCustomer(Integer id) {
+    public Patient searchPatient(Integer id) {
 
         try {
             ResultSet resultSet = CrudUtil.execute("SELECT * FROM patient WHERE patient_id=? ", id);

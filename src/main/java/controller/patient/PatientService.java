@@ -4,13 +4,13 @@ import javafx.collections.ObservableList;
 import model.Patient;
 
 public interface PatientService {
-    boolean addCustomer(Patient patient);
+    boolean addPatient(Patient patient);
 
-    boolean deleteCustomer(Integer id);
+    boolean deletePatient(Integer id);
 
     ObservableList<Patient> getAll();
 
-    boolean UpdateCustomer(Patient patient);
+    boolean UpdatePatient(Patient patient);
 
-    Patient searchCustomer(Integer id);
+    Patient searchPatient(Integer id);
 }
