@@ -156,7 +156,7 @@ public class AppointmentController implements AppointmentService {
 
     public Integer getNextId() {
         try {
-           ResultSet resultSet= CrudUtil.execute("SELECT IFNULL(MAX(appointment_id), 0) + 1 AS next_id FROM Appointment");
+           ResultSet resultSet= CrudUtil.execute("ELECT IFNULL(MAX(appointment_id), 0) + 1 AS next_id FROM Appointment");
 
             resultSet.next();
             return resultSet.getInt(1);
