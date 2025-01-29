@@ -1,4 +1,4 @@
-package controller.CurdUtil;
+package Util;
 
 import db.DBConnection;
 

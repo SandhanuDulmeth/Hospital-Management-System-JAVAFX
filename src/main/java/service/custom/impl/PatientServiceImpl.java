@@ -1,21 +1,23 @@
-package controller.patient;
+package service.custom.impl;
 
-import controller.CurdUtil.CrudUtil;
+import Util.CrudUtil;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Patient;
+import service.custom.PatientService;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+public class PatientServiceImpl implements PatientService {
+    public static PatientServiceImpl insance;
 
-public class PatientController implements PatientService {
-    public static PatientController insance;
-
-    private PatientController() {
+    private PatientServiceImpl() {
     }
 
-    public static PatientController getInstance() {
-        return insance == null ? insance = new PatientController() : insance;
+    public static PatientServiceImpl getInstance() {
+        return insance == null ? insance = new PatientServiceImpl() : insance;
 
     }
 
@@ -141,5 +143,4 @@ public class PatientController implements PatientService {
 
 
     }
-
 }

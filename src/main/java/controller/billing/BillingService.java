@@ -2,7 +2,6 @@ package controller.billing;
 
 import javafx.collections.ObservableList;
 import model.Billing;
-import model.Doctor;
 import model.Patient;
 
 import java.util.ArrayList;

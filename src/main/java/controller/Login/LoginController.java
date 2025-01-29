@@ -1,6 +1,6 @@
 package controller.Login;
 
-import controller.CurdUtil.CrudUtil;
+import Util.CrudUtil;
 import model.Users;
 import java.sql.ResultSet;
 import java.sql.SQLException;

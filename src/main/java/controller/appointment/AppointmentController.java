@@ -1,6 +1,6 @@
 package controller.appointment;
 
-import controller.CurdUtil.CrudUtil;
+import Util.CrudUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointment;

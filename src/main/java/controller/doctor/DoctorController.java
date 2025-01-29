@@ -1,7 +1,7 @@
 package controller.doctor;
 
 
-import controller.CurdUtil.CrudUtil;
+import Util.CrudUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Doctor;

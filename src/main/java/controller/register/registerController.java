@@ -1,6 +1,6 @@
 package controller.register;
 
-import controller.CurdUtil.CrudUtil;
+import Util.CrudUtil;
 import model.Users;
 
 

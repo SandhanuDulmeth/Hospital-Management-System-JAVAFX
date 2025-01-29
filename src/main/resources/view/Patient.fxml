@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -39,9 +40,9 @@
                                         <Font name="Book Antiqua Bold" size="12.0" />
                                     </font>
                                 </JFXButton>
-                                <JFXTextField fx:id="TxtGender" layoutX="49.0" layoutY="251.0" prefHeight="25.0" prefWidth="268.0" promptText="Gender" />
                                 <JFXTextField fx:id="TxtEmegencyContact" layoutX="429.0" layoutY="153.0" prefHeight="25.0" prefWidth="268.0" promptText="Emergency Contact" />
                                 <JFXTextField fx:id="TxtMedicalHistory" layoutX="429.0" layoutY="198.0" prefHeight="25.0" prefWidth="268.0" promptText="Medical History" />
+                        <JFXComboBox fx:id="GenderComboBox" layoutX="49.0" layoutY="251.0" promptText="Gender" />
                             </children>
                         </AnchorPane>
                     </content>
@@ -90,6 +91,7 @@
                                     </font>
                                 </JFXButton>
                                 <JFXTextField fx:id="TxtAge11" layoutX="62.0" layoutY="218.0" prefHeight="25.0" prefWidth="268.0" promptText="Age" />
+                        <JFXComboBox fx:id="GenderComboBox11" layoutX="319.0" layoutY="257.0" promptText="Gender" />
                             </children></AnchorPane>
                     </content>
                 </Tab>

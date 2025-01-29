@@ -1,13 +1,11 @@
 package controller.resource;
 
 
-import controller.CurdUtil.CrudUtil;
+import Util.CrudUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Resource;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
