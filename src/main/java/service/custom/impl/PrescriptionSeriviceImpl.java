@@ -1,26 +1,25 @@
-package controller.prescription;
+package service.custom.impl;
 
 import Util.CrudUtil;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Prescription;
 import model.Doctor;
 import model.Patient;
-
+import model.Prescription;
+import service.custom.PrescriptionService;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PrescriptionController implements PrescriptionService {
-    public static PrescriptionController insance;
+public class PrescriptionSeriviceImpl implements PrescriptionService {
+    public static PrescriptionSeriviceImpl insance;
 
-    private PrescriptionController() {
+    private PrescriptionSeriviceImpl() {
     }
 
-    public static PrescriptionController getInstance() {
-        return insance == null ? insance = new PrescriptionController() : insance;
+    public static PrescriptionSeriviceImpl getInstance() {
+        return insance == null ? insance = new PrescriptionSeriviceImpl() : insance;
 
     }
 
@@ -176,5 +175,4 @@ public class PrescriptionController implements PrescriptionService {
 
 
     }
-
 }

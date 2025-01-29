@@ -1,13 +1,14 @@
-package controller.appointment;
+package service.custom;
 
 import javafx.collections.ObservableList;
 import model.Appointment;
 import model.Doctor;
 import model.Patient;
+import service.SuperService;
 
 import java.util.ArrayList;
 
-public interface AppointmentService {
+public interface AppointmentService extends SuperService {
     boolean addAppointment(Appointment appointment);
 
     boolean deleteAppointment(Integer id);
@@ -21,4 +22,6 @@ public interface AppointmentService {
     ArrayList<Patient> getPatientsID();
 
     ArrayList<Doctor> getDocID();
+
+    Integer getNextId();
 }

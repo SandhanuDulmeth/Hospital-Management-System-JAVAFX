@@ -1,6 +1,8 @@
 package service;
 
 import Util.ServiceType;
+import service.custom.impl.AppointmentServiceImpl;
+import service.custom.impl.DoctorSerivceImpl;
 import service.custom.impl.PatientServiceImpl;
 
 
@@ -18,6 +20,11 @@ public class ServiceFactory {
         switch (type) {
             case PATIENT:
                 return (T) PatientServiceImpl.getInstance();
+            case APPOINTMENT:
+                return (T) AppointmentServiceImpl.getInstance();
+            case DOCTOR:
+                return (T) DoctorSerivceImpl.getInstance();
+
 
         }
         return null;

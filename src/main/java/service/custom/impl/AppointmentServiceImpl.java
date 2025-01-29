@@ -1,4 +1,4 @@
-package controller.appointment;
+package service.custom.impl;
 
 import Util.CrudUtil;
 import javafx.collections.FXCollections;
@@ -6,18 +6,20 @@ import javafx.collections.ObservableList;
 import model.Appointment;
 import model.Doctor;
 import model.Patient;
+import service.custom.AppointmentService;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class AppointmentController implements AppointmentService {
-    private static AppointmentController instance;
+public class AppointmentServiceImpl implements AppointmentService {
+    private static AppointmentServiceImpl instance;
 
-    private AppointmentController() {
+    private AppointmentServiceImpl() {
     }
 
-    public static AppointmentController getInstance() {
-        return (instance == null) ? (instance = new AppointmentController()) : instance;
+    public static AppointmentServiceImpl getInstance() {
+        return (instance == null) ? (instance = new AppointmentServiceImpl()) : instance;
     }
 
     @Override
@@ -155,7 +157,7 @@ public class AppointmentController implements AppointmentService {
 
     public Integer getNextId() {
         try {
-           ResultSet resultSet= CrudUtil.execute("SELECT IFNULL(MAX(appointment_id), 0) + 1 AS next_id FROM Appointment");
+            ResultSet resultSet= CrudUtil.execute("SELECT IFNULL(MAX(appointment_id), 0) + 1 AS next_id FROM Appointment");
 
             resultSet.next();
             return resultSet.getInt(1);
@@ -166,5 +168,4 @@ public class AppointmentController implements AppointmentService {
 
 
     }
-
 }

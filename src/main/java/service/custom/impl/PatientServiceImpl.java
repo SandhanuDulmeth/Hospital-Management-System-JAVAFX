@@ -85,7 +85,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public boolean UpdatePatient(Patient patient) {
+    public boolean updatePatient(Patient patient) {
 
         try {
             return CrudUtil.execute("UPDATE patient SET name = ?, age = ?, gender = ?, contact_details = ?, emergency_contact = ?, medical_history = ? WHERE patient_id = ?;",

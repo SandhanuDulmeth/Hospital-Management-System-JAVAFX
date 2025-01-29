@@ -2,5 +2,5 @@ package Util;
 
 public enum ServiceType {
 
-    PATIENT
+    PATIENT,APPOINTMENT,DOCTOR,PRESCRIPTION
 }

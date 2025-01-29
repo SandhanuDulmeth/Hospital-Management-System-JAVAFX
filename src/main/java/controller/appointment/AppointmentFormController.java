@@ -1,5 +1,6 @@
 package controller.appointment;
 
+import Util.ServiceType;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
@@ -17,6 +18,9 @@ import javafx.scene.input.KeyEvent;
 import model.Appointment;
 import model.Doctor;
 import model.Patient;
+import service.ServiceFactory;
+import service.custom.AppointmentService;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -51,11 +55,8 @@ public class AppointmentFormController implements Initializable {
     @FXML
     private JFXTextField TxtId1;
 
-    @FXML
-    private JFXTextField TxtName;
 
-    @FXML
-    private JFXTextField TxtName1;
+    private final AppointmentService appointmentService= ServiceFactory.getInstance().getServiceType(ServiceType.APPOINTMENT);
 
     @FXML
     public void btnAddOnAction(ActionEvent event) {
@@ -69,10 +70,8 @@ public class AppointmentFormController implements Initializable {
 
                     TxtTime.getText()
             );
-            System.out.println( getId((String) PIdComboBox.getValue()) +"><"+getId((String)  DIdComboBox.getValue()));
-            System.out.println(DatePicker.getValue());
-            System.out.println();
-            if (AppointmentController.getInstance().addAppointment(appointment)) {
+
+            if (appointmentService.addAppointment(appointment)) {
                 new Alert(Alert.AlertType.INFORMATION, "Added").show();
                 clearAddForm();
                 loadTable();
@@ -104,7 +103,7 @@ public class AppointmentFormController implements Initializable {
     }
 
     public void setNextId() {
-        TxtId.setText(String.valueOf(AppointmentController.getInstance().getNextId()));
+        TxtId.setText(String.valueOf(appointmentService.getNextId()));
     }
 
     @Override
@@ -113,14 +112,14 @@ public class AppointmentFormController implements Initializable {
 
 
         ObservableList<Object> objectsPatient = FXCollections.observableArrayList();
-        for (Patient patient : AppointmentController.getInstance().getPatientsID()) {
+        for (Patient patient :appointmentService.getPatientsID()) {
             objectsPatient.add("ID-"+patient.getId()+" Name-"+patient.getName());
         }
         PIdComboBox.setItems(objectsPatient);
 
 
         ObservableList<Object> objectsDoc = FXCollections.observableArrayList();
-        for (Doctor doctor : AppointmentController.getInstance().getDocID()) {
+        for (Doctor doctor : appointmentService.getDocID()) {
             objectsDoc.add("ID-"+doctor.getId()+" Name-"+doctor.getName());
         }
         DIdComboBox.setItems(objectsDoc);
@@ -139,7 +138,7 @@ public class AppointmentFormController implements Initializable {
     public void btnSearchRemoveOnAction(ActionEvent actionEvent) {
 
 
-        if (AppointmentController.getInstance().deleteAppointment(Integer.valueOf(TxtId1.getText())))
+        if (appointmentService.deleteAppointment(Integer.valueOf(TxtId1.getText())))
             new Alert(Alert.AlertType.INFORMATION, "Removed " + TxtId1.getText()).show();
         else new Alert(Alert.AlertType.INFORMATION, "Not Removed " + TxtId1.getText()).show();
 
@@ -160,7 +159,7 @@ public class AppointmentFormController implements Initializable {
 
     public void OnSreachKeyReleased(KeyEvent keyEvent) {
 
-        Appointment appointment = AppointmentController.getInstance().searchAppointment(Integer.valueOf("0" + TxtId1.getText()));
+        Appointment appointment = appointmentService.searchAppointment(Integer.valueOf("0" + TxtId1.getText()));
 
         if (null != appointment) {
             TxtPId1.setText(String.valueOf(appointment.getPId()));
@@ -178,12 +177,12 @@ public class AppointmentFormController implements Initializable {
     private void loadTable() {
         tblAppointment.getItems().clear();
 
-        tblAppointment.setItems(AppointmentController.getInstance().getAll());
+        tblAppointment.setItems(appointmentService.getAll());
     }
 
     public void btnSearchUpdateOnAction(ActionEvent actionEvent) {
 
-        if (AppointmentController.getInstance().updateAppointment(new Appointment(
+        if (appointmentService.updateAppointment(new Appointment(
                 Integer.valueOf(TxtId11.getText()),
                 Integer.valueOf(TxtPId11.getText()),
                 Integer.valueOf(TxtDId11.getText()),
@@ -201,7 +200,7 @@ public class AppointmentFormController implements Initializable {
     }
 
     public void OnSreachUpdateKeyReleased(KeyEvent keyEvent) {
-        Appointment appointment = AppointmentController.getInstance().searchAppointment(Integer.valueOf("0" + TxtId11.getText()));
+        Appointment appointment = appointmentService.searchAppointment(Integer.valueOf("0" + TxtId11.getText()));
 
         if (null != appointment) {
 

@@ -185,7 +185,7 @@ private final PatientService patientService=ServiceFactory.getInstance().getServ
 
     public void btnSearchUpdateOnAction(ActionEvent actionEvent) {
 
-        if (patientService.UpdatePatient(new Patient(
+        if (patientService.updatePatient(new Patient(
                 Integer.valueOf(TxtId11.getText()),
                 TxtName11.getText(),
                 Integer.valueOf(TxtAge11.getText()),

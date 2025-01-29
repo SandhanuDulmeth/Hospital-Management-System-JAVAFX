@@ -1,9 +1,10 @@
-package controller.doctor;
+package service.custom;
 
 import javafx.collections.ObservableList;
 import model.Doctor;
+import service.SuperService;
 
-public interface DoctorService {
+public interface DoctorService extends SuperService {
     boolean addDoctor(Doctor doctor);
 
     boolean deleteDoctor(Integer id);
@@ -13,4 +14,6 @@ public interface DoctorService {
     boolean UpdateDoctor(Doctor doctor);
 
     Doctor searchDoctor(Integer id);
+
+    Integer getNextId();
 }

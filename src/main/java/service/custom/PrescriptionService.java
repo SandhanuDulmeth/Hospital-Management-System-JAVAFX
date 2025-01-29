@@ -1,13 +1,14 @@
-package controller.prescription;
+package service.custom;
 
 import javafx.collections.ObservableList;
-import model.Prescription;
 import model.Doctor;
 import model.Patient;
+import model.Prescription;
+import service.SuperService;
 
 import java.util.ArrayList;
 
-public interface PrescriptionService {
+public interface PrescriptionService extends SuperService {
     boolean addPrescription(Prescription prescription);
 
     boolean deletePrescription(Integer id);
@@ -19,5 +20,8 @@ public interface PrescriptionService {
     Prescription searchPrescription(Integer id);
 
     ArrayList<Patient> getPatientsID();
+
     ArrayList<Doctor> getDocID();
+
+    Integer getNextId();
 }

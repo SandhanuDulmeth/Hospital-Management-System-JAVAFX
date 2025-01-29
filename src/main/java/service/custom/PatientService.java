@@ -11,7 +11,7 @@ public interface PatientService  extends SuperService {
 
     ObservableList<Patient> getAll();
 
-    boolean UpdatePatient(Patient patient);
+    boolean updatePatient(Patient patient);
 
     Patient searchPatient(Integer id);
 

@@ -1,22 +1,22 @@
-package controller.doctor;
-
+package service.custom.impl;
 
 import Util.CrudUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Doctor;
+import service.custom.DoctorService;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DoctorController implements DoctorService {
-    public static DoctorController insance;
+public class DoctorSerivceImpl implements DoctorService {
+    public static DoctorSerivceImpl insance;
 
-    private DoctorController() {
+    private DoctorSerivceImpl() {
     }
 
-    public static DoctorController getInstance() {
-        return insance == null ? insance = new DoctorController() : insance;
+    public static DoctorSerivceImpl getInstance() {
+        return insance == null ? insance = new DoctorSerivceImpl() : insance;
 
     }
 
@@ -138,5 +138,4 @@ public class DoctorController implements DoctorService {
 
 
     }
-
 }
