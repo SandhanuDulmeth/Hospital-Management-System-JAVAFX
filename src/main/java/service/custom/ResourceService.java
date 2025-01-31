@@ -1,9 +1,10 @@
-package controller.resource;
+package service.custom;
 
 import javafx.collections.ObservableList;
 import model.Resource;
+import service.SuperService;
 
-public interface ResourceService {
+public interface ResourceService extends SuperService {
     boolean addResource(Resource resource);
 
     boolean deleteResource(Integer id);
@@ -13,4 +14,6 @@ public interface ResourceService {
     boolean UpdateResource(Resource resource);
 
     Resource searchResource(Integer id);
+
+    Integer getNextId();
 }

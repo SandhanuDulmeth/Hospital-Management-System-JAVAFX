@@ -3,6 +3,8 @@ package service.custom.impl;
 import Util.CrudUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+
 import model.Appointment;
 import model.Doctor;
 import model.Patient;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 
 public class AppointmentServiceImpl implements AppointmentService {
     private static AppointmentServiceImpl instance;
+
 
     private AppointmentServiceImpl() {
     }

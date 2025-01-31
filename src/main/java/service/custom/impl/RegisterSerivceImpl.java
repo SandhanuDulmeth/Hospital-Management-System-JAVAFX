@@ -1,25 +1,28 @@
-package controller.register;
+package service.custom.impl;
 
 import Util.CrudUtil;
+import Util.ServiceType;
 import model.Users;
-
+import service.ServiceFactory;
+import service.custom.RegisterService;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class registerController implements registerService {
-    public static registerController insance;
+public class RegisterSerivceImpl implements RegisterService {
+    public static RegisterSerivceImpl insance;
 
-    private registerController() {
-
+    private RegisterSerivceImpl() {
     }
 
-    public static registerController getInstance() {
-        return insance == null ? insance = new registerController() : insance;
-
+    public static RegisterSerivceImpl getInstance() {
+        return insance == null ? insance = new RegisterSerivceImpl() : insance;
     }
+
+
+
 
     @Override
     public List<Users> getAllUser() {

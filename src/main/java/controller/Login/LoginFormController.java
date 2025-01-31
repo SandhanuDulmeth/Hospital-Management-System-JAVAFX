@@ -1,5 +1,6 @@
 package controller.Login;
 
+import Util.ServiceType;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.animation.KeyFrame;
@@ -15,6 +16,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Users;
 import org.jasypt.util.text.BasicTextEncryptor;
+import service.ServiceFactory;
+import service.custom.LoginService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -34,10 +37,12 @@ public class LoginFormController implements Initializable {
     public Label lblDate;
     public Label LblTime;
 
+    private final LoginService loginService= ServiceFactory.getInstance().getServiceType(ServiceType.LOGIN);
+
     public void btnLoginOnAction(ActionEvent actionEvent) throws IOException {
 
 
-        List<Users> allUser = LoginController.getInstance().getUser(txtEmail.getText());
+        List<Users> allUser = loginService.getUser(txtEmail.getText());
 
 
         for(Users user:allUser){

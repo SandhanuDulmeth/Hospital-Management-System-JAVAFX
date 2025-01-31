@@ -1,20 +1,22 @@
-package controller.Login;
+package service.custom.impl;
 
 import Util.CrudUtil;
 import model.Users;
+import service.custom.LoginService;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoginController implements LoginService {
-    public static LoginController insance;
+public class LoginServiceImpl implements LoginService {
+    public static LoginServiceImpl insance;
 
-    private LoginController() {
+    private LoginServiceImpl() {
     }
 
-    public static LoginController getInstance() {
-        return insance == null ? insance = new LoginController() : insance;
+    public static LoginServiceImpl getInstance() {
+        return insance == null ? insance = new LoginServiceImpl() : insance;
 
     }
 
@@ -25,7 +27,7 @@ public class LoginController implements LoginService {
         List<Users> UserList = new ArrayList<>();
 
         try {
-            ResultSet resultSet =CrudUtil.execute("Select * from users where email=?",email);
+            ResultSet resultSet = CrudUtil.execute("Select * from users where email=?",email);
 
             while (resultSet.next()) {
 
@@ -43,6 +45,5 @@ public class LoginController implements LoginService {
 
         return UserList;
     }
-
 
 }

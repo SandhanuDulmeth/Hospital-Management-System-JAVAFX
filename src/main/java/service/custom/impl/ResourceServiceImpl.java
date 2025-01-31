@@ -1,22 +1,22 @@
-package controller.resource;
-
+package service.custom.impl;
 
 import Util.CrudUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Resource;
+import service.custom.ResourceService;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ResourceController implements ResourceService {
-    public static ResourceController insance;
+public class ResourceServiceImpl implements ResourceService {
+    public static ResourceServiceImpl insance;
 
-    private ResourceController() {
+    private ResourceServiceImpl() {
     }
 
-    public static ResourceController getInstance() {
-        return insance == null ? insance = new ResourceController() : insance;
+    public static ResourceServiceImpl getInstance() {
+        return insance == null ? insance = new ResourceServiceImpl() : insance;
 
     }
 
@@ -122,7 +122,7 @@ public class ResourceController implements ResourceService {
         }
         return null;
     }
-
+    @Override
     public Integer getNextId() {
         try {
             ResultSet resultSet = CrudUtil.execute("SELECT IFNULL(MAX(resource_id), 0) + 1 AS next_id FROM Resources");
@@ -137,5 +137,4 @@ public class ResourceController implements ResourceService {
 
 
     }
-
 }

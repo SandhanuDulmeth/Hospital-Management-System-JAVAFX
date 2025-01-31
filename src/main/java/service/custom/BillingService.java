@@ -1,12 +1,13 @@
-package controller.billing;
+package service.custom;
 
 import javafx.collections.ObservableList;
 import model.Billing;
 import model.Patient;
+import service.SuperService;
 
 import java.util.ArrayList;
 
-public interface BillingService {
+public interface BillingService extends SuperService {
     boolean addBilling(Billing billing);
 
     boolean deleteBilling(Integer id);
@@ -19,5 +20,5 @@ public interface BillingService {
 
     ArrayList<Patient> getPatientsID();
 
-
+    Integer getNextId();
 }

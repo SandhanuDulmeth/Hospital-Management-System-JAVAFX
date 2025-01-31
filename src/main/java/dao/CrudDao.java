@@ -1,4 +1,6 @@
 package dao;
 
-public interface CrudDao {
+public interface CrudDao<T,ID> extends SuperDao {
+    boolean save(T entity);
+    boolean delete(ID id);
 }

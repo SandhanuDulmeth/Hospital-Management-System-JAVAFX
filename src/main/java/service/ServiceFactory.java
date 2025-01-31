@@ -1,9 +1,7 @@
 package service;
 
 import Util.ServiceType;
-import service.custom.impl.AppointmentServiceImpl;
-import service.custom.impl.DoctorSerivceImpl;
-import service.custom.impl.PatientServiceImpl;
+import service.custom.impl.*;
 
 
 public class ServiceFactory {
@@ -24,9 +22,15 @@ public class ServiceFactory {
                 return (T) AppointmentServiceImpl.getInstance();
             case DOCTOR:
                 return (T) DoctorSerivceImpl.getInstance();
-
-
-        }
+            case BILLING:
+                return (T) BillingServiceImpl.getInstance();
+            case RESOURCE:
+                return (T) ResourceServiceImpl.getInstance();
+            case LOGIN:
+                return (T) LoginServiceImpl.getInstance();
+            case REGISTER:
+                return (T) RegisterSerivceImpl.getInstance();
+       }
         return null;
 
     }

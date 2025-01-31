@@ -1,5 +1,6 @@
 package controller.billing;
 
+import Util.ServiceType;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
@@ -15,6 +16,8 @@ import javafx.scene.input.KeyEvent;
 import model.Billing;
 import model.Doctor;
 import model.Patient;
+import service.ServiceFactory;
+import service.custom.BillingService;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,12 +29,8 @@ public class BillingFormController implements Initializable {
     public JFXTextField TxtId11;
 
     public JFXTextField TxtDate1;
-    public JFXTextField TxtDId1;
     public JFXTextField TxtPId1;
     public JFXTextField TxtPId11;
-    public JFXTextField TxtTime11;
-    public JFXTextField TxtTime1;
-    public JFXTextField TxtDId11;
     public JFXTextField TxtDate11;
     public JFXComboBox PIdComboBox;
 
@@ -57,11 +56,8 @@ public class BillingFormController implements Initializable {
     @FXML
     private JFXTextField TxtId1;
 
-    @FXML
-    private JFXTextField TxtName;
 
-    @FXML
-    private JFXTextField TxtName1;
+    private final BillingService billingService= ServiceFactory.getInstance().getServiceType(ServiceType.BILLING);
 
     @FXML
     public void btnAddOnAction(ActionEvent event) {
@@ -75,7 +71,7 @@ public class BillingFormController implements Initializable {
                     String.valueOf(DatePicker.getValue())
             );
 
-            if (BillingController.getInstance().addBilling(billing)) {
+            if (billingService.addBilling(billing)) {
                 new Alert(Alert.AlertType.INFORMATION, "Added").show();
                 clearAddForm();
                 loadTable();
@@ -105,11 +101,10 @@ public class BillingFormController implements Initializable {
     public void clearAddForm() {
         TxtTotalAmount.clear();
 
-
     }
 
     public void setNextId() {
-        TxtId.setText(String.valueOf(BillingController.getInstance().getNextId()));
+        TxtId.setText(String.valueOf(billingService.getNextId()));
     }
 
     @Override
@@ -119,16 +114,10 @@ public class BillingFormController implements Initializable {
 PaymentStatusComboBox.setItems(FXCollections.observableArrayList("Paid","Unpaid"));
 
         ObservableList<Object> objectsPatient = FXCollections.observableArrayList();
-        for (Patient patient : BillingController.getInstance().getPatientsID()) {
+        for (Patient patient : billingService.getPatientsID()) {
             objectsPatient.add("ID-" + patient.getId() + " Name-" + patient.getName());
         }
         PIdComboBox.setItems(objectsPatient);
-
-//        private Integer id;
-//        private Integer pId;
-//        private Double totalAmount;
-//        private String paymentStatus;
-//        private String date;
 
 
         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -145,7 +134,7 @@ PaymentStatusComboBox.setItems(FXCollections.observableArrayList("Paid","Unpaid"
     public void btnSearchRemoveOnAction(ActionEvent actionEvent) {
 
 
-        if (BillingController.getInstance().deleteBilling(Integer.valueOf(TxtId1.getText())))
+        if (billingService.deleteBilling(Integer.valueOf(TxtId1.getText())))
             new Alert(Alert.AlertType.INFORMATION, "Removed " + TxtId1.getText()).show();
         else new Alert(Alert.AlertType.INFORMATION, "Not Removed " + TxtId1.getText()).show();
 
@@ -167,7 +156,7 @@ PaymentStatusComboBox.setItems(FXCollections.observableArrayList("Paid","Unpaid"
 
     public void OnSreachKeyReleased(KeyEvent keyEvent) {
 
-        Billing billing = BillingController.getInstance().searchBilling(Integer.valueOf("0" + TxtId1.getText()));
+        Billing billing = billingService.searchBilling(Integer.valueOf("0" + TxtId1.getText()));
 
         if (null != billing) {
             TxtPId1.setText(String.valueOf(billing.getPId()));
@@ -185,12 +174,12 @@ PaymentStatusComboBox.setItems(FXCollections.observableArrayList("Paid","Unpaid"
     private void loadTable() {
         tblBilling.getItems().clear();
 
-        tblBilling.setItems(BillingController.getInstance().getAll());
+        tblBilling.setItems(billingService.getAll());
     }
 
     public void btnSearchUpdateOnAction(ActionEvent actionEvent) {
 
-        if (BillingController.getInstance().updateBilling(new Billing(
+        if (billingService.updateBilling(new Billing(
                 Integer.valueOf(TxtId11.getText()),
                 Integer.valueOf(TxtPId11.getText()),
                 Double.valueOf(TxtTotalAmount11.getText()),
@@ -208,7 +197,7 @@ PaymentStatusComboBox.setItems(FXCollections.observableArrayList("Paid","Unpaid"
     }
 
     public void OnSreachUpdateKeyReleased(KeyEvent keyEvent) {
-        Billing billing = BillingController.getInstance().searchBilling(Integer.valueOf("0" + TxtId11.getText()));
+        Billing billing = billingService.searchBilling(Integer.valueOf("0" + TxtId11.getText()));
 
         if (null != billing) {
 

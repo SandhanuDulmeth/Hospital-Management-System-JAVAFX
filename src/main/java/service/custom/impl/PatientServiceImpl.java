@@ -2,9 +2,15 @@ package service.custom.impl;
 
 import Util.CrudUtil;
 
+import Util.DaoType;
+import dao.Custom.PatientDao;
+import dao.DaoFactory;
+import entity.PatientEntity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Patient;
+
+import org.modelmapper.ModelMapper;
 import service.custom.PatientService;
 
 import java.sql.ResultSet;
@@ -12,7 +18,7 @@ import java.sql.SQLException;
 
 public class PatientServiceImpl implements PatientService {
     public static PatientServiceImpl insance;
-
+    PatientDao patientDao= DaoFactory.getInstance().getDaoType(DaoType.PATIENT);
     private PatientServiceImpl() {
     }
 
@@ -24,21 +30,9 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public boolean addPatient(Patient patient) {
 
+        PatientEntity entity=new ModelMapper().map(patient,PatientEntity.class);
 
-        try {
-            return CrudUtil.execute("INSERT INTO Patient VALUES(?,?,?,?,?,?,?)",
-                    patient.getId(),
-                    patient.getName(),
-                    patient.getAge(),
-                    patient.getGender(),
-                    patient.getContactDetails(),
-                    patient.getEmergencyContact(),
-                    patient.getMedicalHistory()
-            );
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+      return  patientDao.save(entity);
 
     }
 
@@ -144,3 +138,4 @@ public class PatientServiceImpl implements PatientService {
 
     }
 }
+

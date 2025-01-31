@@ -1,5 +1,6 @@
 package controller.resource;
 
+import Util.ServiceType;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import model.Resource;
+import service.ServiceFactory;
+import service.custom.ResourceService;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -50,13 +53,15 @@ public class ResourceFormController implements Initializable {
     @FXML
     private JFXTextField TxtName1;
 
+    private final ResourceService resourceService= ServiceFactory.getInstance().getServiceType(ServiceType.RESOURCE);
+
     @FXML
     public void btnAddOnAction(ActionEvent event) {
 
         if (!(TxtId.getText().isEmpty())) {
             Resource resource = new Resource(Integer.valueOf(TxtId.getText()), TxtType.getText(), TxtName.getText(), TxtStatus.getText(), Integer.valueOf(TxtAllocatedTo.getText()));
 
-            if (controller.resource.ResourceController.getInstance().addResource(resource)) {
+            if (resourceService.addResource(resource)) {
                 new Alert(Alert.AlertType.INFORMATION, "Added").show();
                 clearAddForm();
                 loadTable();
@@ -85,7 +90,7 @@ public class ResourceFormController implements Initializable {
     }
 
     public void setNextId() {
-        TxtId.setText(String.valueOf(controller.resource.ResourceController.getInstance().getNextId()));
+        TxtId.setText(String.valueOf(resourceService.getNextId()));
     }
 
     @Override
@@ -106,7 +111,7 @@ public class ResourceFormController implements Initializable {
     public void btnSearchRemoveOnAction(ActionEvent actionEvent) {
 
 
-        if (controller.resource.ResourceController.getInstance().deleteResource(Integer.valueOf(TxtId1.getText())))
+        if (resourceService.deleteResource(Integer.valueOf(TxtId1.getText())))
             new Alert(Alert.AlertType.INFORMATION, "Removed " + TxtId1.getText()).show();
         else new Alert(Alert.AlertType.INFORMATION, "Not Removed " + TxtId1.getText()).show();
 
@@ -125,7 +130,7 @@ public class ResourceFormController implements Initializable {
 
     public void OnSreachKeyReleased(KeyEvent keyEvent) {
 
-        Resource resource = controller.resource.ResourceController.getInstance().searchResource(Integer.valueOf("0" + TxtId1.getText()));
+        Resource resource = resourceService.searchResource(Integer.valueOf("0" + TxtId1.getText()));
 
         if (null != resource) {
             TxtType1.setText(resource.getType());
@@ -146,12 +151,12 @@ public class ResourceFormController implements Initializable {
     private void loadTable() {
         tblResource.getItems().clear();
 
-        tblResource.setItems(controller.resource.ResourceController.getInstance().getAll());
+        tblResource.setItems(resourceService.getAll());
     }
 
     public void btnSearchUpdateOnAction(ActionEvent actionEvent) {
 
-        if (controller.resource.ResourceController.getInstance().UpdateResource(new Resource(
+        if (resourceService.UpdateResource(new Resource(
                 Integer.valueOf(TxtId11.getText()),
                 TxtType11.getText(),
                 TxtName11.getText(),
@@ -167,7 +172,7 @@ public class ResourceFormController implements Initializable {
     }
 
     public void OnSreachUpdateKeyReleased(KeyEvent keyEvent) {
-        Resource resource = ResourceController.getInstance().searchResource(Integer.valueOf("0" + TxtId11.getText()));
+        Resource resource =resourceService.searchResource(Integer.valueOf("0" + TxtId11.getText()));
 
         if (null != resource) {
 

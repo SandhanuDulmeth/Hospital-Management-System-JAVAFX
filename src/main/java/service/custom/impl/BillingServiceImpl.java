@@ -1,25 +1,24 @@
-package controller.billing;
+package service.custom.impl;
 
 import Util.CrudUtil;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Billing;
-
 import model.Patient;
+import service.custom.BillingService;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class BillingController implements BillingService {
-    private static BillingController instance;
+public class BillingServiceImpl implements BillingService {
+    private static BillingServiceImpl instance;
 
-    private BillingController() {
+    private BillingServiceImpl() {
     }
 
-    public static BillingController getInstance() {
-        return (instance == null) ? (instance = new BillingController()) : instance;
+    public static BillingServiceImpl getInstance() {
+        return (instance == null) ? (instance = new BillingServiceImpl()) : instance;
     }
 
     @Override
@@ -139,12 +138,12 @@ public class BillingController implements BillingService {
         }
     }
 
-   
 
 
+    @Override
     public Integer getNextId() {
         try {
-           ResultSet resultSet= CrudUtil.execute("SELECT IFNULL(MAX(bill_id), 0) + 1 AS next_id FROM Billing");
+            ResultSet resultSet= CrudUtil.execute("SELECT IFNULL(MAX(bill_id), 0) + 1 AS next_id FROM Billing");
 
             resultSet.next();
             return resultSet.getInt(1);
@@ -155,5 +154,4 @@ public class BillingController implements BillingService {
 
 
     }
-
 }

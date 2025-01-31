@@ -19,10 +19,7 @@ public class DBConnection {
     }
 
     public static DBConnection getINSTANCE() throws SQLException {
-        if (dbConnection ==null) {
-            return dbConnection = new DBConnection();
-        }
-        return dbConnection;
+        return dbConnection==null?dbConnection=new DBConnection():dbConnection;
     }
 
 }

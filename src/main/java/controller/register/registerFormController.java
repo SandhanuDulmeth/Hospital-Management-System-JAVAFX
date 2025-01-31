@@ -1,5 +1,6 @@
 package controller.register;
 
+import Util.ServiceType;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -10,6 +11,8 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import model.Users;
 import org.jasypt.util.text.BasicTextEncryptor;
+import service.ServiceFactory;
+import service.custom.RegisterService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,13 +26,15 @@ public class registerFormController implements Initializable {
     public JFXTextField txtPassword;
     public JFXButton btnAdd;
 
+    private final RegisterService registerService= ServiceFactory.getInstance().getServiceType(ServiceType.REGISTER);
+
     public void btnAddOnAction(ActionEvent actionEvent) {
         String key="12345";
         BasicTextEncryptor basicTextEncryptor=new BasicTextEncryptor();
         basicTextEncryptor.setPassword(key);
         String encrypt = basicTextEncryptor.encrypt(txtPassword.getText());
 
-        Boolean b = registerController.getInstance().addUser(new Users(txtName.getText(), txtEmail.getText(), encrypt));
+        Boolean b = registerService.addUser(new Users(txtName.getText(), txtEmail.getText(), encrypt));
         if (b){
             new Alert(Alert.AlertType.INFORMATION,"Added");
         }else{
@@ -48,7 +53,7 @@ public class registerFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        int i = registerController.getInstance().getAllUser().get(registerController.getInstance().getAllUser().size()-1).getId() + 1;
+        int i = registerService.getAllUser().get(registerService.getAllUser().size()-1).getId() + 1;
         txtId.setText("New ID : "+i);
     }
 }
