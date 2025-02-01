@@ -1,6 +1,6 @@
 package service.custom.impl;
 
-import Util.CrudUtil;
+import util.CrudUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Doctor;

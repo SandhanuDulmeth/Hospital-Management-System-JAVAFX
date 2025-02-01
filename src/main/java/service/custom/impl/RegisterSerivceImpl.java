@@ -1,9 +1,7 @@
 package service.custom.impl;
 
-import Util.CrudUtil;
-import Util.ServiceType;
+import util.CrudUtil;
 import model.Users;
-import service.ServiceFactory;
 import service.custom.RegisterService;
 
 import java.sql.ResultSet;

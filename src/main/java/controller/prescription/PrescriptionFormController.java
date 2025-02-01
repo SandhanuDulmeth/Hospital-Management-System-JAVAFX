@@ -1,6 +1,6 @@
 package controller.prescription;
 
-import Util.ServiceType;
+import util.ServiceType;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 
@@ -18,7 +18,6 @@ import model.Prescription;
 import model.Doctor;
 import model.Patient;
 import service.ServiceFactory;
-import service.custom.PatientService;
 import service.custom.PrescriptionService;
 
 import java.net.URL;

@@ -1,7 +1,7 @@
 package controller.doctor;
 
 
-import Util.ServiceType;
+import util.ServiceType;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,7 +13,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import model.Doctor;
 import service.ServiceFactory;
-import service.custom.AppointmentService;
 import service.custom.DoctorService;
 
 import java.net.URL;

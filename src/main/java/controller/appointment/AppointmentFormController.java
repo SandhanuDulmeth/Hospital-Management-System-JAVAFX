@@ -1,6 +1,6 @@
 package controller.appointment;
 
-import Util.ServiceType;
+import util.ServiceType;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;

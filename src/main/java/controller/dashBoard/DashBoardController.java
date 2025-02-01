@@ -12,7 +12,7 @@ public class DashBoardController {
 
         Stage stage = new Stage();
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../../view/Patient.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Patient.fxml"))));
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -24,7 +24,7 @@ public class DashBoardController {
 
         Stage stage = new Stage();
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../../view/Doctor.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Doctor.fxml"))));
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -35,7 +35,7 @@ public class DashBoardController {
     public void btnResourceOnAction(ActionEvent actionEvent) {
         Stage stage = new Stage();
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../../view/Resource.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Resource.fxml"))));
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -45,7 +45,7 @@ public class DashBoardController {
     public void btnAppointmentOnAction(ActionEvent actionEvent) {
         Stage stage = new Stage();
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../../view/Appointment.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Appointment.fxml"))));
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -55,7 +55,7 @@ public class DashBoardController {
     public void btnPrescriptionOnAction(ActionEvent actionEvent) {
         Stage stage = new Stage();
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../../view/Prescription.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Prescription.fxml"))));
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -65,7 +65,7 @@ public class DashBoardController {
     public void btnBillingOnAction(ActionEvent actionEvent) {
         Stage stage = new Stage();
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../../view/Billing.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Billing.fxml"))));
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);

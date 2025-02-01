@@ -1,8 +1,8 @@
 package service.custom.impl;
 
-import Util.CrudUtil;
+import util.CrudUtil;
 
-import Util.DaoType;
+import util.DaoType;
 import dao.Custom.PatientDao;
 import dao.DaoFactory;
 import entity.PatientEntity;

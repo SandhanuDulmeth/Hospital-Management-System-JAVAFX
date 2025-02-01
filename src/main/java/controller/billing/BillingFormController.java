@@ -1,6 +1,6 @@
 package controller.billing;
 
-import Util.ServiceType;
+import util.ServiceType;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
@@ -14,7 +14,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import model.Billing;
-import model.Doctor;
 import model.Patient;
 import service.ServiceFactory;
 import service.custom.BillingService;

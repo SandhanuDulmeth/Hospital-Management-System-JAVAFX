@@ -1,6 +1,6 @@
 package controller.resource;
 
-import Util.ServiceType;
+import util.ServiceType;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
