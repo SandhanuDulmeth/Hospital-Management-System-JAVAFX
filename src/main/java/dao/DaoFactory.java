@@ -1,7 +1,7 @@
 package dao;
 
 import util.DaoType;
-import dao.Custom.Impl.PatientDaoImpl;
+import dao.custom.impl.PatientDaoImpl;
 
 
 public class DaoFactory {

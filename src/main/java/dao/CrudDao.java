@@ -1,6 +1,19 @@
 package dao;
 
-public interface   CrudDao<T,ID> extends SuperDao {
+import javafx.collections.ObservableList;
+
+
+public interface CrudDao<T, Id> extends SuperDao {
+
     boolean save(T entity);
-    boolean delete(ID id);
+
+    boolean delete(Id id);
+
+    ObservableList<T> gettAll();
+
+    boolean update(T entity);
+
+    T search(Id id);
+
+    Integer getNextId();
 }

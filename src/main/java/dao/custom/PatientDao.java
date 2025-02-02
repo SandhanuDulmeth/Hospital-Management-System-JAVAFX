@@ -1,4 +1,4 @@
-package dao.Custom;
+package dao.custom;
 
 
 import dao.CrudDao;

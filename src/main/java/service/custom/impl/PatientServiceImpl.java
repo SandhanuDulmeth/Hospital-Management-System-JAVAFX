@@ -3,7 +3,7 @@ package service.custom.impl;
 import util.CrudUtil;
 
 import util.DaoType;
-import dao.Custom.PatientDao;
+import dao.custom.PatientDao;
 import dao.DaoFactory;
 import entity.PatientEntity;
 import javafx.collections.FXCollections;
