@@ -18,7 +18,7 @@ public class PatientDaoImpl implements PatientDao {
     @Override
     public boolean save(PatientEntity patientEntity) {
         Transaction transaction = null;
-
+        System.out.println("sathish modaya");
         try (Session session = HibernateUtil.getSession()) {
             transaction = session.beginTransaction();
             session.persist(patientEntity);
