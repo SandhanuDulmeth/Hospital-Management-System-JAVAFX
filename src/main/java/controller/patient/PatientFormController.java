@@ -1,5 +1,6 @@
 package controller.patient;
 
+import javafx.collections.ObservableList;
 import util.ServiceType;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -18,6 +19,7 @@ import service.custom.PatientService;
 
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class PatientFormController implements Initializable {
@@ -69,7 +71,7 @@ public class PatientFormController implements Initializable {
 private final PatientService patientService=ServiceFactory.getInstance().getServiceType(ServiceType.PATIENT);
 
     @FXML
-    public void btnAddOnAction(ActionEvent event) {
+    public void btnAddOnAction(ActionEvent event) throws SQLException {
 
         if (!(TxtId.getText().isEmpty())) {
             Patient patient = new Patient(
@@ -115,6 +117,7 @@ private final PatientService patientService=ServiceFactory.getInstance().getServ
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         setNextId();
         GenderComboBox.setItems(FXCollections.observableArrayList("Male", "Female", "Other"));
         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -131,7 +134,7 @@ private final PatientService patientService=ServiceFactory.getInstance().getServ
 
     }
 
-    public void btnSearchRemoveOnAction(ActionEvent actionEvent) {
+    public void btnSearchRemoveOnAction(ActionEvent actionEvent) throws SQLException {
 
 
         if (patientService.deletePatient(Integer.valueOf(TxtId1.getText())))
@@ -179,8 +182,11 @@ private final PatientService patientService=ServiceFactory.getInstance().getServ
 
     private void loadTable() {
         tblPatient.getItems().clear();
+       ObservableList<Patient> observableList= FXCollections.observableArrayList();
 
-        tblPatient.setItems(patientService.getAll());
+        patientService.getAll().forEach(patient -> observableList.add(patient));
+
+        tblPatient.setItems(observableList);
     }
 
     public void btnSearchUpdateOnAction(ActionEvent actionEvent) {

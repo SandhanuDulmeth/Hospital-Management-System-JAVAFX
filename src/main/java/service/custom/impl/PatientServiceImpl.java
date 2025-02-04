@@ -1,24 +1,26 @@
 package service.custom.impl;
 
+import entity.PatientEntity;
+import model.Patient;
 import util.CrudUtil;
 
 import util.DaoType;
 import dao.custom.PatientDao;
 import dao.DaoFactory;
-import entity.PatientEntity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Patient;
 
 import org.modelmapper.ModelMapper;
 import service.custom.PatientService;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class PatientServiceImpl implements PatientService {
     public static PatientServiceImpl insance;
-    PatientDao patientDao= DaoFactory.getInstance().getDaoType(DaoType.PATIENT);
+    PatientDao patientDao = DaoFactory.getInstance().getDaoType(DaoType.PATIENT);
+
     private PatientServiceImpl() {
     }
 
@@ -28,113 +30,42 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public boolean addPatient(Patient patient) {
+    public boolean addPatient(model.Patient patient) throws SQLException {
 
-        PatientEntity entity=new ModelMapper().map(patient,PatientEntity.class);
+        PatientEntity entity = new ModelMapper().map(patient, PatientEntity.class);
 
-      return  patientDao.save(entity);
-
-    }
-
-    @Override
-    public boolean deletePatient(Integer id) {
-
-
-        try {
-            return CrudUtil.execute("DELETE FROM Patient WHERE patient_id = ?", id);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
+        return patientDao.save(entity);
 
     }
 
     @Override
-    public ObservableList<Patient> getAll() {
+    public boolean deletePatient(Integer id) throws SQLException {
 
-        ObservableList<Patient> patientObservableList = FXCollections.observableArrayList();
-        try {
-            ResultSet resultSet = CrudUtil.execute("SELECT * FROM Patient");
+        return patientDao.delete(String.valueOf(id));
 
-            while (resultSet.next()) {
-
-                patientObservableList.add(new Patient(
-                        resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getInt(3),
-                        resultSet.getString(4),
-                        resultSet.getString(5),
-                        resultSet.getString(6),
-                        resultSet.getString(7)
-
-                ));
-
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        return patientObservableList;
     }
 
     @Override
-    public boolean updatePatient(Patient patient) {
+    public ArrayList<Patient> getAll() {
+        ArrayList<Patient> patientArrayList = new ArrayList<>();
+        patientDao.gettAll().forEach(patientEntity -> patientArrayList.add(new ModelMapper().map(patientEntity, Patient.class)));
+        return patientArrayList;
+    }
 
-        try {
-            return CrudUtil.execute("UPDATE patient SET name = ?, age = ?, gender = ?, contact_details = ?, emergency_contact = ?, medical_history = ? WHERE patient_id = ?;",
-                    patient.getName(),
-                    patient.getAge(),
-                    patient.getGender(),
-                    patient.getContactDetails(),
-                    patient.getEmergencyContact(),
-                    patient.getMedicalHistory(),
-                    patient.getId()
-            );
+    @Override
+    public boolean updatePatient(model.Patient patient) {
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
+        return patientDao.update(new ModelMapper().map(patient, PatientEntity.class));
     }
 
     @Override
     public Patient searchPatient(Integer id) {
-
-        try {
-            ResultSet resultSet = CrudUtil.execute("SELECT * FROM patient WHERE patient_id=? ", id);
-
-
-            if (resultSet.next()) {
-                return new Patient(
-                        resultSet.getString(2),
-                        resultSet.getInt(3),
-                        resultSet.getString(4),
-                        resultSet.getString(5),
-                        resultSet.getString(6),
-                        resultSet.getString(7)
-
-                );
-            }
-
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return null;
+        return new ModelMapper().map(patientDao.search(String.valueOf(id)), Patient.class);
     }
 
     public Integer getNextId() {
-        try {
-            ResultSet resultSet = CrudUtil.execute("SELECT IFNULL(MAX(patient_id), 0) + 1 AS next_id FROM patient");
 
-            resultSet.next();
-            return resultSet.getInt(1);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
+        return patientDao.getNextId();
 
     }
 }

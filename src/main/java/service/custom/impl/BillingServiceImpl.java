@@ -127,7 +127,7 @@ public class BillingServiceImpl implements BillingService {
     public ArrayList<Patient> getPatientsID() {
         ArrayList<Patient> billingPatientsIDList = new ArrayList<>();
         try {
-            ResultSet resultSet = CrudUtil.execute("SELECT patient_id,name FROM Patient");
+            ResultSet resultSet = CrudUtil.execute("SELECT patient_id,name FROM PatientEntity");
             while (resultSet.next()) {
                 billingPatientsIDList.add(new Patient(resultSet.getInt(1), resultSet.getString(2)));
 

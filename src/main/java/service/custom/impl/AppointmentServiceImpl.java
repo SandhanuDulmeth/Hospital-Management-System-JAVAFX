@@ -131,7 +131,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     public ArrayList<Patient> getPatientsID() {
         ArrayList<Patient> appointmentPatientsIDList = new ArrayList<>();
         try {
-            ResultSet resultSet = CrudUtil.execute("SELECT patient_id,name FROM Patient");
+            ResultSet resultSet = CrudUtil.execute("SELECT patient_id,name FROM PatientEntity");
             while (resultSet.next()) {
                 appointmentPatientsIDList.add(new Patient(resultSet.getInt(1), resultSet.getString(2)));
 

@@ -133,7 +133,7 @@ public class PrescriptionSeriviceImpl implements PrescriptionService {
     public ArrayList<Patient> getPatientsID() {
         ArrayList<Patient> prescriptionPatientsIDList = new ArrayList<>();
         try {
-            ResultSet resultSet = CrudUtil.execute("SELECT patient_id,name FROM Patient");
+            ResultSet resultSet = CrudUtil.execute("SELECT patient_id,name FROM PatientEntity");
 
 
             while (resultSet.next()) {

@@ -4,12 +4,15 @@ import javafx.collections.ObservableList;
 import model.Patient;
 import service.SuperService;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 public interface PatientService  extends SuperService {
-    boolean addPatient(Patient patient);
+    boolean addPatient(Patient patient) throws SQLException;
 
-    boolean deletePatient(Integer id);
+    boolean deletePatient(Integer id) throws SQLException;
 
-    ObservableList<Patient> getAll();
+   ArrayList<Patient> getAll();
 
     boolean updatePatient(Patient patient);
 

@@ -1,14 +1,14 @@
 package dao.custom.impl;
 
-import javafx.collections.ObservableList;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import dao.custom.PatientDao;
 import entity.PatientEntity;
-import util.HibernateUtil;
+import util.CrudUtil;
 
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 public class PatientDaoImpl implements PatientDao {
@@ -17,61 +17,109 @@ public class PatientDaoImpl implements PatientDao {
 
     @Override
     public boolean save(PatientEntity patientEntity) {
-        Transaction transaction = null;
-        System.out.println("sathish modaya");
-        try (Session session = HibernateUtil.getSession()) {
-            transaction = session.beginTransaction();
-            session.persist(patientEntity);
-            session.getTransaction().commit();
-            return true;
-        } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
-            LOGGER.severe("Error saving PatientEntity: " + e.getMessage());
-            return false;
-        }
 
+        try {
+            return CrudUtil.execute("INSERT INTO patient values(?,?,?,?,?,?,?) ", patientEntity.getId(), patientEntity.getName(), patientEntity.getAge(), patientEntity.getGender(), patientEntity.getContactDetails(), patientEntity.getEmergencyContact(), patientEntity.getMedicalHistory()
+
+            );
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
     @Override
     public boolean delete(String id) {
-        Transaction transaction = null;
-        try (Session session = HibernateUtil.getSession()) {
-            transaction = session.beginTransaction();
-            PatientEntity patientEntity = session.get(PatientEntity.class, id);
-            if (patientEntity != null) {
-                session.remove(patientEntity);
-                transaction.commit();
-                return true;
-            }
-            return false;
-        } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
-            LOGGER.severe("Error saving PatientEntity: " + e.getMessage());
-            return false;
+
+        try {
+            return CrudUtil.execute("DELETE FROM patient WHERE patient_id = ?", id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
-
     }
 
     @Override
-    public ObservableList<PatientEntity> gettAll() {
-        return null;
+    public ArrayList<PatientEntity> gettAll() {
+
+        ArrayList<PatientEntity> patientList = new ArrayList<>();
+        try {
+            ResultSet resultSet = CrudUtil.execute("SELECT * FROM Patient");
+
+            while (resultSet.next()) {
+
+                patientList.add(new PatientEntity(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getInt(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7)
+
+                ));
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return patientList;
     }
 
     @Override
-    public boolean update(PatientEntity entity) {
-        return false;
+    public boolean update(PatientEntity patientEntity) {
+        try {
+            return CrudUtil.execute("UPDATE patient SET name = ?, age = ?, gender = ?, contact_details = ?, emergency_contact = ?, medical_history = ? WHERE patient_id = ?;",
+                    patientEntity.getName(),
+                    patientEntity.getAge(),
+                    patientEntity.getGender(),
+                    patientEntity.getContactDetails(),
+                    patientEntity.getEmergencyContact(),
+                    patientEntity.getMedicalHistory(),
+                    patientEntity.getId()
+            );
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
-    public PatientEntity search(String s) {
+    public PatientEntity search(String id) {
+        try {
+            ResultSet resultSet = CrudUtil.execute("SELECT * FROM patient WHERE patient_id=? ", id);
+
+            if (resultSet.next()) {
+                return new PatientEntity(
+                        resultSet.getString(2),
+                        resultSet.getInt(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7)
+
+                );
+            }
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return null;
     }
 
     @Override
     public Integer getNextId() {
-        return 0;
+        try {
+            ResultSet resultSet = CrudUtil.execute("SELECT IFNULL(MAX(patient_id), 0) + 1 AS next_id FROM patient");
+
+            resultSet.next();
+            return resultSet.getInt(1);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
