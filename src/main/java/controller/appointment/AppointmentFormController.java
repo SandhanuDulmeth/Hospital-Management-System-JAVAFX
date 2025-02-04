@@ -23,6 +23,7 @@ import service.custom.AppointmentService;
 
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AppointmentFormController implements Initializable {
@@ -59,7 +60,7 @@ public class AppointmentFormController implements Initializable {
     private final AppointmentService appointmentService= ServiceFactory.getInstance().getServiceType(ServiceType.APPOINTMENT);
 
     @FXML
-    public void btnAddOnAction(ActionEvent event) {
+    public void btnAddOnAction(ActionEvent event) throws SQLException {
 
         if (!(TxtId.getText().isEmpty())) {
             Appointment appointment = new Appointment(
@@ -103,12 +104,13 @@ public class AppointmentFormController implements Initializable {
     }
 
     public void setNextId() {
-        TxtId.setText(String.valueOf(appointmentService.getNextId()));
+
+      TxtId.setText(String.valueOf(appointmentService.getNextId()));
     }
 
     @Override
     public void initialize(URL url, ResourceBundle appointmentBundle) {
-        setNextId();
+       setNextId();
 
 
         ObservableList<Object> objectsPatient = FXCollections.observableArrayList();
@@ -135,7 +137,7 @@ public class AppointmentFormController implements Initializable {
 
     }
 
-    public void btnSearchRemoveOnAction(ActionEvent actionEvent) {
+    public void btnSearchRemoveOnAction(ActionEvent actionEvent) throws SQLException {
 
 
         if (appointmentService.deleteAppointment(Integer.valueOf(TxtId1.getText())))
@@ -176,8 +178,9 @@ public class AppointmentFormController implements Initializable {
 
     private void loadTable() {
         tblAppointment.getItems().clear();
-
-        tblAppointment.setItems(appointmentService.getAll());
+ObservableList<Appointment>appointmentObservableList=FXCollections.observableArrayList();
+        appointmentService.getAll().forEach(appointment -> appointmentObservableList.add(appointment));
+        tblAppointment.setItems(appointmentObservableList);
     }
 
     public void btnSearchUpdateOnAction(ActionEvent actionEvent) {

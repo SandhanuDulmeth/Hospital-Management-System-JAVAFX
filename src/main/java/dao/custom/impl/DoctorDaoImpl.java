@@ -116,4 +116,19 @@ public class DoctorDaoImpl implements DoctorDao {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public ArrayList<DoctorEntity> getDocID() {
+        ArrayList<DoctorEntity> prescriptionDoctorIDList = new ArrayList<>();
+        try {
+            ResultSet resultSet = CrudUtil.execute("SELECT doctor_id,name FROM doctor");
+
+            while (resultSet.next()) {
+                prescriptionDoctorIDList.add(new DoctorEntity(resultSet.getInt(1), resultSet.getString(2)));
+            }
+            return prescriptionDoctorIDList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

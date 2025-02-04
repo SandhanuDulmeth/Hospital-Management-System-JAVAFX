@@ -30,7 +30,9 @@ public class ServiceFactory {
                 return (T) LoginServiceImpl.getInstance();
             case REGISTER:
                 return (T) RegisterSerivceImpl.getInstance();
-       }
+            case PRESCRIPTION:
+                return (T) PrescriptionSeriviceImpl.getInstance();
+        }
         return null;
 
     }

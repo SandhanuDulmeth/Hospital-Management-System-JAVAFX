@@ -67,5 +67,12 @@ public class PatientServiceImpl implements PatientService {
         return patientDao.getNextId();
 
     }
+
+    @Override
+    public ArrayList<Patient> getPatientsID() {
+        ArrayList<Patient> patientArrayList = new ArrayList<>();
+        patientDao.getPatientsID().forEach(patientEntity -> patientArrayList.add(new ModelMapper().map(patientEntity, Patient.class)));
+        return patientArrayList;
+    }
 }
 

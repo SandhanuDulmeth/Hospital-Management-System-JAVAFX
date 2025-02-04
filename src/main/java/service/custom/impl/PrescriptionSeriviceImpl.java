@@ -1,19 +1,25 @@
 package service.custom.impl;
 
-import util.CrudUtil;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import model.Doctor;
+import dao.DaoFactory;
+
+import dao.custom.PrescriptionDao;
+import entity.PrescriptionEntity;
+import org.modelmapper.ModelMapper;
+
 import model.Patient;
+import model.Doctor;
 import model.Prescription;
 import service.custom.PrescriptionService;
+import util.DaoType;
 
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PrescriptionSeriviceImpl implements PrescriptionService {
     public static PrescriptionSeriviceImpl insance;
+
+    PrescriptionDao prescriptionDao = DaoFactory.getInstance().getDaoType(DaoType.PRESCRIPTION);
 
     private PrescriptionSeriviceImpl() {
     }
@@ -24,155 +30,57 @@ public class PrescriptionSeriviceImpl implements PrescriptionService {
     }
 
     @Override
-    public boolean addPrescription(Prescription prescription) {
+    public boolean addPrescription(Prescription prescription) throws SQLException {
 
-
-        try {
-            return CrudUtil.execute("INSERT INTO Prescription VALUES(?,?,?,?,?,?)",
-                    prescription.getId(),
-                    prescription.getPId(),
-                    prescription.getDID(),
-                    prescription.getMedicine(),
-                    prescription.getDosage(),
-                    prescription.getDuration()
-            );
-
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
-    @Override
-    public boolean deletePrescription(Integer id) {
-
-        try {
-            return CrudUtil.execute("DELETE FROM Prescription WHERE prescription_id = ?", id);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        return prescriptionDao.save(new ModelMapper().map(prescription, PrescriptionEntity.class));
 
 
     }
 
     @Override
-    public ObservableList<Prescription> getAll() {
+    public boolean deletePrescription(Integer id) throws SQLException {
 
-        ObservableList<Prescription> prescriptionObservableList = FXCollections.observableArrayList();
-        try {
-            ResultSet resultSet = CrudUtil.execute("SELECT * FROM Prescription");
-
-            while (resultSet.next()) {
-
-                prescriptionObservableList.add(new Prescription(
-                        resultSet.getInt(1),
-                        resultSet.getInt(2),
-                        resultSet.getInt(3),
-                        resultSet.getString(4),
-                        resultSet.getString(5),
-                        resultSet.getString(6)
+        return prescriptionDao.delete(String.valueOf(id));
 
 
-                ));
-
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        return prescriptionObservableList;
     }
 
     @Override
-    public boolean UpdatePrescription(Prescription prescription) {
+    public ArrayList<Prescription> getAll() {
+        ArrayList<Prescription> prescriptionList = new ArrayList<>();
+        prescriptionDao.gettAll().forEach(prescriptionEntity -> prescriptionList.add(new ModelMapper().map(prescriptionEntity, Prescription.class)));
+        return prescriptionList;
+    }
 
-        try {
-            return CrudUtil.execute("UPDATE Prescription SET patient_id = ?, doctor_id = ?, medicine = ?, dosage= ?, duration= ? WHERE prescription_id = ?;",
-                    prescription.getPId(),
-                    prescription.getDID(),
-                    prescription.getMedicine(),
-                    prescription.getDosage(),
-                    prescription.getDuration(),
-                    prescription.getId()
-            );
+    @Override
+    public boolean updatePrescription(Prescription prescription) {
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        return prescriptionDao.update(new ModelMapper().map(prescription, PrescriptionEntity.class));
 
     }
 
     @Override
     public Prescription searchPrescription(Integer id) {
 
-        try {
-            ResultSet resultSet = CrudUtil.execute("SELECT * FROM Prescription WHERE prescription_id=? ", id);
+        return new ModelMapper().map(prescriptionDao.search(String.valueOf(id)), Prescription.class);
 
-            if (resultSet.next()) {
-                return new Prescription(
-                        resultSet.getInt(2),
-                        resultSet.getInt(3),
-                        resultSet.getString(4),
-                        resultSet.getString(5),
-                        resultSet.getString(6)
-
-                );
-            }
-
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return null;
     }
 
 
     @Override
     public ArrayList<Patient> getPatientsID() {
-        ArrayList<Patient> prescriptionPatientsIDList = new ArrayList<>();
-        try {
-            ResultSet resultSet = CrudUtil.execute("SELECT patient_id,name FROM PatientEntity");
-
-
-            while (resultSet.next()) {
-                prescriptionPatientsIDList.add(new Patient(resultSet.getInt(1), resultSet.getString(2)));
-                System.out.println(prescriptionPatientsIDList);
-            }
-
-            return prescriptionPatientsIDList;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        return PatientServiceImpl.getInstance().getPatientsID();
     }
 
     @Override
     public ArrayList<Doctor> getDocID() {
-        ArrayList<Doctor> prescriptionDoctorIDList = new ArrayList<>();
-        try {
-            ResultSet resultSet = CrudUtil.execute("SELECT doctor_id,name FROM doctor");
-
-            while (resultSet.next()) {
-                prescriptionDoctorIDList.add(new Doctor(resultSet.getInt(1), resultSet.getString(2)));
-            }
-            return prescriptionDoctorIDList;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        return DoctorSerivceImpl.getInstance().getDocID();
     }
 
-
+    @Override
     public Integer getNextId() {
-        try {
-            ResultSet resultSet = CrudUtil.execute("SELECT IFNULL(MAX(prescription_id), 0) + 1 AS next_id FROM Prescription");
-            resultSet.next();
-            return resultSet.getInt(1);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-
+        return prescriptionDao.getNextId();
     }
+
+
 }

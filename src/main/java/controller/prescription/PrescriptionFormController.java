@@ -21,6 +21,7 @@ import service.ServiceFactory;
 import service.custom.PrescriptionService;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class PrescriptionFormController implements Initializable {
@@ -33,8 +34,7 @@ public class PrescriptionFormController implements Initializable {
     public JFXTextField TxtDId1;
     public JFXTextField TxtPId1;
     public JFXTextField TxtPId11;
-    public JFXTextField TxtTime11;
-    public JFXTextField TxtTime1;
+
     public JFXTextField TxtDId11;
     public JFXTextField TxtDate11;
     public JFXComboBox PIdComboBox;
@@ -65,16 +65,11 @@ public class PrescriptionFormController implements Initializable {
     @FXML
     private JFXTextField TxtId1;
 
-    @FXML
-    private JFXTextField TxtName;
+
+    private final PrescriptionService prescriptionService = ServiceFactory.getInstance().getServiceType(ServiceType.PRESCRIPTION);
 
     @FXML
-    private JFXTextField TxtName1;
-
-    private final PrescriptionService prescriptionService= ServiceFactory.getInstance().getServiceType(ServiceType.PRESCRIPTION);
-
-    @FXML
-    public void btnAddOnAction(ActionEvent event) {
+    public void btnAddOnAction(ActionEvent event) throws SQLException {
 
         if (!(TxtId.getText().isEmpty())) {
             Prescription prescription = new Prescription(Integer.valueOf(TxtId.getText()), getId((String) PIdComboBox.getValue()), getId((String) DIdComboBox.getValue()), TxtMedicine.getText(), TxtDosage.getText(), TxtDuration.getText());
@@ -115,6 +110,7 @@ public class PrescriptionFormController implements Initializable {
     }
 
     public void setNextId() {
+
         TxtId.setText(String.valueOf(prescriptionService.getNextId()));
     }
 
@@ -147,7 +143,7 @@ public class PrescriptionFormController implements Initializable {
 
     }
 
-    public void btnSearchRemoveOnAction(ActionEvent actionEvent) {
+    public void btnSearchRemoveOnAction(ActionEvent actionEvent) throws SQLException {
 
 
         if (prescriptionService.deletePrescription(Integer.valueOf(TxtId1.getText())))
@@ -163,7 +159,8 @@ public class PrescriptionFormController implements Initializable {
 
 
     }
-    public void clearRemoveForm(){
+
+    public void clearRemoveForm() {
         TxtPId1.clear();
         TxtDId1.clear();
         TxtMedicine1.clear();
@@ -171,6 +168,7 @@ public class PrescriptionFormController implements Initializable {
         TxtDuration1.clear();
 
     }
+
     public void OnSreachKeyReleased(KeyEvent keyEvent) {
 
         Prescription prescription = prescriptionService.searchPrescription(Integer.valueOf("0" + TxtId1.getText()));
@@ -192,13 +190,14 @@ public class PrescriptionFormController implements Initializable {
 
     private void loadTable() {
         tblPrescription.getItems().clear();
-
-        tblPrescription.setItems(prescriptionService.getAll());
+        ObservableList<Prescription> prescriptionObservableList = FXCollections.observableArrayList();
+        prescriptionService.getAll().forEach(prescription -> prescriptionObservableList.add(prescription));
+        tblPrescription.setItems(prescriptionObservableList);
     }
 
     public void btnSearchUpdateOnAction(ActionEvent actionEvent) {
 
-        if (prescriptionService.UpdatePrescription(new Prescription(Integer.valueOf(TxtId11.getText()), Integer.valueOf(TxtPId11.getText()), Integer.valueOf(TxtDId11.getText()), TxtMedicine11.getText(), TxtDosage11.getText(), TxtDuration11.getText()
+        if (prescriptionService.updatePrescription(new Prescription(Integer.valueOf(TxtId11.getText()), Integer.valueOf(TxtPId11.getText()), Integer.valueOf(TxtDId11.getText()), TxtMedicine11.getText(), TxtDosage11.getText(), TxtDuration11.getText()
 
 
         ))) {

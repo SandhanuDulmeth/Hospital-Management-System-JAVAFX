@@ -19,4 +19,6 @@ public interface PatientService  extends SuperService {
     Patient searchPatient(Integer id);
 
     Integer getNextId();
+
+    ArrayList<Patient>getPatientsID();
 }

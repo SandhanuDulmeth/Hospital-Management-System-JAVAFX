@@ -3,6 +3,7 @@ package dao.custom.impl;
 
 import dao.custom.PatientDao;
 import entity.PatientEntity;
+import model.Patient;
 import util.CrudUtil;
 
 
@@ -122,4 +123,20 @@ public class PatientDaoImpl implements PatientDao {
         }
     }
 
+    @Override
+    public ArrayList<PatientEntity> getPatientsID() {
+        ArrayList<PatientEntity> prescriptionPatientsIDList = new ArrayList<>();
+        try {
+            ResultSet resultSet = CrudUtil.execute("SELECT patient_id,name FROM Patient");
+
+
+            while (resultSet.next()) {
+                prescriptionPatientsIDList.add(new PatientEntity(resultSet.getInt(1), resultSet.getString(2)));
+            }
+
+            return prescriptionPatientsIDList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -19,4 +19,6 @@ public interface DoctorService extends SuperService {
     Doctor searchDoctor(Integer id);
 
     Integer getNextId();
+
+    ArrayList<Doctor> getDocID();
 }

@@ -1,18 +1,15 @@
 package service.custom.impl;
 
 import dao.DaoFactory;
-import dao.SuperDao;
+
 import dao.custom.DoctorDao;
 import entity.DoctorEntity;
 import org.modelmapper.ModelMapper;
-import util.CrudUtil;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import model.Doctor;
 import service.custom.DoctorService;
 import util.DaoType;
 
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -66,7 +63,14 @@ public class DoctorSerivceImpl implements DoctorService {
 
     public Integer getNextId() {
 
-       return doctorDao.getNextId();
+        return doctorDao.getNextId();
 
+    }
+
+    @Override
+    public ArrayList<Doctor> getDocID() {
+        ArrayList<Doctor> doctorArrayList = new ArrayList<>();
+        doctorDao.getDocID().forEach(doctorEntity -> doctorArrayList.add(new ModelMapper().map(doctorEntity, Doctor.class)));
+        return doctorArrayList;
     }
 }

@@ -1,21 +1,21 @@
 package service.custom;
 
-import javafx.collections.ObservableList;
 import model.Doctor;
 import model.Patient;
 import model.Prescription;
 import service.SuperService;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface PrescriptionService extends SuperService {
-    boolean addPrescription(Prescription prescription);
+    boolean addPrescription(Prescription prescription) throws SQLException;
 
-    boolean deletePrescription(Integer id);
+    boolean deletePrescription(Integer id) throws SQLException;
 
-    ObservableList<Prescription> getAll();
+    ArrayList<Prescription> getAll();
 
-    boolean UpdatePrescription(Prescription prescription);
+    boolean updatePrescription(Prescription prescription);
 
     Prescription searchPrescription(Integer id);
 
