@@ -4,12 +4,15 @@ import javafx.collections.ObservableList;
 import model.Resource;
 import service.SuperService;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 public interface ResourceService extends SuperService {
-    boolean addResource(Resource resource);
+    boolean addResource(Resource resource) throws SQLException;
 
-    boolean deleteResource(Integer id);
+    boolean deleteResource(Integer id) throws SQLException;
 
-    ObservableList<Resource> getAll();
+    ArrayList<Resource> getAll();
 
     boolean UpdateResource(Resource resource);
 

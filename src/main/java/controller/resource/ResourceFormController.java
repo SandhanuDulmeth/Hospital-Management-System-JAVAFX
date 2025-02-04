@@ -1,5 +1,7 @@
 package controller.resource;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import util.ServiceType;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -15,6 +17,7 @@ import service.ServiceFactory;
 import service.custom.ResourceService;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ResourceFormController implements Initializable {
@@ -56,7 +59,7 @@ public class ResourceFormController implements Initializable {
     private final ResourceService resourceService= ServiceFactory.getInstance().getServiceType(ServiceType.RESOURCE);
 
     @FXML
-    public void btnAddOnAction(ActionEvent event) {
+    public void btnAddOnAction(ActionEvent event) throws SQLException {
 
         if (!(TxtId.getText().isEmpty())) {
             Resource resource = new Resource(Integer.valueOf(TxtId.getText()), TxtType.getText(), TxtName.getText(), TxtStatus.getText(), Integer.valueOf(TxtAllocatedTo.getText()));
@@ -108,7 +111,7 @@ public class ResourceFormController implements Initializable {
 
     }
 
-    public void btnSearchRemoveOnAction(ActionEvent actionEvent) {
+    public void btnSearchRemoveOnAction(ActionEvent actionEvent) throws SQLException {
 
 
         if (resourceService.deleteResource(Integer.valueOf(TxtId1.getText())))
@@ -150,8 +153,9 @@ public class ResourceFormController implements Initializable {
 
     private void loadTable() {
         tblResource.getItems().clear();
-
-        tblResource.setItems(resourceService.getAll());
+        ObservableList<Resource> resourceObservableList= FXCollections.observableArrayList();
+       resourceService.getAll().forEach(resource -> resourceObservableList.add(resource));
+        tblResource.setItems(resourceObservableList);
     }
 
     public void btnSearchUpdateOnAction(ActionEvent actionEvent) {

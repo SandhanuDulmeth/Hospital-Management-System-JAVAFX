@@ -1,16 +1,24 @@
 package service.custom.impl;
 
+import dao.DaoFactory;
+import dao.custom.ResourceDao;
+import entity.ResourceEntity;
+import org.modelmapper.ModelMapper;
 import util.CrudUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Resource;
 import service.custom.ResourceService;
+import util.DaoType;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ResourceServiceImpl implements ResourceService {
     public static ResourceServiceImpl insance;
+
+    ResourceDao resourceDao = DaoFactory.getInstance().getDaoType(DaoType.RESOURCE);
 
     private ResourceServiceImpl() {
     }
@@ -21,119 +29,43 @@ public class ResourceServiceImpl implements ResourceService {
     }
 
     @Override
-    public boolean addResource(Resource resource) {
+    public boolean addResource(Resource resource) throws SQLException {
 
-
-        try {
-            return CrudUtil.execute("INSERT INTO Resources VALUES(?,?,?,?,?)",
-                    resource.getId(),
-                    resource.getName(),
-                    resource.getType(),
-                    resource.getStatus(),
-                    resource.getAllocatedTo()
-
-            );
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        return resourceDao.save(new ModelMapper().map(resource, ResourceEntity.class));
 
     }
 
     @Override
-    public boolean deleteResource(Integer id) {
+    public boolean deleteResource(Integer id) throws SQLException {
 
-
-        try {
-            return CrudUtil.execute("DELETE FROM Resources WHERE resource_id = ?", id);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        return resourceDao.delete(String.valueOf(id));
 
 
     }
 
     @Override
-    public ObservableList<Resource> getAll() {
-
-        ObservableList<Resource> resourceObservableList = FXCollections.observableArrayList();
-        try {
-            ResultSet resultSet = CrudUtil.execute("SELECT * FROM Resources");
-
-            while (resultSet.next()) {
-
-                resourceObservableList.add(new Resource(
-                        resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4),
-                        resultSet.getInt(5)
-
-
-                ));
-
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        return resourceObservableList;
+    public ArrayList<Resource> getAll() {
+        ArrayList<Resource> resourceArrayList = new ArrayList<>();
+        resourceDao.gettAll().forEach(resourceEntity -> resourceArrayList.add(new ModelMapper().map(resourceEntity, Resource.class)));
+        return resourceArrayList;
     }
 
     @Override
     public boolean UpdateResource(Resource resource) {
 
-        try {
-            return CrudUtil.execute("UPDATE Resources SET resource_type = ?, resource_name = ?, status = ?, allocated_to = ? WHERE resource_id = ?;",
-                    resource.getType(),
-                    resource.getName(),
-                    resource.getStatus(),
-                    resource.getAllocatedTo(),
-                    resource.getId()
-            );
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+       return resourceDao.update(new ModelMapper().map(resource,ResourceEntity.class));
 
     }
 
     @Override
     public Resource searchResource(Integer id) {
 
-        try {
-            ResultSet resultSet = CrudUtil.execute("SELECT * FROM Resources WHERE resource_id=? ", id);
-
-            if (resultSet.next()) {
-
-                return new Resource(
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4),
-                        resultSet.getInt(5)
-
-                );
-            }
-
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return null;
+      return new ModelMapper().map(resourceDao.search(String.valueOf(id)),Resource.class);
     }
+
     @Override
     public Integer getNextId() {
-        try {
-            ResultSet resultSet = CrudUtil.execute("SELECT IFNULL(MAX(resource_id), 0) + 1 AS next_id FROM Resources");
-
-            resultSet.next();
-
-            return resultSet.getInt(1);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+      return resourceDao.getNextId();
 
 
     }

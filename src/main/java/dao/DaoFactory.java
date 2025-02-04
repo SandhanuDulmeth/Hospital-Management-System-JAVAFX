@@ -1,10 +1,7 @@
 package dao;
 
-import dao.custom.impl.AppointmentDaoImpl;
-import dao.custom.impl.DoctorDaoImpl;
-import dao.custom.impl.PrescriptionDaoImpl;
+import dao.custom.impl.*;
 import util.DaoType;
-import dao.custom.impl.PatientDaoImpl;
 
 
 public class DaoFactory {
@@ -23,6 +20,7 @@ public class DaoFactory {
             case DOCTOR: return (T) new DoctorDaoImpl();
             case PRESCRIPTION: return (T) new PrescriptionDaoImpl();
             case APPOINTMENT: return (T) new AppointmentDaoImpl();
+            case RESOURCE: return (T) new ResourceDaoImpl();
         }
         return null;
     }
