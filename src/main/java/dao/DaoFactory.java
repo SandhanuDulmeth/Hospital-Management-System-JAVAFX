@@ -1,5 +1,6 @@
 package dao;
 
+import dao.custom.impl.DoctorDaoImpl;
 import util.DaoType;
 import dao.custom.impl.PatientDaoImpl;
 
@@ -17,7 +18,7 @@ public class DaoFactory {
     public <T extends SuperDao>T getDaoType(DaoType daoType){
         switch (daoType){
             case PATIENT: return (T) new PatientDaoImpl();
-           // case ITEM: return (T) new ItemDaoImpl();
+            case DOCTOR: return (T) new DoctorDaoImpl();
         }
         return null;
     }

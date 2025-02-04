@@ -1,6 +1,8 @@
 package controller.doctor;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import util.ServiceType;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -16,6 +18,7 @@ import service.ServiceFactory;
 import service.custom.DoctorService;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class DoctorFormController implements Initializable {
@@ -59,10 +62,10 @@ public class DoctorFormController implements Initializable {
     @FXML
     private JFXTextField TxtName1;
 
-    private final DoctorService doctorService= ServiceFactory.getInstance().getServiceType(ServiceType.DOCTOR);
+    private final DoctorService doctorService = ServiceFactory.getInstance().getServiceType(ServiceType.DOCTOR);
 
     @FXML
-    public void btnAddOnAction(ActionEvent event) {
+    public void btnAddOnAction(ActionEvent event) throws SQLException {
 
         if (!(TxtId.getText().isEmpty())) {
             Doctor doctor = new Doctor(
@@ -121,7 +124,7 @@ public class DoctorFormController implements Initializable {
 
     }
 
-    public void btnSearchRemoveOnAction(ActionEvent actionEvent) {
+    public void btnSearchRemoveOnAction(ActionEvent actionEvent) throws SQLException {
 
 
         if (doctorService.deleteDoctor(Integer.valueOf(TxtId1.getText())))
@@ -136,7 +139,8 @@ public class DoctorFormController implements Initializable {
 
 
     }
-    public void clearRemoveForm(){
+
+    public void clearRemoveForm() {
         TxtName1.clear();
         TxtSpecialty1.clear();
         TxtAvailability1.clear();
@@ -166,8 +170,9 @@ public class DoctorFormController implements Initializable {
 
     private void loadTable() {
         tblDoctor.getItems().clear();
-
-        tblDoctor.setItems(doctorService.getAll());
+        ObservableList<Doctor> doctorObservableList = FXCollections.observableArrayList();
+        doctorService.getAll().forEach(doctor -> doctorObservableList.add(doctor));
+        tblDoctor.setItems(doctorObservableList);
     }
 
     public void btnSearchUpdateOnAction(ActionEvent actionEvent) {

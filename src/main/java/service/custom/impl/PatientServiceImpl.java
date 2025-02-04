@@ -2,23 +2,23 @@ package service.custom.impl;
 
 import entity.PatientEntity;
 import model.Patient;
-import util.CrudUtil;
+
 
 import util.DaoType;
 import dao.custom.PatientDao;
 import dao.DaoFactory;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 
 import org.modelmapper.ModelMapper;
 import service.custom.PatientService;
 
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PatientServiceImpl implements PatientService {
     public static PatientServiceImpl insance;
+
     PatientDao patientDao = DaoFactory.getInstance().getDaoType(DaoType.PATIENT);
 
     private PatientServiceImpl() {
@@ -32,9 +32,8 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public boolean addPatient(model.Patient patient) throws SQLException {
 
-        PatientEntity entity = new ModelMapper().map(patient, PatientEntity.class);
 
-        return patientDao.save(entity);
+        return patientDao.save(new ModelMapper().map(patient, PatientEntity.class));
 
     }
 
