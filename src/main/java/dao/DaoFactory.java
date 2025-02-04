@@ -21,6 +21,7 @@ public class DaoFactory {
             case PRESCRIPTION: return (T) new PrescriptionDaoImpl();
             case APPOINTMENT: return (T) new AppointmentDaoImpl();
             case RESOURCE: return (T) new ResourceDaoImpl();
+            case BILLING:return (T) new BillingDaoImpl();
         }
         return null;
     }

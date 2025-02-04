@@ -1,18 +1,19 @@
 package service.custom;
 
-import javafx.collections.ObservableList;
+
 import model.Billing;
 import model.Patient;
 import service.SuperService;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface BillingService extends SuperService {
-    boolean addBilling(Billing billing);
+    boolean addBilling(Billing billing) throws SQLException;
 
-    boolean deleteBilling(Integer id);
+    boolean deleteBilling(Integer id) throws SQLException;
 
-    ObservableList<Billing> getAll();
+    ArrayList<Billing> getAll();
 
     boolean updateBilling(Billing billing);
 

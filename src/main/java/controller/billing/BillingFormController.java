@@ -19,6 +19,7 @@ import service.ServiceFactory;
 import service.custom.BillingService;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class BillingFormController implements Initializable {
@@ -59,7 +60,7 @@ public class BillingFormController implements Initializable {
     private final BillingService billingService= ServiceFactory.getInstance().getServiceType(ServiceType.BILLING);
 
     @FXML
-    public void btnAddOnAction(ActionEvent event) {
+    public void btnAddOnAction(ActionEvent event) throws SQLException {
 
         if (!(TxtId.getText().isEmpty())) {
             Billing billing = new Billing(
@@ -130,7 +131,7 @@ PaymentStatusComboBox.setItems(FXCollections.observableArrayList("Paid","Unpaid"
 
     }
 
-    public void btnSearchRemoveOnAction(ActionEvent actionEvent) {
+    public void btnSearchRemoveOnAction(ActionEvent actionEvent) throws SQLException {
 
 
         if (billingService.deleteBilling(Integer.valueOf(TxtId1.getText())))
@@ -172,8 +173,9 @@ PaymentStatusComboBox.setItems(FXCollections.observableArrayList("Paid","Unpaid"
 
     private void loadTable() {
         tblBilling.getItems().clear();
-
-        tblBilling.setItems(billingService.getAll());
+ObservableList<Billing>billingObservableList=FXCollections.observableArrayList();
+        billingService.getAll().forEach(billing -> billingObservableList.add(billing));
+        tblBilling.setItems(billingObservableList);
     }
 
     public void btnSearchUpdateOnAction(ActionEvent actionEvent) {
