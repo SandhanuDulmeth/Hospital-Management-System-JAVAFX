@@ -1,5 +1,6 @@
 package service.custom.impl;
 
+import com.google.inject.Inject;
 import entity.PatientEntity;
 import model.Patient;
 
@@ -19,7 +20,9 @@ import java.util.ArrayList;
 public class PatientServiceImpl implements PatientService {
     public static PatientServiceImpl insance;
 
+
     PatientDao patientDao = DaoFactory.getInstance().getDaoType(DaoType.PATIENT);
+
 
     private PatientServiceImpl() {
     }
@@ -30,11 +33,13 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public boolean addPatient(model.Patient patient) throws SQLException {
+    public boolean addPatient(Patient patient) throws SQLException {
 
-
-        return patientDao.save(new ModelMapper().map(patient, PatientEntity.class));
-
+        PatientEntity patientEntity = new ModelMapper().map(patient, PatientEntity.class);
+        System.out.println(patientEntity.getId() + patientEntity.getName() + patientEntity.getGender());
+        boolean save = patientDao.save(patientEntity);
+        System.out.println(save);
+        return save;
     }
 
     @Override

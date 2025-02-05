@@ -53,7 +53,7 @@ public class registerFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        int i = registerService.getAllUser().get(registerService.getAllUser().size()-1).getId() + 1;
+        int i = registerService.geLastUserId();
         txtId.setText("New ID : "+i);
     }
 }

@@ -22,6 +22,7 @@ public class DaoFactory {
             case APPOINTMENT: return (T) new AppointmentDaoImpl();
             case RESOURCE: return (T) new ResourceDaoImpl();
             case BILLING:return (T) new BillingDaoImpl();
+            case USER:return (T) new UserDaoImpl();
         }
         return null;
     }

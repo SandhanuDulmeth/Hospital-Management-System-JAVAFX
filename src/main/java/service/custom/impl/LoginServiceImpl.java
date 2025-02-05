@@ -1,8 +1,12 @@
 package service.custom.impl;
 
+import dao.DaoFactory;
+import dao.custom.UserDao;
+import org.modelmapper.ModelMapper;
 import util.CrudUtil;
 import model.Users;
 import service.custom.LoginService;
+import util.DaoType;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +15,8 @@ import java.util.List;
 
 public class LoginServiceImpl implements LoginService {
     public static LoginServiceImpl insance;
+
+    UserDao userDao = DaoFactory.getInstance().getDaoType(DaoType.USER);
 
     private LoginServiceImpl() {
     }
@@ -21,27 +27,10 @@ public class LoginServiceImpl implements LoginService {
     }
 
 
-
     @Override
-    public List<Users> getUser(String email) {
-        List<Users> UserList = new ArrayList<>();
-
-        try {
-            ResultSet resultSet = CrudUtil.execute("Select * from users where email=?",email);
-
-            while (resultSet.next()) {
-
-                UserList.add(new Users(resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4)
-
-                ));
-
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public ArrayList<Users> getUser(String email) {
+        ArrayList<Users> UserList = new ArrayList<>();
+        userDao.getUser(email).forEach(userEntity -> UserList.add(new ModelMapper().map(userEntity, Users.class)));
 
         return UserList;
     }

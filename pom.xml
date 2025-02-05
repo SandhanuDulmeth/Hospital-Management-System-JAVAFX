@@ -64,11 +64,19 @@
         </dependency>
 
 
+        <!-- https://mvnrepository.com/artifact/com.google.inject/guice -->
         <dependency>
-            <groupId>org.hibernate.orm</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>6.5.2.Final</version>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>7.0.0</version>
         </dependency>
+
+
+        <!--        <dependency>-->
+<!--            <groupId>org.hibernate.orm</groupId>-->
+<!--            <artifactId>hibernate-core</artifactId>-->
+<!--            <version>6.5.2.Final</version>-->
+<!--        </dependency>-->
 
     </dependencies>
 

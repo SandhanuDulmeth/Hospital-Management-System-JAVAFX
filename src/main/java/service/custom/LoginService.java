@@ -3,9 +3,9 @@ package service.custom;
 import model.Users;
 import service.SuperService;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface LoginService extends SuperService {
-    List<Users> getUser(String name);
+    ArrayList<Users> getUser(String email);
 
 }

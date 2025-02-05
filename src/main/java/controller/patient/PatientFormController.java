@@ -1,5 +1,6 @@
 package controller.patient;
 
+import com.google.inject.Inject;
 import javafx.collections.ObservableList;
 import util.ServiceType;
 import com.jfoenix.controls.JFXComboBox;
@@ -67,12 +68,13 @@ public class PatientFormController implements Initializable {
     @FXML
     private JFXTextField TxtName1;
 
-
+    //@Inject
+   // private  PatientService patientService;
 private final PatientService patientService=ServiceFactory.getInstance().getServiceType(ServiceType.PATIENT);
 
     @FXML
     public void btnAddOnAction(ActionEvent event) throws SQLException {
-
+        System.out.println( (String) GenderComboBox.getValue());
         if (!(TxtId.getText().isEmpty())) {
             Patient patient = new Patient(
                     Integer.valueOf(TxtId.getText()),
@@ -82,6 +84,7 @@ private final PatientService patientService=ServiceFactory.getInstance().getServ
                     TxtContactDetails.getText(),
                     TxtEmegencyContact.getText(),
                     TxtMedicalHistory.getText());
+            System.out.println(patient.getId()+ patient.getGender()+ patient.getName());
             if (patientService.addPatient(patient)) {
                 new Alert(Alert.AlertType.INFORMATION, "Added").show();
                 clearAddForm();

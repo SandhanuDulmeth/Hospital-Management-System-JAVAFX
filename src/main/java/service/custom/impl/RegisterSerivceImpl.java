@@ -1,8 +1,13 @@
 package service.custom.impl;
 
+import dao.DaoFactory;
+import dao.custom.UserDao;
+import entity.UserEntity;
+import org.modelmapper.ModelMapper;
 import util.CrudUtil;
 import model.Users;
 import service.custom.RegisterService;
+import util.DaoType;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +16,7 @@ import java.util.List;
 
 public class RegisterSerivceImpl implements RegisterService {
     public static RegisterSerivceImpl insance;
+    UserDao userDao = DaoFactory.getInstance().getDaoType(DaoType.USER);
 
     private RegisterSerivceImpl() {
     }
@@ -20,47 +26,15 @@ public class RegisterSerivceImpl implements RegisterService {
     }
 
 
-
-
     @Override
-    public List<Users> getAllUser() {
-        List<Users> UserList = new ArrayList<>();
-
-        try {
-            ResultSet resultSet = CrudUtil.execute("SELECT * FROM users");
-
-            while (resultSet.next()) {
-
-                UserList.add(new Users(resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
-                        resultSet.getString(4)
-
-                ));
-
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        if (UserList.isEmpty()) {
-            UserList.add(new Users(0));
-        }
-        return UserList;
+    public Integer geLastUserId() {
+        return userDao.geLastUserId();
     }
 
     @Override
     public Boolean addUser(Users users) {
 
-        Integer id = getAllUser().get(getAllUser().size() - 1).getId() + 1;
-
-        try {
-            return CrudUtil.execute("INSERT INTO users VALUES(?,?,?,?)", id, users.getName(), users.getEmail(), users.getPassword());
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
+        return userDao.addUser(new ModelMapper().map(users, UserEntity.class));
 
     }
 }

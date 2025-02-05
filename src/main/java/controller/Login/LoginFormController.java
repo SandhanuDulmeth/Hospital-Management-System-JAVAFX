@@ -24,6 +24,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -42,7 +43,7 @@ public class LoginFormController implements Initializable {
     public void btnLoginOnAction(ActionEvent actionEvent) throws IOException {
 
 
-        List<Users> allUser = loginService.getUser(txtEmail.getText());
+        ArrayList<Users> allUser = loginService.getUser(txtEmail.getText());
 
 
         for (Users user : allUser) {

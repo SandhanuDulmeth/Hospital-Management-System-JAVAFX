@@ -17,13 +17,24 @@ public class PatientDaoImpl implements PatientDao {
     private static final Logger LOGGER = Logger.getLogger(PatientDaoImpl.class.getName());
 
     @Override
-    public boolean save(PatientEntity patientEntity) {
+    public boolean save(PatientEntity patientEntity)  throws SQLException{
 
         try {
-            return CrudUtil.execute("INSERT INTO patient values(?,?,?,?,?,?,?) ", patientEntity.getId(), patientEntity.getName(), patientEntity.getAge(), patientEntity.getGender(), patientEntity.getContactDetails(), patientEntity.getEmergencyContact(), patientEntity.getMedicalHistory()
+
+          //  return CrudUtil.execute("INSERT INTO patient (name, age, gender, contact_details, emergency_contact, medical_history) VALUES (?,?,?,?,?,?);",
+          return CrudUtil.execute("INSERT INTO patient VALUES(?,?,?,?,?,?,?)",
+                    patientEntity.getId(),
+                    patientEntity.getName(),
+                    patientEntity.getAge(),
+                    patientEntity.getGender(),
+                    patientEntity.getContactDetails(),
+                    patientEntity.getEmergencyContact(),
+                    patientEntity.getMedicalHistory()
 
             );
+
         } catch (SQLException e) {
+            System.out.println("get");
             throw new RuntimeException(e);
         }
     }
