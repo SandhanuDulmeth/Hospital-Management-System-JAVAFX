@@ -213,7 +213,6 @@ ObservableList<Billing>billingObservableList=FXCollections.observableArrayList()
             TxtPaymentStatus11.clear();
             TxtDate11.clear();
 
-
         }
     }
 }

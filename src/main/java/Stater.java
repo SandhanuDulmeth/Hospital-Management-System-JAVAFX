@@ -1,3 +1,4 @@
+
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import javafx.application.Application;
@@ -14,13 +15,14 @@ public class Stater extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-
-       // Injector injector = Guice.createInjector(new AppModule());
-      //  FXMLLoader loader = new FXMLLoader(getClass().getResource("view/Login_form.fxml"));
+//        Injector injector = Guice.createInjector(new AppModule());
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/Login_form.fxml"));
+//        loader.setControllerFactory(injector::getInstance);
+//        stage.setScene(new Scene(loader.load()));
+//        stage.show();
+//
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("view/Login_form.fxml"))));
-//stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("view/DashBoard.fxml"))));
-    //  loader.setControllerFactory(injector::getInstance);
-   //     stage.setScene(new Scene(loader.load()));
-      stage.show();
+        stage.show();
+
     }
 }

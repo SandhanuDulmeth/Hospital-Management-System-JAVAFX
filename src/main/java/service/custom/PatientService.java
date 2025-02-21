@@ -1,11 +1,12 @@
 package service.custom;
 
-import javafx.collections.ObservableList;
+
 import model.Patient;
 import service.SuperService;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 
 public interface PatientService  extends SuperService {
     boolean addPatient(Patient patient) throws SQLException;

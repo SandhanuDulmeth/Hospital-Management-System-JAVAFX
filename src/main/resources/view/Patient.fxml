@@ -91,7 +91,6 @@
                                     </font>
                                 </JFXButton>
                                 <JFXTextField fx:id="TxtAge11" layoutX="62.0" layoutY="218.0" prefHeight="25.0" prefWidth="268.0" promptText="Age" />
-                        <JFXComboBox fx:id="GenderComboBox11" layoutX="319.0" layoutY="257.0" promptText="Gender" />
                             </children></AnchorPane>
                     </content>
                 </Tab>

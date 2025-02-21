@@ -18,7 +18,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PatientServiceImpl implements PatientService {
-    public static PatientServiceImpl insance;
+    public static PatientServiceImpl instance;
 
 
     PatientDao patientDao = DaoFactory.getInstance().getDaoType(DaoType.PATIENT);
@@ -27,19 +27,23 @@ public class PatientServiceImpl implements PatientService {
     private PatientServiceImpl() {
     }
 
+//    @Inject
+//    public PatientServiceImpl(PatientServiceImpl instance) {
+//        this.instance=instance;
+//    }
+
+
+
     public static PatientServiceImpl getInstance() {
-        return insance == null ? insance = new PatientServiceImpl() : insance;
+        return instance == null ? instance = new PatientServiceImpl() : instance;
 
     }
 
     @Override
     public boolean addPatient(Patient patient) throws SQLException {
 
-        PatientEntity patientEntity = new ModelMapper().map(patient, PatientEntity.class);
-        System.out.println(patientEntity.getId() + patientEntity.getName() + patientEntity.getGender());
-        boolean save = patientDao.save(patientEntity);
-        System.out.println(save);
-        return save;
+
+        return patientDao.save(new ModelMapper().map(patient, PatientEntity.class));
     }
 
     @Override

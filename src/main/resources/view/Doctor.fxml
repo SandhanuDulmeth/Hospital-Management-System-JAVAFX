@@ -20,7 +20,7 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="424.0" prefWidth="756.0">
                             <children>
-                                <Text fill="#161294" layoutX="203.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Doctor Form" wrappingWidth="466.13671875">
+                                <Text fill="#161294" layoutX="205.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Doctor Form" wrappingWidth="466.13671875">
                                     <font>
                                         <Font name="System Bold" size="34.0" />
                                     </font>
@@ -92,9 +92,9 @@
                 </Tab>
                 <Tab text="View Doctors">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="306.0" prefWidth="752.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="281.0" prefWidth="752.0">
                             <children>
-                                <TableView fx:id="tblDoctor" layoutX="-2.0" layoutY="-3.0" prefHeight="327.0" prefWidth="756.0" stylesheets="@../css/PatientTable.css">
+                                <TableView fx:id="tblDoctor" layoutX="-2.0" layoutY="-3.0" prefHeight="235.0" prefWidth="756.0" stylesheets="@../css/PatientTable.css">
                                     <columns>
                                         <TableColumn fx:id="colID" prefWidth="41.0" text="ID" />
                                         <TableColumn fx:id="colName" prefWidth="111.0" text="Name" />
@@ -104,6 +104,7 @@
                                         <TableColumn fx:id="colContactDetails" prefWidth="197.0" text="Contact Details" />
                                     </columns>
                                 </TableView>
+                        <JFXButton layoutX="350.0" layoutY="258.0" onAction="#btnGetReportsOnAction" text="GetReports" />
                             </children></AnchorPane>
                     </content>
                 </Tab>

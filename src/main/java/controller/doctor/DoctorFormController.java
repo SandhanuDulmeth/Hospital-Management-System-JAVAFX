@@ -1,8 +1,15 @@
 package controller.doctor;
 
 
+import com.jfoenix.controls.JFXButton;
+import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import util.ServiceType;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -212,5 +219,33 @@ public class DoctorFormController implements Initializable {
             TxtContactDetails11.clear();
 
         }
+    }
+
+    public void btnGetReportsOnAction(ActionEvent actionEvent) throws SQLException, JRException {
+
+        String reportPath = "src/main/resources/report/Simple_Blue2.jrxml";
+
+Generate_Reportby_Count(reportPath,"Doctor.pdf","SELECT * FROM doctor LIMIT 2");
+
+    }
+
+    public void Generate_Reportby_Count(String ReportPath, String Filename, String query) {
+        try {
+            JasperDesign report = JRXmlLoader.load(ReportPath);
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(query);
+            report.setQuery(newQuery);
+            JasperReport jasperReport = JasperCompileManager.compileReport(report);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
+            JasperExportManager.exportReportToPdfFile(jasperPrint, Filename);
+            JasperViewer.viewReport(jasperPrint, false);
+            new  Alert(Alert.AlertType.INFORMATION,"Success Fully !").show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.INFORMATION, "Report Generation Failed!.").show();
+            throw new RuntimeException(e);
+        }
+
+
     }
 }

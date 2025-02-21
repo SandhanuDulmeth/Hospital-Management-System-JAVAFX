@@ -1,8 +1,6 @@
 package util;
 
 import com.google.inject.AbstractModule;
-import dao.custom.PatientDao;
-import dao.custom.impl.PatientDaoImpl;
 import service.custom.PatientService;
 import service.custom.impl.PatientServiceImpl;
 
