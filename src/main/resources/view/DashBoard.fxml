@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="507.0" prefWidth="540.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.dashBoard.DashBoardController">
    <children>
-      <ImageView fitHeight="541.0" fitWidth="540.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="606.0" fitWidth="617.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/DashBoardUI.png" />
          </image>
@@ -34,10 +34,11 @@
             <Font size="24.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="219.0" layoutY="461.0" onAction="#btnBillingOnAction" prefHeight="51.0" prefWidth="105.0" style="-fx-background-color: #EB5A3C;" text="Billing">
+      <JFXButton layoutX="154.0" layoutY="526.0" onAction="#btnBillingOnAction" prefHeight="51.0" prefWidth="105.0" style="-fx-background-color: #EB5A3C;" text="Billing">
          <font>
             <Font size="24.0" />
          </font>
       </JFXButton>
+      <JFXButton layoutX="335.0" layoutY="529.0" onAction="#btnReportOnAction" prefHeight="45.0" prefWidth="80.0" text="Report" />
    </children>
 </AnchorPane>

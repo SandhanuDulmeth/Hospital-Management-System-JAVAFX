@@ -1,10 +1,11 @@
 package controller.doctor;
 
 
-import com.jfoenix.controls.JFXButton;
+import controller.report.ReportController;
 import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.*;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JRDesignQuery;
 import net.sf.jasperreports.engine.design.JasperDesign;
@@ -15,9 +16,6 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import model.Doctor;
@@ -56,6 +54,7 @@ public class DoctorFormController implements Initializable {
     public TableColumn colSpecialty;
     public TableColumn colAvailability;
     public TableColumn colQualifications;
+    public Label CountLabelID;
 
     @FXML
     private JFXTextField TxtId;
@@ -118,6 +117,8 @@ public class DoctorFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setNextId();
+
+
 
         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -221,31 +222,17 @@ public class DoctorFormController implements Initializable {
         }
     }
 
-    public void btnGetReportsOnAction(ActionEvent actionEvent) throws SQLException, JRException {
-
-        String reportPath = "src/main/resources/report/Simple_Blue2.jrxml";
-
-Generate_Reportby_Count(reportPath,"Doctor.pdf","SELECT * FROM doctor LIMIT 2");
-
-    }
-
-    public void Generate_Reportby_Count(String ReportPath, String Filename, String query) {
-        try {
-            JasperDesign report = JRXmlLoader.load(ReportPath);
-            JRDesignQuery newQuery = new JRDesignQuery();
-            newQuery.setText(query);
-            report.setQuery(newQuery);
-            JasperReport jasperReport = JasperCompileManager.compileReport(report);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
-            JasperExportManager.exportReportToPdfFile(jasperPrint, Filename);
-            JasperViewer.viewReport(jasperPrint, false);
-            new  Alert(Alert.AlertType.INFORMATION,"Success Fully !").show();
-        } catch (Exception e) {
-            e.printStackTrace();
-            new Alert(Alert.AlertType.INFORMATION, "Report Generation Failed!.").show();
-            throw new RuntimeException(e);
-        }
 
 
-    }
+
+
+
+
+
+
+
+
+
+
+
 }

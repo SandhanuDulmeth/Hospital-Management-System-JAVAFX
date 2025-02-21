@@ -94,7 +94,7 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="281.0" prefWidth="752.0">
                             <children>
-                                <TableView fx:id="tblDoctor" layoutX="-2.0" layoutY="-3.0" prefHeight="235.0" prefWidth="756.0" stylesheets="@../css/PatientTable.css">
+                                <TableView fx:id="tblDoctor" layoutX="-2.0" layoutY="-3.0" prefHeight="327.0" prefWidth="756.0" stylesheets="@../css/PatientTable.css">
                                     <columns>
                                         <TableColumn fx:id="colID" prefWidth="41.0" text="ID" />
                                         <TableColumn fx:id="colName" prefWidth="111.0" text="Name" />
@@ -104,7 +104,6 @@
                                         <TableColumn fx:id="colContactDetails" prefWidth="197.0" text="Contact Details" />
                                     </columns>
                                 </TableView>
-                        <JFXButton layoutX="350.0" layoutY="258.0" onAction="#btnGetReportsOnAction" text="GetReports" />
                             </children></AnchorPane>
                     </content>
                 </Tab>

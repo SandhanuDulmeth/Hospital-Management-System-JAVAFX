@@ -90,4 +90,11 @@ public class DashBoardController {
     public void btnBillingOnAction(ActionEvent actionEvent) {
         loadFXMLAndShowStage("/view/Billing.fxml", "Billing Management", actionEvent);
     }
+
+
+
+    public void btnReportOnAction(ActionEvent actionEvent) {
+        loadFXMLAndShowStage("/view/Report.fxml", "Report Management", actionEvent);
+    }
 }
+

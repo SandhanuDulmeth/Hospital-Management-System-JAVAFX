@@ -21,4 +21,6 @@ public interface DoctorService extends SuperService {
     Integer getNextId();
 
     ArrayList<Doctor> getDocID();
+
+
 }
