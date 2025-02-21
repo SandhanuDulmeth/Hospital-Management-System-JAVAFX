@@ -37,10 +37,10 @@
 	<title height="72">
 		<element kind="frame" uuid="72173c7c-a82f-4d22-975e-3235e547af5d" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699">
 			<element kind="staticText" uuid="e204f583-bc67-4566-a8dc-da4534bbd00d" x="20" y="20" width="234" height="43" forecolor="#FFFFFF" fontSize="34.0" bold="true">
-				<text><![CDATA[TITLE]]></text>
+				<text><![CDATA[Doctor]]></text>
 			</element>
 			<element kind="staticText" uuid="7a30de01-a222-4a18-bd6b-975196377c18" x="395" y="43" width="180" height="20" forecolor="#FFFFFF" fontSize="14.0" bold="false" hTextAlign="Right">
-				<text><![CDATA[Add a description here]]></text>
+				<text><![CDATA[]]></text>
 			</element>
 		</element>
 	</title>

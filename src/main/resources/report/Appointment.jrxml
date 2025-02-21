@@ -1,0 +1,104 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="Appointment" language="java" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dadeab33-b16c-48d0-abf2-f79e3176b9dc">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (7)"/>
+	<query language="SQL"><![CDATA[SELECT * FROM appointment]]></query>
+	<field name="appointment_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="appointment_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="appointment_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="appointment"/>
+	</field>
+	<field name="patient_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="patient_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="patient_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="appointment"/>
+	</field>
+	<field name="doctor_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="doctor_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="doctor_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="appointment"/>
+	</field>
+	<field name="appointment_date" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="appointment_date"/>
+		<property name="com.jaspersoft.studio.field.label" value="appointment_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="appointment"/>
+	</field>
+	<field name="time" class="java.sql.Time">
+		<property name="com.jaspersoft.studio.field.name" value="time"/>
+		<property name="com.jaspersoft.studio.field.label" value="time"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="appointment"/>
+	</field>
+	<background/>
+	<title height="72">
+		<element kind="frame" uuid="c27d666e-7175-4851-9cd8-7b6b37935063" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699">
+			<element kind="staticText" uuid="54367e33-9e4e-499c-8fff-486b12e96454" x="20" y="20" width="234" height="43" forecolor="#FFFFFF" fontSize="34.0" bold="true">
+				<text><![CDATA[Appointment]]></text>
+			</element>
+			<element kind="staticText" uuid="d8127abc-75ca-451a-bcb4-cec465c18111" x="395" y="43" width="180" height="20" forecolor="#FFFFFF" fontSize="14.0" bold="false" hTextAlign="Right">
+				<text><![CDATA[]]></text>
+			</element>
+		</element>
+	</title>
+	<pageHeader height="13"/>
+	<columnHeader height="21">
+		<element kind="line" uuid="929d529b-db2f-44e8-be89-52f47b699f24" x="-20" y="20" width="595" height="1" forecolor="#666666"/>
+		<element kind="staticText" uuid="d4f3720d-fb6c-4e80-a610-be34e7273a4a" mode="Opaque" x="0" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" fontSize="14.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[appointment_id]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="06cd97e1-7ad6-459b-9b33-0874d7fd6c6b"/>
+		</element>
+		<element kind="staticText" uuid="66217819-8f08-45fe-9439-22cfde99e4da" mode="Opaque" x="111" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" fontSize="14.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[patient_id]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="59574364-8d69-48ea-b4b5-0ff6abc46356"/>
+		</element>
+		<element kind="staticText" uuid="a199bcdc-465b-4988-8798-784c9b60f82e" mode="Opaque" x="222" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" fontSize="14.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[doctor_id]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c5e93123-330b-4d75-82c3-6e9350ca1342"/>
+		</element>
+		<element kind="staticText" uuid="812596d2-29e7-439c-840b-76cdd9d52ec2" mode="Opaque" x="333" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" fontSize="14.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[appointment_date]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7f7ab9b3-6022-46ab-b347-9c1551a748c6"/>
+		</element>
+		<element kind="staticText" uuid="ef83d1a1-1a80-4eaa-87af-f0f71642fae1" mode="Opaque" x="444" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" fontSize="14.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[time]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7757e71e-d708-417f-bcf4-4b15d212822c"/>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<element kind="line" uuid="1d020fda-af5b-4a11-af84-6614693aa9fc" positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+			<element kind="textField" uuid="b97f8361-999b-4eef-b8d0-f630f4f4e926" x="0" y="0" width="111" height="20" fontSize="14.0" textAdjust="StretchHeight">
+				<expression><![CDATA[$F{appointment_id}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="06cd97e1-7ad6-459b-9b33-0874d7fd6c6b"/>
+			</element>
+			<element kind="textField" uuid="f63401d1-8ba4-4b78-9d02-4c053b13786b" x="111" y="0" width="111" height="20" fontSize="14.0" textAdjust="StretchHeight">
+				<expression><![CDATA[$F{patient_id}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="59574364-8d69-48ea-b4b5-0ff6abc46356"/>
+			</element>
+			<element kind="textField" uuid="d224256b-8760-4ed0-baa0-9937615248b8" x="222" y="0" width="111" height="20" fontSize="14.0" textAdjust="StretchHeight">
+				<expression><![CDATA[$F{doctor_id}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c5e93123-330b-4d75-82c3-6e9350ca1342"/>
+			</element>
+			<element kind="textField" uuid="d62b4021-7de0-4561-81be-8431f4b41605" x="333" y="0" width="111" height="20" fontSize="14.0" textAdjust="StretchHeight">
+				<expression><![CDATA[$F{appointment_date}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7f7ab9b3-6022-46ab-b347-9c1551a748c6"/>
+			</element>
+			<element kind="textField" uuid="4fc5fc38-2eb2-4e95-8cab-01190620a7c9" x="444" y="0" width="111" height="20" fontSize="14.0" textAdjust="StretchHeight">
+				<expression><![CDATA[$F{time}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7757e71e-d708-417f-bcf4-4b15d212822c"/>
+			</element>
+		</band>
+	</detail>
+	<columnFooter/>
+	<pageFooter height="17">
+		<element kind="textField" uuid="3e721997-1027-4995-8f7e-85ceb8335f1e" mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" hTextAlign="Right">
+			<expression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></expression>
+		</element>
+		<element kind="textField" uuid="efa57bd5-19a7-4119-bca2-3ffbe13c031c" mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" evaluationTime="Report">
+			<expression><![CDATA[" " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+		<element kind="textField" uuid="ed5c170a-bd3a-4637-9cb9-c3b6871b910d" x="0" y="4" width="100" height="13" pattern="EEEEE dd MMMMM yyyy">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+	</pageFooter>
+	<summary/>
+</jasperReport>

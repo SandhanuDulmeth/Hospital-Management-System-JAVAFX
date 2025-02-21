@@ -1,0 +1,42 @@
+/* AnchorPane styling */
+.anchor-pane {
+    -fx-background-color: #f5f5f5; /* light gray background */
+}
+
+/* Button styling */
+.button {
+    -fx-background-color: #3498db; /* blue background */
+    -fx-text-fill: white;          /* white text */
+    -fx-font-size: 14px;
+    -fx-padding: 8 15 8 15;
+    -fx-background-radius: 4;
+    -fx-cursor: hand;
+}
+
+/* Label styling */
+.label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #2c3e50; /* dark blue-gray text */
+}
+
+/* Specific styling for labels by fx:id */
+#MaxDoctorId, #MaxPatient {
+    -fx-font-weight: bold;
+}
+
+/* JFXTextField styling */
+.jfx-text-field {
+    -fx-background-color: #ecf0f1;  /* soft light blue-gray background */
+    -fx-text-fill: #2c3e50;
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);
+    -fx-background-insets: 0;
+    -fx-background-radius: 4;
+    -fx-padding: 4;
+    -fx-font-size: 14px;
+}
+
+/* JFXCheckBox styling */
+.jfx-check-box {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 14px;
+}

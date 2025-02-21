@@ -1,13 +1,22 @@
 package controller.report;
 
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import dao.DaoFactory;
+import dao.custom.PatientDao;
 import db.DBConnection;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import net.sf.jasperreports.engine.*;
@@ -17,18 +26,36 @@ import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import service.ServiceFactory;
 import service.custom.DoctorService;
+import service.custom.PatientService;
+import service.custom.ResourceService;
+import util.DaoType;
 import util.ServiceType;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.scene.control.Button;
+import javafx.util.Duration;
 
+import javax.swing.event.SwingPropertyChangeSupport;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ReportController implements Initializable {
 
     public Label MaxDoctorId;
-    private final DoctorService doctorService = ServiceFactory.getInstance().getServiceType(ServiceType.DOCTOR);
+
     public CheckBox DoctorCheckBox;
     public JFXTextField lblStartId;
     public JFXTextField lblEndId;
+    public JFXCheckBox PatientCheckBox;
+    public Label MaxPatient;
+    public Button btnGetreport;
+    public PieChart pieChart;
+    private final DoctorService doctorService = ServiceFactory.getInstance().getServiceType(ServiceType.DOCTOR);
+    private final PatientService patientService = ServiceFactory.getInstance().getServiceType(ServiceType.PATIENT);
+    private final ResourceService resourceService = ServiceFactory.getInstance().getServiceType(ServiceType.RESOURCE);
+    public JFXCheckBox ResourceCheckBox;
+    public JFXComboBox ComboBox;
 
     public static void generateReportWithLoading(String reportPath, String fileName, String query) {
 
@@ -84,20 +111,84 @@ public class ReportController implements Initializable {
         thread.start();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        MaxDoctorId.setText("Enter ID Between 1 and " + (doctorService.getNextId() - 1));
-
-    }
+//    @Override
+//    public void initialize(URL url, ResourceBundle resourceBundle) {
+//        MaxDoctorId.setText("Enter ID Between 1 and " + (doctorService.getNextId() - 1));
+//
+//    }
 
 
     public void lblGetReportsOnAction(ActionEvent actionEvent) {
+        String SQL =null;
+        if (ComboBox.getValue().equals("Doctor")) {
 
-        if (DoctorCheckBox.isSelected()) {
-
-            String reportPath = "src/main/resources/report/Simple_Blue2.jrxml";
-            String SQL ="SELECT * FROM doctor WHERE doctor_id BETWEEN "+lblStartId.getText()+" AND "+lblEndId.getText();
-            ReportController.generateReportWithLoading(reportPath, "Doctor.pdf", SQL);
+             SQL = "SELECT * FROM doctor WHERE doctor_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();
+            ReportController.generateReportWithLoading("src/main/resources/report/Doctor.jrxml", "Doctor.pdf", SQL);
+        }
+        if (ComboBox.getValue().equals("Patient")) {
+            SQL = "SELECT * FROM patient WHERE patient_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();
+            ReportController.generateReportWithLoading("src/main/resources/report/Patient.jrxml", "Patient.pdf", SQL);
+        }
+        if (ComboBox.getValue().equals("Appointment")){
+            SQL = "SELECT * FROM appointment WHERE appointment_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();
+            ReportController.generateReportWithLoading("src/main/resources/report/Appointment.jrxml", "Appointment.pdf", SQL);
         }
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        MaxDoctorId.setText("Enter ID Between 1 and " + (doctorService.getNextId() - 1));
+        pieCharts();
+        ComboBox.setItems(FXCollections.observableArrayList("Doctor", "Patient", "Resource","Appointment"));
+    }
+
+    public void pieCharts() {
+        // Clear the existing pie chart data
+        pieChart.getData().clear();
+
+        ObservableList<PieChart.Data> objects = FXCollections.observableArrayList();
+
+        if (DoctorCheckBox.isSelected()) {
+            objects.add(new PieChart.Data("Doctor", doctorService.getNextId() - 1));
+        }
+        if (PatientCheckBox.isSelected()) {
+            objects.add(new PieChart.Data("Patient", patientService.getNextId() - 1));
+        }
+        if (ResourceCheckBox.isSelected()){
+            objects.add(new PieChart.Data("Resource", resourceService.getNextId() - 1));
+        }
+
+        ObservableList<PieChart.Data> pieChartData = objects;
+
+        pieChartData.forEach(data ->
+                data.nameProperty().bind(
+                        Bindings.concat(
+                                "Name: ", data.getName(), ", Amount: ", data.pieValueProperty()
+                        )
+                )
+        );
+
+        pieChart.getData().addAll(pieChartData);
+    }
+
+
+    public void getPieChartReport(ActionEvent actionEvent) {
+    }
+
+    public void btnDoctorCheckBox(ActionEvent actionEvent) {
+        pieCharts();
+    }
+
+    public void btnPatientCheckBox(ActionEvent actionEvent) {
+        pieCharts();
+    }
+
+    public void btnResourceCheckBox(ActionEvent actionEvent) {
+        pieCharts();
+    }
+
+    public void ComboBoxonAction(ActionEvent actionEvent) {
+    }
 }
+
+

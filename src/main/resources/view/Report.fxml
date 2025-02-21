@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.report.ReportController">
+<AnchorPane prefHeight="564.0" prefWidth="905.0" stylesheets="@../css/Report.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.report.ReportController">
    <children>
-      <Button layoutX="300.0" layoutY="209.0" mnemonicParsing="false" onAction="#lblGetReportsOnAction" text="GetReport" />
-      <CheckBox fx:id="DoctorCheckBox" layoutX="108.0" layoutY="131.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Doctor" />
-      <Label fx:id="MaxDoctorId" layoutX="225.0" layoutY="123.0" text="Label" />
+      <Button fx:id="btnGetreport" layoutX="162.0" layoutY="337.0" mnemonicParsing="false" onAction="#lblGetReportsOnAction" text="GetReport" />
+      <Label fx:id="MaxDoctorId" layoutX="28.0" layoutY="89.0" prefHeight="17.0" prefWidth="146.0" />
       <JFXTextField fx:id="lblStartId" layoutX="139.0" layoutY="285.0" prefHeight="25.0" prefWidth="46.0" promptText="Start" />
       <JFXTextField fx:id="lblEndId" layoutX="230.0" layoutY="285.0" prefHeight="25.0" prefWidth="46.0" promptText="End" />
+      <JFXCheckBox fx:id="PatientCheckBox" layoutX="185.0" layoutY="131.0" onAction="#btnPatientCheckBox" selected="true" text="Patient" />
+      <JFXCheckBox fx:id="DoctorCheckBox" layoutX="185.0" layoutY="88.0" onAction="#btnDoctorCheckBox" selected="true" text="Doctor" />
+      <Label fx:id="MaxPatient" layoutX="28.0" layoutY="132.0" prefHeight="17.0" prefWidth="56.0" />
+      <PieChart fx:id="pieChart" layoutX="347.0" layoutY="56.0" prefHeight="355.0" prefWidth="515.0" />
+      <JFXButton layoutX="586.0" layoutY="430.0" onAction="#getPieChartReport" text="GetPieChartReport" />
+      <JFXCheckBox fx:id="ResourceCheckBox" layoutX="179.0" layoutY="176.0" onAction="#btnResourceCheckBox" selected="true" text="Resource" />
+      <JFXComboBox fx:id="ComboBox" layoutX="181.0" layoutY="240.0" onAction="#ComboBoxonAction" />
    </children>
 </AnchorPane>
