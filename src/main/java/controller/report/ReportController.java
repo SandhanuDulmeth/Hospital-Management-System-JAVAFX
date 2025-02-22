@@ -223,7 +223,6 @@ public class ReportController implements Initializable {
         String reportPath = "src/main/resources/report/Pie_chart.jrxml";
         List<String> queryParts = new ArrayList<>();
 
-        // Check each checkbox and add the corresponding query part
         if (DoctorCheckBox.isSelected()) {
             queryParts.add("SELECT 'Doctors' AS category, COUNT(*) AS total FROM doctor");
         }
@@ -234,16 +233,14 @@ public class ReportController implements Initializable {
             queryParts.add("SELECT 'Resources' AS category, COUNT(*) AS total FROM resources");
         }
 
-        // If no checkbox is selected, handle it accordingly
         if (queryParts.isEmpty()) {
             System.out.println("Please select at least one category to generate the report.");
             return;
         }
 
-        // Join all selected query parts using UNION ALL to combine results
         String SQLForChart = String.join(" UNION ALL ", queryParts);
 
-        // Generate the report using the dynamically built SQL query
+
         ReportController.generateReportWithLoading(reportPath, "Chart.pdf", SQLForChart);
     }
 
