@@ -29,6 +29,10 @@ public class registerFormController implements Initializable {
     private final RegisterService registerService= ServiceFactory.getInstance().getServiceType(ServiceType.REGISTER);
 
     public void btnAddOnAction(ActionEvent actionEvent) {
+        if (isFieldEmpty(txtName, "Name") || isFieldEmpty(txtEmail, "Email") || isFieldEmpty(txtPassword, "Password")) {
+            return;
+        }
+
         String key="12345";
         BasicTextEncryptor basicTextEncryptor=new BasicTextEncryptor();
         basicTextEncryptor.setPassword(key);
@@ -65,6 +69,25 @@ public class registerFormController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-      
+
+    }
+
+
+//
+
+    private boolean isFieldEmpty(JFXTextField field, String fieldName) {
+        if (field == null || field.getText().trim().isEmpty()) {
+            showAlert("Error", fieldName + " cannot be empty.");
+            return true;
+        }
+        return false;
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
