@@ -25,6 +25,7 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import service.ServiceFactory;
+import service.custom.AppointmentService;
 import service.custom.DoctorService;
 import service.custom.PatientService;
 import service.custom.ResourceService;
@@ -54,8 +55,11 @@ public class ReportController implements Initializable {
     private final DoctorService doctorService = ServiceFactory.getInstance().getServiceType(ServiceType.DOCTOR);
     private final PatientService patientService = ServiceFactory.getInstance().getServiceType(ServiceType.PATIENT);
     private final ResourceService resourceService = ServiceFactory.getInstance().getServiceType(ServiceType.RESOURCE);
+    private final AppointmentService appointmentService= ServiceFactory.getInstance().getServiceType(ServiceType.APPOINTMENT);
     public JFXCheckBox ResourceCheckBox;
     public JFXComboBox ComboBox;
+    public Label lblOFMaxSize;
+    public JFXCheckBox AppointmentCheckBox;
 
     public static void generateReportWithLoading(String reportPath, String fileName, String query) {
 
@@ -111,12 +115,6 @@ public class ReportController implements Initializable {
         thread.start();
     }
 
-//    @Override
-//    public void initialize(URL url, ResourceBundle resourceBundle) {
-//        MaxDoctorId.setText("Enter ID Between 1 and " + (doctorService.getNextId() - 1));
-//
-//    }
-
 
     public void lblGetReportsOnAction(ActionEvent actionEvent) {
         String SQL =null;
@@ -166,6 +164,7 @@ public class ReportController implements Initializable {
             objects.add(new PieChart.Data("Resource", resourceService.getNextId() - 1));
         }
 
+
         ObservableList<PieChart.Data> pieChartData = objects;
 
         pieChartData.forEach(data ->
@@ -195,8 +194,27 @@ public class ReportController implements Initializable {
         pieCharts();
     }
 
+
     public void ComboBoxonAction(ActionEvent actionEvent) {
+        if(ComboBox.getValue() ==null){
+          lblOFMaxSize.setText(null);
+        }
+        if (ComboBox.getValue().equals("Doctor")) {
+
+            lblOFMaxSize.setText("OF :"+(doctorService.getNextId()-1));
+        }else if (ComboBox.getValue().equals("Patient")) {
+           lblOFMaxSize.setText("OF :"+(patientService.getNextId()-1));
+        }else if (ComboBox.getValue().equals("Appointment")){
+          lblOFMaxSize.setText("OF :"+(appointmentService.getNextId()-1));
+        }else if (ComboBox.getValue().equals("Resource")){
+            lblOFMaxSize.setText("OF :"+(resourceService.getNextId()-1));
+        }else{
+            lblOFMaxSize.setText(null);
+        }
+
     }
+
+
 }
 
 
