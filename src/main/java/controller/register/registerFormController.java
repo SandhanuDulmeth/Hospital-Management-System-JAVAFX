@@ -56,4 +56,15 @@ public class registerFormController implements Initializable {
         int i = registerService.geLastUserId();
         txtId.setText("New ID : "+i);
     }
+
+    public void btnBackOnAction(ActionEvent actionEvent) {
+        Stage stageClose =(Stage) btnAdd.getScene().getWindow() ;
+        try {
+            stageClose.setScene(new Scene(FXMLLoader.load(getClass().getResource("../../view/Login_form.fxml"))));
+            stageClose.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+      
+    }
 }

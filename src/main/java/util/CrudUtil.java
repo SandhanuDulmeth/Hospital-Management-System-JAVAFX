@@ -17,7 +17,7 @@ public class CrudUtil {
         }
         if (SQL.startsWith("SELECT") || SQL.startsWith("select") || SQL.startsWith("Select"))
             return (T) preparedStatement.executeQuery();
-        else{  System.out.println("KP");
+        else{
             return (T) (Boolean) (preparedStatement.executeUpdate() > 0);
            }
 

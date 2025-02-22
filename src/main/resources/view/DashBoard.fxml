@@ -1,44 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="507.0" prefWidth="540.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.dashBoard.DashBoardController">
+<AnchorPane prefHeight="551.0" prefWidth="575.0" stylesheets="@../css/DashBoard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.dashBoard.DashBoardController">
    <children>
-      <ImageView fitHeight="606.0" fitWidth="617.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/DashBoardUI.png" />
-         </image>
-      </ImageView>
-      <JFXButton layoutX="218.0" layoutY="14.0" onAction="#btnPatientOnAction" style="-fx-background-color: #A6CDC6;" text="Patient" textFill="#070707">
+      <JFXButton layoutX="227.0" layoutY="14.0" onAction="#btnPatientOnAction" style="-fx-background-color: #A6CDC6;" text="Patient" textFill="#070707">
          <font>
             <Font size="24.0" />
          </font></JFXButton>
-      <JFXButton layoutX="219.0" layoutY="84.0" onAction="#btnDoctorOnAction" style="-fx-background-color: #FBF5DD;" text="Doctor">
+      <JFXButton layoutX="229.0" layoutY="95.0" onAction="#btnDoctorOnAction" style="-fx-background-color: #FBF5DD;" text="Doctor">
          <font>
             <Font size="24.0" />
          </font></JFXButton>
-      <JFXButton layoutX="206.0" layoutY="160.0" onAction="#btnResourceOnAction" style="-fx-background-color: #DDA853;" text="Resource">
+      <JFXButton layoutX="216.0" layoutY="186.0" onAction="#btnResourceOnAction" style="-fx-background-color: #DDA853;" text="Resource">
          <font>
             <Font size="24.0" />
          </font></JFXButton>
-      <JFXButton layoutX="184.0" layoutY="245.0" onAction="#btnAppointmentOnAction" style="-fx-background-color: #16404D;" text="Appointment" textFill="WHITE">
+      <JFXButton layoutX="193.0" layoutY="276.0" onAction="#btnAppointmentOnAction" style="-fx-background-color: #16404D;" text="Appointment" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font></JFXButton>
-      <JFXButton layoutX="185.0" layoutY="333.0" onAction="#btnPrescriptionOnAction" prefHeight="51.0" prefWidth="173.0" style="-fx-background-color: #77B254;" text="Prescription">
+      <JFXButton layoutX="193.0" layoutY="373.0" onAction="#btnPrescriptionOnAction" prefHeight="55.0" prefWidth="191.0" style="-fx-background-color: #77B254;" text="Prescription">
          <font>
             <Font size="24.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="154.0" layoutY="526.0" onAction="#btnBillingOnAction" prefHeight="51.0" prefWidth="105.0" style="-fx-background-color: #EB5A3C;" text="Billing">
+      <JFXButton layoutX="117.0" layoutY="462.0" onAction="#btnBillingOnAction" prefHeight="55.0" prefWidth="134.0" style="-fx-background-color: #EB5A3C;" text="Billing">
          <font>
             <Font size="24.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="335.0" layoutY="529.0" onAction="#btnReportOnAction" prefHeight="45.0" prefWidth="80.0" text="Report" />
+      <JFXButton layoutX="337.0" layoutY="462.0" onAction="#btnReportOnAction" prefHeight="55.0" prefWidth="118.0" style="-fx-background-color: #FFEB00;" text="Report" />
    </children>
 </AnchorPane>

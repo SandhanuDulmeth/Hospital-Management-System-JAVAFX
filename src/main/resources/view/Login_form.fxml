@@ -9,13 +9,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="476.0" prefWidth="636.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Login.LoginFormController">
+<AnchorPane prefHeight="476.0" prefWidth="636.0" stylesheets="@../css/LogIn.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Login.LoginFormController">
    <children>
-      <ImageView fitHeight="552.0" fitWidth="843.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/loginUi.jpg" />
-         </image>
-      </ImageView>
       <Button fx:id="btnLogin" layoutX="198.0" layoutY="378.0" mnemonicParsing="false" onAction="#btnLoginOnAction" prefHeight="55.0" prefWidth="162.0" style="-fx-background-color: #123577;" text="Login" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="59.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
@@ -33,7 +28,7 @@
          <font>
             <Font size="26.0" />
          </font></JFXTextField>
-      <JFXButton fx:id="btnAdd" layoutX="491.0" layoutY="378.0" onAction="#btnAddOnAction" prefHeight="55.0" prefWidth="184.0" ripplerFill="WHITE" style="-fx-background-color: #c00026;" text="Add New User" textFill="WHITE">
+      <JFXButton fx:id="btnAdd" layoutX="491.0" layoutY="378.0" onAction="#btnAddOnAction" prefHeight="55.0" prefWidth="202.0" ripplerFill="WHITE" style="-fx-background-color: #c00026;" text="Add New User" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="59.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                <image>

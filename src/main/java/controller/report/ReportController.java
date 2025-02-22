@@ -120,6 +120,14 @@ public class ReportController implements Initializable {
 
     public void lblGetReportsOnAction(ActionEvent actionEvent) {
         String SQL =null;
+        if (lblStartId.getText().equals("") || lblEndId.getText().equals("")){
+            new Alert(Alert.AlertType.ERROR,"Select Start and End").show();
+            return;
+        }
+        if(ComboBox.getValue() ==null){
+            new Alert(Alert.AlertType.ERROR,"Select the User").show();
+            return;
+        }
         if (ComboBox.getValue().equals("Doctor")) {
 
              SQL = "SELECT * FROM doctor WHERE doctor_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();

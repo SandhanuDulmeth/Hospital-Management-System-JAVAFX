@@ -1,0 +1,79 @@
+/* Set a subtle gradient background using JavaFX syntax */
+.root {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #f5f7fa, #c3cfe2);
+}
+
+/* --------------------- Button Styles --------------------- */
+
+/* Base style for all buttons (including JFXButton and regular Button) */
+.button, .jfx-button {
+    -fx-background-color: #3b5998; /* Modern dark blue */
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 25;
+    -fx-padding: 12 24;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6, 0, 0, 4);
+    -fx-transition: all 0.2s ease;
+}
+
+/* Hover effect for buttons */
+.button:hover, .jfx-button:hover {
+    -fx-background-color: #2d4373;
+}
+
+/* Specific override for the "Add New User" button */
+#btnAdd {
+    -fx-background-color: #d9534f;
+}
+
+#btnAdd:hover {
+    -fx-background-color: #c9302c;
+}
+
+/* --------------------- Text Field Styles --------------------- */
+
+/* Style for JFXTextField with a clear underline effect */
+.jfx-text-field {
+    -fx-font-size: 18px;
+    -fx-prompt-text-fill: rgba(0, 0, 0, 0.4);
+    -jfx-focus-color: #3b5998;
+    -jfx-unfocus-color: #888888;
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: transparent transparent #3b5998 transparent;
+}
+
+/* Underline effect when focused */
+.jfx-text-field:focused {
+    -fx-border-color: transparent transparent #3b5998 transparent;
+}
+
+/* --------------------- Label Styles --------------------- */
+
+/* Base style for labels with a dark, modern look */
+.label {
+    -fx-text-fill: #333333;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Style for the title label ("User Login") */
+.label-title {
+    -fx-font-family: "Bodoni MT Black";
+    -fx-font-size: 48px;
+    -fx-text-fill: #3b5998;
+}
+
+/* Style for the Date label */
+#lblDate {
+    -fx-font-family: "Blackadder ITC";
+    -fx-font-size: 30px;
+    -fx-text-fill: #3b5998;
+}
+
+/* Style for the Time label */
+#LblTime {
+    -fx-font-size: 24px;
+    -fx-text-fill: #3b5998;
+}

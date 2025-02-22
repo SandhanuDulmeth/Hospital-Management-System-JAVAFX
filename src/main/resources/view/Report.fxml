@@ -21,6 +21,6 @@
       <PieChart fx:id="pieChart" layoutX="347.0" layoutY="56.0" prefHeight="355.0" prefWidth="515.0" />
       <JFXButton layoutX="586.0" layoutY="430.0" onAction="#getPieChartReport" text="GetPieChartReport" />
       <JFXCheckBox fx:id="ResourceCheckBox" layoutX="179.0" layoutY="176.0" onAction="#btnResourceCheckBox" selected="true" text="Resource" />
-      <JFXComboBox fx:id="ComboBox" layoutX="181.0" layoutY="240.0" onAction="#ComboBoxonAction" />
+      <JFXComboBox fx:id="ComboBox" layoutX="181.0" layoutY="240.0" onAction="#ComboBoxonAction" promptText="Select the User" />
    </children>
 </AnchorPane>

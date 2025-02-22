@@ -1,0 +1,33 @@
+/* Style for the AnchorPane */
+/* styles.css */
+.root {
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #f5f7fa, #c3cfe2);
+}
+
+/* Style for the Label */
+.label {
+    -fx-text-fill: #333333;
+    -fx-font-family: "Berlin Sans FB Demi Bold";
+    -fx-font-size: 28px;
+}
+
+/* Style for JFXTextField */
+.jfx-text-field {
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);
+    -fx-font-size: 14px;
+    -jfx-focus-color: #ef2121;
+    -jfx-unfocus-color: #d8d8d8;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+}
+
+/* Style for JFXButton */
+
+
+.jfx-button:hover {
+    -fx-background-color: #d91c1c;
+}
+
+.jfx-button:pressed {
+    -fx-background-color: #b51717;
+}

@@ -1,0 +1,37 @@
+/* Root background with a subtle gradient and a background image */
+.root {
+    /* Gradient with a slight transparency to let the image show through */
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #f5f7fa, #c3cfe2);
+
+
+    /* Background image settings */
+    -fx-background-image: url("path/to/your/background-image.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}
+
+/* Optional: Style the background image for a softer effect */
+.image-view {
+    -fx-opacity: 0.2;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 4);
+}
+
+/* --------------------- JFXButton Styles --------------------- */
+
+/* Base style for all JFXButtons */
+.jfx-button {
+    -fx-background-radius: 25;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 4, 0, 0, 2);
+    -fx-cursor: hand;
+    -fx-transition: background-color 0.3s, -fx-effect 0.3s;
+    -fx-text-fill: #070707 !important;
+}
+
+/* Hover effect for a subtle boost */
+.jfx-button:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 6, 0, 0, 4);
+}
