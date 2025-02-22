@@ -26,5 +26,6 @@
             <Font name="Book Antiqua Bold" size="18.0" />
          </font>
       </JFXButton>
+      <JFXButton fx:id="GetOTPID" layoutX="51.0" layoutY="393.0" onAction="#btnGetOTPOnAction" style="-fx-background-color: black;" text="GetOTP" textFill="WHITE" />
    </children>
 </AnchorPane>

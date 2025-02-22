@@ -39,11 +39,14 @@ import javafx.util.Duration;
 
 import javax.swing.event.SwingPropertyChangeSupport;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ReportController implements Initializable {
 
-    public Label MaxDoctorId;
+
 
     public CheckBox DoctorCheckBox;
     public JFXTextField lblStartId;
@@ -60,7 +63,7 @@ public class ReportController implements Initializable {
     public JFXComboBox ComboBox;
     public Label lblOFMaxSize;
     public JFXCheckBox AppointmentCheckBox;
-
+   public String SQLForChart="";
     public static void generateReportWithLoading(String reportPath, String fileName, String query) {
 
         Stage loadingStage = new Stage();
@@ -143,7 +146,7 @@ public class ReportController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        MaxDoctorId.setText("Enter ID Between 1 and " + (doctorService.getNextId() - 1));
+
         pieCharts();
         ComboBox.setItems(FXCollections.observableArrayList("Doctor", "Patient", "Resource","Appointment"));
     }
@@ -156,6 +159,7 @@ public class ReportController implements Initializable {
 
         if (DoctorCheckBox.isSelected()) {
             objects.add(new PieChart.Data("Doctor", doctorService.getNextId() - 1));
+
         }
         if (PatientCheckBox.isSelected()) {
             objects.add(new PieChart.Data("Patient", patientService.getNextId() - 1));
@@ -213,6 +217,36 @@ public class ReportController implements Initializable {
         }
 
     }
+
+
+    public void getPieChartReportOnAction(ActionEvent actionEvent) throws JRException, SQLException {
+        String reportPath = "src/main/resources/report/Pie_chart.jrxml";
+        List<String> queryParts = new ArrayList<>();
+
+        // Check each checkbox and add the corresponding query part
+        if (DoctorCheckBox.isSelected()) {
+            queryParts.add("SELECT 'Doctors' AS category, COUNT(*) AS total FROM doctor");
+        }
+        if (PatientCheckBox.isSelected()) {
+            queryParts.add("SELECT 'Patients' AS category, COUNT(*) AS total FROM patient");
+        }
+        if (ResourceCheckBox.isSelected()) {
+            queryParts.add("SELECT 'Resources' AS category, COUNT(*) AS total FROM resources");
+        }
+
+        // If no checkbox is selected, handle it accordingly
+        if (queryParts.isEmpty()) {
+            System.out.println("Please select at least one category to generate the report.");
+            return;
+        }
+
+        // Join all selected query parts using UNION ALL to combine results
+        String SQLForChart = String.join(" UNION ALL ", queryParts);
+
+        // Generate the report using the dynamically built SQL query
+        ReportController.generateReportWithLoading(reportPath, "Chart.pdf", SQLForChart);
+    }
+
 
 
 }

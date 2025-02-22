@@ -47,6 +47,7 @@ public class DashBoardController {
             } catch (IOException e) {
                 // If loading fails, close the loading stage and show an error dialog
                 Platform.runLater(() -> {
+                    e.printStackTrace();
                     loadingStage.close();
                     showErrorDialog("Failed to load " + title, e.getMessage());
                 });

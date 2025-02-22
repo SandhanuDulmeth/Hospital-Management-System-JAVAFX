@@ -67,7 +67,7 @@
             <version>7.0.0</version>
         </dependency>
 
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports &ndash;&gt;-->
+        <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
 <!--        <dependency>-->
 <!--            <groupId>net.sf.jasperreports</groupId>-->
 <!--            <artifactId>jasperreports</artifactId>-->
@@ -78,6 +78,19 @@
             <artifactId>jasperreports-pdf</artifactId>
             <version>7.0.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-charts -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports-charts</artifactId>
+            <version>7.0.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>
