@@ -1,6 +1,6 @@
 /* Set a subtle gradient background using JavaFX syntax */
 .root {
-    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #f5f7fa, #c3cfe2);
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #f5f7fa, #124087);
 }
 
 /* --------------------- Button Styles --------------------- */
@@ -53,27 +53,29 @@
 /* --------------------- Label Styles --------------------- */
 
 /* Base style for labels with a dark, modern look */
-.label {
-    -fx-text-fill: #333333;
-    -fx-font-family: "Segoe UI", sans-serif;
-}
+
 
 /* Style for the title label ("User Login") */
-.label-title {
-    -fx-font-family: "Bodoni MT Black";
-    -fx-font-size: 48px;
-    -fx-text-fill: #3b5998;
-}
+
 
 /* Style for the Date label */
 #lblDate {
     -fx-font-family: "Blackadder ITC";
     -fx-font-size: 30px;
-    -fx-text-fill: #3b5998;
+    -fx-text-fill: #15213A;
 }
 
 /* Style for the Time label */
 #LblTime {
     -fx-font-size: 24px;
-    -fx-text-fill: #3b5998;
+    -fx-text-fill: #15213A;
+}
+
+#lblTitle{
+    -fx-text-fill: linear-gradient(from 0% 0% to 100% 0%, #2724ff, #ff0000);
+
+}
+
+#lblUserLogin{
+  -fx-text-fill: linear-gradient(from 0% 0% to 100% 0%, #8A2BE2, #D00E00);
 }

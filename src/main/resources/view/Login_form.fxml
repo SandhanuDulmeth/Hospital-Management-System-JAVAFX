@@ -37,9 +37,9 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Label layoutX="302.0" layoutY="91.0" text="User Login">
+      <Label fx:id="lblUserLogin" layoutX="295.0" layoutY="116.0" text="User Login">
          <font>
-            <Font name="Bodoni MT Black" size="50.0" />
+            <Font name="Bodoni MT Black" size="39.0" />
          </font>
       </Label>
       <Label fx:id="lblDate" layoutX="679.0" prefHeight="55.0" prefWidth="150.0">
@@ -47,9 +47,14 @@
             <Font name="Blackadder ITC" size="33.0" />
          </font>
       </Label>
-      <Label fx:id="LblTime" layoutX="72.0" layoutY="21.0" prefHeight="42.0" prefWidth="150.0">
+      <Label fx:id="LblTime" layoutX="23.0" layoutY="14.0" prefHeight="42.0" prefWidth="150.0">
          <font>
             <Font size="24.0" />
          </font></Label>
+      <Label fx:id="lblTitle" layoutX="184.0" layoutY="28.0" prefHeight="55.0" prefWidth="502.0" text="Hospital Management System" textFill="#2724ff">
+         <font>
+            <Font name="Berlin Sans FB Demi Bold" size="36.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
