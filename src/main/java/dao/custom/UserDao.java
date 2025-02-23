@@ -10,4 +10,6 @@ public interface UserDao extends CrudDao<UserEntity,String> {
     ArrayList<UserEntity> getUser(String name);
     Integer geLastUserId();
     Boolean addUser(UserEntity userEntity);
+
+    Boolean setNewUserPassword(String email,String newPassword);
 }

@@ -110,4 +110,20 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    @Override
+    public Boolean setNewUserPassword(String email,String newPassword) {
+
+        try {
+            return CrudUtil.execute("UPDATE users SET password = ? WHERE email = ?",
+                    newPassword,
+                    email
+                    );
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+    }
+
 }

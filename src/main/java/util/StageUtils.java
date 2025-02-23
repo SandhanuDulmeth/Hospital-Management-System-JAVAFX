@@ -89,7 +89,7 @@ public class StageUtils {
 
     private static Button createControlButton1(String text) {
         Button button = new Button(text);
-        button.setStyle("-fx-background-color: transparent; -fx-text-fill: red; ");
+        button.setStyle("-fx-background-color: transparent; -fx-text-fill: red; -fx-font-size: 15px;");
         return button;
     }
 //    private static Button createControlButton2(String text) {
@@ -99,7 +99,7 @@ public class StageUtils {
 //    }
     private static Button createControlButton3(String text) {
         Button button = new Button(text);
-        button.setStyle("-fx-background-color: transparent; -fx-text-fill: green;");
+        button.setStyle("-fx-background-color: transparent; -fx-text-fill: green; -fx-font-size: 15px;");
         return button;
     }
 

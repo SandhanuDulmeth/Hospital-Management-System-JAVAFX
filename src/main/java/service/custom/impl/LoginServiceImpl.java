@@ -35,4 +35,9 @@ public class LoginServiceImpl implements LoginService {
         return UserList;
     }
 
+    @Override
+    public Boolean isInsertNewPassword(String email,String newPassword) {
+       return userDao.setNewUserPassword(email,newPassword);
+    }
+
 }
