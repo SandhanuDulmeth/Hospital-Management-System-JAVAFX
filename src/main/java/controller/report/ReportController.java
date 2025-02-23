@@ -25,10 +25,7 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import service.ServiceFactory;
-import service.custom.AppointmentService;
-import service.custom.DoctorService;
-import service.custom.PatientService;
-import service.custom.ResourceService;
+import service.custom.*;
 import util.DaoType;
 import util.ServiceType;
 import javafx.animation.KeyFrame;
@@ -59,6 +56,8 @@ public class ReportController implements Initializable {
     private final PatientService patientService = ServiceFactory.getInstance().getServiceType(ServiceType.PATIENT);
     private final ResourceService resourceService = ServiceFactory.getInstance().getServiceType(ServiceType.RESOURCE);
     private final AppointmentService appointmentService= ServiceFactory.getInstance().getServiceType(ServiceType.APPOINTMENT);
+    private final BillingService billingService= ServiceFactory.getInstance().getServiceType(ServiceType.BILLING);
+    private final PrescriptionService prescriptionService = ServiceFactory.getInstance().getServiceType(ServiceType.PRESCRIPTION);
     public JFXCheckBox ResourceCheckBox;
     public JFXComboBox ComboBox;
     public Label lblOFMaxSize;
@@ -142,13 +141,24 @@ public class ReportController implements Initializable {
             SQL = "SELECT * FROM appointment WHERE appointment_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();
             ReportController.generateReportWithLoading("src/main/resources/report/Appointment.jrxml", "Appointment.pdf", SQL);
         }
+        if (ComboBox.getValue().equals("Resource")){
+            SQL = "SELECT * FROM Resources WHERE resource_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();
+            ReportController.generateReportWithLoading("src/main/resources/report/Resources.jrxml", "Resources.pdf", SQL);
+        }
+        if (ComboBox.getValue().equals("Billing")){
+            SQL = "SELECT * FROM Billing WHERE bill_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();
+            ReportController.generateReportWithLoading("src/main/resources/report/Billing.jrxml", "Billing.pdf", SQL);
+        } if (ComboBox.getValue().equals("Prescription")){
+            SQL = "SELECT * FROM Prescription WHERE prescription_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();
+            ReportController.generateReportWithLoading("src/main/resources/report/Prescription.jrxml", "Prescription.pdf", SQL);
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         pieCharts();
-        ComboBox.setItems(FXCollections.observableArrayList("Doctor", "Patient", "Resource","Appointment"));
+        ComboBox.setItems(FXCollections.observableArrayList("Doctor", "Patient", "Resource","Appointment","Billing","Prescription"));
     }
 
     public void pieCharts() {
@@ -212,7 +222,11 @@ public class ReportController implements Initializable {
           lblOFMaxSize.setText("OF :"+(appointmentService.getNextId()-1));
         }else if (ComboBox.getValue().equals("Resource")){
             lblOFMaxSize.setText("OF :"+(resourceService.getNextId()-1));
-        }else{
+        }else if (ComboBox.getValue().equals("Billing")){
+            lblOFMaxSize.setText("OF :"+(billingService.getNextId()-1));
+        }else if (ComboBox.getValue().equals("Prescription")){
+            lblOFMaxSize.setText("OF :"+(prescriptionService.getNextId()-1));
+        } else{
             lblOFMaxSize.setText(null);
         }
 

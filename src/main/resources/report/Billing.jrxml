@@ -1,0 +1,104 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="Billing" language="java" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3f95b569-3340-4c10-8352-b30d5162ebc1">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (7)"/>
+	<query language="SQL"><![CDATA[SELECT * FROM Billing]]></query>
+	<field name="bill_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="bill_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="bill_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="billing"/>
+	</field>
+	<field name="patient_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="patient_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="patient_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="billing"/>
+	</field>
+	<field name="total_amount" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="total_amount"/>
+		<property name="com.jaspersoft.studio.field.label" value="total_amount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="billing"/>
+	</field>
+	<field name="payment_status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="payment_status"/>
+		<property name="com.jaspersoft.studio.field.label" value="payment_status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="billing"/>
+	</field>
+	<field name="generated_date" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="generated_date"/>
+		<property name="com.jaspersoft.studio.field.label" value="generated_date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="billing"/>
+	</field>
+	<background/>
+	<title height="72">
+		<element kind="frame" uuid="facbeae8-c9de-460a-9cfd-b1d621b57f72" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699">
+			<element kind="staticText" uuid="5be6f355-da2f-4337-84c3-e62deaf30181" x="20" y="20" width="234" height="43" forecolor="#FFFFFF" fontSize="34.0" bold="true">
+				<text><![CDATA[Billing]]></text>
+			</element>
+			<element kind="staticText" uuid="ddf2c150-dce9-4bd3-a3cc-d87e6291693e" x="395" y="43" width="180" height="20" forecolor="#FFFFFF" fontSize="14.0" bold="false" hTextAlign="Right">
+				<text><![CDATA[]]></text>
+			</element>
+		</element>
+	</title>
+	<pageHeader height="13"/>
+	<columnHeader height="21">
+		<element kind="line" uuid="b9fee711-0f7d-4dfd-be68-27b0f2cf2e5f" x="-20" y="20" width="595" height="1" forecolor="#666666"/>
+		<element kind="staticText" uuid="209ac7a1-7a86-45b7-9cae-439273da74d2" mode="Opaque" x="0" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" fontSize="14.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[bill_id]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f37e17e6-6397-40f9-8f1d-c6067a3daa9f"/>
+		</element>
+		<element kind="staticText" uuid="619fbb03-9978-49c2-8fdb-accd6a4c540b" mode="Opaque" x="111" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" fontSize="14.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[patient_id]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="108ac406-eb23-43a3-9bfb-a0a322999022"/>
+		</element>
+		<element kind="staticText" uuid="14938de0-e976-4efa-baa1-88d32096dd88" mode="Opaque" x="222" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" fontSize="14.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[total_amount]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c04df19d-2f3d-4845-96d9-1cfaa18156e7"/>
+		</element>
+		<element kind="staticText" uuid="97a72e7f-ee22-4fae-a6d8-922205766e74" mode="Opaque" x="333" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" fontSize="14.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[payment_status]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="331f2b2c-905e-42b5-823b-4efd79f00802"/>
+		</element>
+		<element kind="staticText" uuid="0279abb6-49d7-4c3a-a07d-46201ba1cc2f" mode="Opaque" x="444" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" fontSize="14.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[generated_date]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f3a54e39-02f2-4f83-b190-f4aaf32cd3f3"/>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<element kind="line" uuid="656de5f1-9405-4753-894a-4b90ccc29913" positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+			<element kind="textField" uuid="521ec90a-3c93-4f40-a9d4-cb34a6261eed" x="0" y="0" width="111" height="20" fontSize="14.0" textAdjust="StretchHeight">
+				<expression><![CDATA[$F{bill_id}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f37e17e6-6397-40f9-8f1d-c6067a3daa9f"/>
+			</element>
+			<element kind="textField" uuid="c7a03796-945d-40a4-ad4e-527792b61240" x="111" y="0" width="111" height="20" fontSize="14.0" textAdjust="StretchHeight">
+				<expression><![CDATA[$F{patient_id}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="108ac406-eb23-43a3-9bfb-a0a322999022"/>
+			</element>
+			<element kind="textField" uuid="fbb29c23-8e44-44da-9217-43fec0485e70" x="222" y="0" width="111" height="20" fontSize="14.0" textAdjust="StretchHeight">
+				<expression><![CDATA[$F{total_amount}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c04df19d-2f3d-4845-96d9-1cfaa18156e7"/>
+			</element>
+			<element kind="textField" uuid="d7d96d6b-03e8-403e-9b8a-dae2bcf55ca7" x="333" y="0" width="111" height="20" fontSize="14.0" textAdjust="StretchHeight">
+				<expression><![CDATA[$F{payment_status}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="331f2b2c-905e-42b5-823b-4efd79f00802"/>
+			</element>
+			<element kind="textField" uuid="b30a3f6e-79c1-430c-9fa1-3c3122f61b95" x="444" y="0" width="111" height="20" fontSize="14.0" textAdjust="StretchHeight">
+				<expression><![CDATA[$F{generated_date}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f3a54e39-02f2-4f83-b190-f4aaf32cd3f3"/>
+			</element>
+		</band>
+	</detail>
+	<columnFooter/>
+	<pageFooter height="17">
+		<element kind="textField" uuid="d8365620-ce5a-4a78-a306-4b10c38ad668" mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" hTextAlign="Right">
+			<expression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></expression>
+		</element>
+		<element kind="textField" uuid="bd1ae731-57eb-4492-b60b-03e2a756685d" mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" evaluationTime="Report">
+			<expression><![CDATA[" " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+		<element kind="textField" uuid="9bac1d06-dfc0-4c6c-ab8e-c5461c262163" x="0" y="4" width="100" height="13" pattern="EEEEE dd MMMMM yyyy">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+	</pageFooter>
+	<summary/>
+</jasperReport>
