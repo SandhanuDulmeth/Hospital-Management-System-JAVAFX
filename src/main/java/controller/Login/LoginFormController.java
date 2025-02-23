@@ -80,7 +80,7 @@ public class LoginFormController implements Initializable {
             basicTextEncryptor.setPassword(key);
             String decrypt = basicTextEncryptor.decrypt(user.getPassword());
             if (txtPassword.getText().equals(decrypt)) {
-                new Alert(Alert.AlertType.INFORMATION, "Correct").show();
+
                 Stage stageClose = (Stage) btnLogin.getScene().getWindow();
 
                 try {
@@ -88,9 +88,10 @@ public class LoginFormController implements Initializable {
                     dashboardForm.setStyle("-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #f5f7fa, #124087);");
 
                     Stage dashboardStage = new Stage();
-                    StageUtils.configureDecoratedStage(dashboardStage, dashboardForm, "Dashboard", 600, 580);
+                    StageUtils.configureDecoratedStage(dashboardStage, dashboardForm, "Dashboard", 560, 580);
                     stageClose.close();
                     dashboardStage.show();
+                    new Alert(Alert.AlertType.INFORMATION, "Correct").show();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

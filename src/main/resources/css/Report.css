@@ -1,42 +1,62 @@
-/* AnchorPane styling */
-.anchor-pane {
-    -fx-background-color: #f5f5f5; /* light gray background */
+/* Set the background color of the entire AnchorPane */
+AnchorPane {
+    /* Creates a smooth blend from green (#4CAF50) to blue (#2196F3) */
+    -fx-background-color: linear-gradient(
+        to right,
+        #4CAF50 0%,     /* solid green at 0%   */
+        #4CAF50 35%,    /* keep green until 45% */
+        #2196F3 65%,    /* start blue at 55%    */
+        #2196F3 100%    /* solid blue at 100%  */
+    );
+    -fx-padding: 20px;
 }
 
-/* Button styling */
-.button {
-    -fx-background-color: #3498db; /* blue background */
-    -fx-text-fill: white;          /* white text */
-    -fx-font-size: 14px;
-    -fx-padding: 8 15 8 15;
-    -fx-background-radius: 4;
-    -fx-cursor: hand;
-}
 
-/* Label styling */
+/* Style for Labels */
 .label {
-
-
-}
-
-/* Specific styling for labels by fx:id */
-#MaxDoctorId, #MaxPatient {
+    -fx-text-fill: #ff5733; /* Orange */
     -fx-font-weight: bold;
 }
 
-/* JFXTextField styling */
-.jfx-text-field {
-    -fx-background-color: #ecf0f1;  /* soft light blue-gray background */
-    -fx-text-fill: #2c3e50;
-    -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);
-    -fx-background-insets: 0;
-    -fx-background-radius: 4;
-    -fx-padding: 4;
-
+/* Style for Buttons */
+.button {
+    -fx-background-color: #ff5733; /* Orange */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+.button:hover {
+    -fx-background-color: #c70039; /* Darker Red */
 }
 
-/* JFXCheckBox styling */
+/* Style for JFXCheckBoxes */
 .jfx-check-box {
-    -fx-text-fill: #2c3e50;
-    -fx-font-size: 14px;
+    -fx-text-fill: #ff5733; /* Orange */
+}
+
+/* Style for ComboBox */
+.jfx-combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #ff5733;
+    -fx-border-radius: 5px;
+}
+
+/* Style for JFXTextFields */
+.jfx-text-field {
+    -fx-border-color: #ff5733;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
+
+/* Style for PieChart */
+.pie-chart {
+    -fx-background-color: transparent;
+}
+
+/* Style for Rectangle background */
+.rectangle {
+    -fx-fill: #ff57334d; /* Transparent Orange */
+    -fx-stroke: #ff5733;
 }

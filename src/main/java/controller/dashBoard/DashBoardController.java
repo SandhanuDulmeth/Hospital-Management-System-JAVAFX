@@ -73,33 +73,33 @@ public class DashBoardController {
 
     // Example button handlers with specific dimensions
     public void btnPatientOnAction(ActionEvent actionEvent) {
-        loadFXMLAndShowStage("/view/Patient.fxml", "Patient Management", actionEvent, 1000, 700);
+        loadFXMLAndShowStage("/view/Patient.fxml", "Patient Management", actionEvent, 810, 450);
     }
 
     public void btnDoctorOnAction(ActionEvent actionEvent) {
-        loadFXMLAndShowStage("/view/Doctor.fxml", "Doctor Management", actionEvent, 1000, 700);
+        loadFXMLAndShowStage("/view/Doctor.fxml", "Doctor Management", actionEvent, 810, 450);
     }
 
     public void btnResourceOnAction(ActionEvent actionEvent) {
-        loadFXMLAndShowStage("/view/Resource.fxml", "Resource Management", actionEvent, 1000, 700);
+        loadFXMLAndShowStage("/view/Resource.fxml", "Resource Management", actionEvent, 810, 450);
     }
 
     public void btnAppointmentOnAction(ActionEvent actionEvent) {
-        loadFXMLAndShowStage("/view/Appointment.fxml", "Appointment Management", actionEvent, 1000, 700);
+        loadFXMLAndShowStage("/view/Appointment.fxml", "Appointment Management", actionEvent, 810, 450);
     }
 
     public void btnPrescriptionOnAction(ActionEvent actionEvent) {
-        loadFXMLAndShowStage("/view/Prescription.fxml", "Prescription Management", actionEvent, 1000, 700);
+        loadFXMLAndShowStage("/view/Prescription.fxml", "Prescription Management", actionEvent, 810, 450);
     }
 
     public void btnBillingOnAction(ActionEvent actionEvent) {
-        loadFXMLAndShowStage("/view/Billing.fxml", "Billing Management", actionEvent, 1000, 700);
+        loadFXMLAndShowStage("/view/Billing.fxml", "Billing Management", actionEvent, 810, 450);
     }
 
 
 
     public void btnReportOnAction(ActionEvent actionEvent) {
-        loadFXMLAndShowStage("/view/Report.fxml", "Report Management", actionEvent, 1000, 700);
+        loadFXMLAndShowStage("/view/Report.fxml", "Report Management", actionEvent, 880, 560);
     }
 }
 
