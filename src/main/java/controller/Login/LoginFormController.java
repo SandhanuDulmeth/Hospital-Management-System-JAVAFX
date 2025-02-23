@@ -1,5 +1,8 @@
 package controller.Login;
 
+import controller.dashBoard.DashBoardController;
+import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
 import util.ServiceType;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -18,6 +21,7 @@ import model.Users;
 import org.jasypt.util.text.BasicTextEncryptor;
 import service.ServiceFactory;
 import service.custom.LoginService;
+import util.StageUtils;
 
 import java.io.IOException;
 import java.net.URL;
@@ -39,12 +43,10 @@ public class LoginFormController implements Initializable {
     public Label LblTime;
 
     private final LoginService loginService = ServiceFactory.getInstance().getServiceType(ServiceType.LOGIN);
+    public AnchorPane AnchortPaneID;
 
     public void btnLoginOnAction(ActionEvent actionEvent) throws IOException {
-
-
         ArrayList<Users> allUser = loginService.getUser(txtEmail.getText());
-
 
         for (Users user : allUser) {
             String key = "12345";
@@ -55,22 +57,28 @@ public class LoginFormController implements Initializable {
                 new Alert(Alert.AlertType.INFORMATION, "Correct").show();
                 Stage stageClose = (Stage) btnLogin.getScene().getWindow();
 
-
                 try {
-                    stageClose.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/DashBoard.fxml"))));
-                    stageClose.show();
+                    // Load the Dashboard FXML
+                    Node dashboardForm = FXMLLoader.load(getClass().getResource("/view/DashBoard.fxml"));
+                    dashboardForm.setStyle("-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #f5f7fa, #124087);");
+
+                    // Create a new Stage for the Dashboard
+                    Stage dashboardStage = new Stage();
+                    StageUtils.configureDecoratedStage(dashboardStage, dashboardForm, "Dashboard", 800, 500);
+
+                    // Close the current login stage
+                    stageClose.close();
+
+                    // Show the new Dashboard stage
+                    dashboardStage.show();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
                 return;
             }
-
         }
         new Alert(Alert.AlertType.INFORMATION, "Wrong").show();
-
-
     }
-
 
     public void btnAddOnAction(ActionEvent actionEvent) {
         Stage stageClose = (Stage) btnLogin.getScene().getWindow();
@@ -80,8 +88,6 @@ public class LoginFormController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     @Override
@@ -106,5 +112,4 @@ public class LoginFormController implements Initializable {
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }
-
 }

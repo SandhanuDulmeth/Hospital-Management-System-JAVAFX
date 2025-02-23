@@ -3,53 +3,45 @@ package controller.dashBoard;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.Window;
+import util.StageUtils;
 
 import java.io.IOException;
 
+
 public class DashBoardController {
 
-    // Reusable method to load FXML and open a new stage with a loading animation.
-    private void loadFXMLAndShowStage(String fxmlPath, String title, ActionEvent event) {
-        // Create a temporary stage with a loading animation (ProgressIndicator)
-        Stage loadingStage = new Stage();
-        ProgressIndicator progressIndicator = new ProgressIndicator();
-        StackPane loadingRoot = new StackPane(progressIndicator);
-        Scene loadingScene = new Scene(loadingRoot, 100, 100);
-        loadingStage.setScene(loadingScene);
-        loadingStage.setTitle("Loading " + title + "...");
+    public static AnchorPane DsashBoardAnchorPaneID;
+
+    private void loadFXMLAndShowStage(String fxmlPath, String title, ActionEvent event, double width, double height) {
+        Stage loadingStage = createLoadingStage();
         loadingStage.show();
 
-        // Create a new thread to load the FXML in the background
         Thread loadThread = new Thread(() -> {
             try {
-                // Load the FXML file in the background thread
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
                 Parent root = loader.load();
 
-                // Update the UI on the JavaFX Application Thread
                 Platform.runLater(() -> {
                     Stage stage = new Stage();
-                    stage.setTitle(title);
-                    stage.setScene(new Scene(root));
-                    // Set the owner to the current window
-                    Window currentWindow = ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-                    stage.initOwner(currentWindow);
+                    StageUtils.configureDecoratedStage(stage, root, title, width, height);
+                    stage.initOwner(((Node) event.getSource()).getScene().getWindow());
                     stage.show();
                     loadingStage.close();
                 });
             } catch (IOException e) {
-                // If loading fails, close the loading stage and show an error dialog
                 Platform.runLater(() -> {
-                    e.printStackTrace();
                     loadingStage.close();
-                    showErrorDialog("Failed to load " + title, e.getMessage());
+                    showErrorDialog("Error Loading " + title, e.getMessage());
                 });
             }
         });
@@ -58,7 +50,17 @@ public class DashBoardController {
         loadThread.start();
     }
 
-    // Method to show an error dialog
+    private Stage createLoadingStage() {
+        Stage loadingStage = new Stage();
+        ProgressIndicator progress = new ProgressIndicator();
+        StackPane root = new StackPane(progress);
+        root.setStyle("-fx-background-color: rgba(255, 255, 255, 0.7);");
+        Scene scene = new Scene(root, 100, 100);
+        loadingStage.initStyle(StageStyle.TRANSPARENT);
+        loadingStage.setScene(scene);
+        return loadingStage;
+    }
+
     private void showErrorDialog(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -67,35 +69,35 @@ public class DashBoardController {
         alert.showAndWait();
     }
 
-    // Button action methods
+    // Example button handlers with specific dimensions
     public void btnPatientOnAction(ActionEvent actionEvent) {
-        loadFXMLAndShowStage("/view/Patient.fxml", "Patient Management", actionEvent);
+        loadFXMLAndShowStage("/view/Patient.fxml", "Patient Management", actionEvent, 1000, 700);
     }
 
     public void btnDoctorOnAction(ActionEvent actionEvent) {
-        loadFXMLAndShowStage("/view/Doctor.fxml", "Doctor Management", actionEvent);
+        loadFXMLAndShowStage("/view/Doctor.fxml", "Doctor Management", actionEvent, 1000, 700);
     }
 
     public void btnResourceOnAction(ActionEvent actionEvent) {
-        loadFXMLAndShowStage("/view/Resource.fxml", "Resource Management", actionEvent);
+        loadFXMLAndShowStage("/view/Resource.fxml", "Resource Management", actionEvent, 1000, 700);
     }
 
     public void btnAppointmentOnAction(ActionEvent actionEvent) {
-        loadFXMLAndShowStage("/view/Appointment.fxml", "Appointment Management", actionEvent);
+        loadFXMLAndShowStage("/view/Appointment.fxml", "Appointment Management", actionEvent, 1000, 700);
     }
 
     public void btnPrescriptionOnAction(ActionEvent actionEvent) {
-        loadFXMLAndShowStage("/view/Prescription.fxml", "Prescription Management", actionEvent);
+        loadFXMLAndShowStage("/view/Prescription.fxml", "Prescription Management", actionEvent, 1000, 700);
     }
 
     public void btnBillingOnAction(ActionEvent actionEvent) {
-        loadFXMLAndShowStage("/view/Billing.fxml", "Billing Management", actionEvent);
+        loadFXMLAndShowStage("/view/Billing.fxml", "Billing Management", actionEvent, 1000, 700);
     }
 
 
 
     public void btnReportOnAction(ActionEvent actionEvent) {
-        loadFXMLAndShowStage("/view/Report.fxml", "Report Management", actionEvent);
+        loadFXMLAndShowStage("/view/Report.fxml", "Report Management", actionEvent, 1000, 700);
     }
 }
 
