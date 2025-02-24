@@ -56,7 +56,7 @@ public class ResourceFormController implements Initializable {
     @FXML
     private JFXTextField TxtName1;
 
-    private final ResourceService resourceService= ServiceFactory.getInstance().getServiceType(ServiceType.RESOURCE);
+    private final ResourceService resourceService = ServiceFactory.getInstance().getServiceType(ServiceType.RESOURCE);
 
     @FXML
     public void btnAddOnAction(ActionEvent event) throws SQLException {
@@ -153,8 +153,8 @@ public class ResourceFormController implements Initializable {
 
     private void loadTable() {
         tblResource.getItems().clear();
-        ObservableList<Resource> resourceObservableList= FXCollections.observableArrayList();
-       resourceService.getAll().forEach(resource -> resourceObservableList.add(resource));
+        ObservableList<Resource> resourceObservableList = FXCollections.observableArrayList();
+        resourceService.getAll().forEach(resource -> resourceObservableList.add(resource));
         tblResource.setItems(resourceObservableList);
     }
 
@@ -165,8 +165,8 @@ public class ResourceFormController implements Initializable {
                 TxtType11.getText(),
                 TxtName11.getText(),
                 TxtStatus11.getText(),
-               Integer.valueOf(TxtAllocatedTo11.getText())
-                ))) {
+                Integer.valueOf(TxtAllocatedTo11.getText())
+        ))) {
             new Alert(Alert.AlertType.INFORMATION, "Updated ").show();
         } else {
             new Alert(Alert.AlertType.ERROR, "Not Updated ").show();
@@ -176,7 +176,7 @@ public class ResourceFormController implements Initializable {
     }
 
     public void OnSreachUpdateKeyReleased(KeyEvent keyEvent) {
-        Resource resource =resourceService.searchResource(Integer.valueOf("0" + TxtId11.getText()));
+        Resource resource = resourceService.searchResource(Integer.valueOf("0" + TxtId11.getText()));
 
         if (null != resource) {
 

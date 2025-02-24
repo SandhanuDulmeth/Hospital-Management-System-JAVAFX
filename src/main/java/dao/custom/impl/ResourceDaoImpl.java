@@ -2,7 +2,6 @@ package dao.custom.impl;
 
 import dao.custom.ResourceDao;
 import entity.ResourceEntity;
-import model.Resource;
 import util.CrudUtil;
 
 import java.sql.ResultSet;

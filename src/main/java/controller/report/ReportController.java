@@ -3,8 +3,7 @@ package controller.report;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import dao.DaoFactory;
-import dao.custom.PatientDao;
+
 import db.DBConnection;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -16,7 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
+
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import net.sf.jasperreports.engine.*;
@@ -26,15 +25,11 @@ import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import service.ServiceFactory;
 import service.custom.*;
-import util.DaoType;
-import util.ServiceType;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
-import javafx.scene.control.Button;
-import javafx.util.Duration;
 
-import javax.swing.event.SwingPropertyChangeSupport;
+import util.ServiceType;
+
+import javafx.scene.control.Button;
+
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -42,7 +37,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class ReportController implements Initializable {
-
 
 
     public CheckBox DoctorCheckBox;
@@ -55,14 +49,13 @@ public class ReportController implements Initializable {
     private final DoctorService doctorService = ServiceFactory.getInstance().getServiceType(ServiceType.DOCTOR);
     private final PatientService patientService = ServiceFactory.getInstance().getServiceType(ServiceType.PATIENT);
     private final ResourceService resourceService = ServiceFactory.getInstance().getServiceType(ServiceType.RESOURCE);
-    private final AppointmentService appointmentService= ServiceFactory.getInstance().getServiceType(ServiceType.APPOINTMENT);
-    private final BillingService billingService= ServiceFactory.getInstance().getServiceType(ServiceType.BILLING);
+    private final AppointmentService appointmentService = ServiceFactory.getInstance().getServiceType(ServiceType.APPOINTMENT);
+    private final BillingService billingService = ServiceFactory.getInstance().getServiceType(ServiceType.BILLING);
     private final PrescriptionService prescriptionService = ServiceFactory.getInstance().getServiceType(ServiceType.PRESCRIPTION);
     public JFXCheckBox ResourceCheckBox;
     public JFXComboBox ComboBox;
     public Label lblOFMaxSize;
-    public JFXCheckBox AppointmentCheckBox;
-   public String SQLForChart="";
+
     public static void generateReportWithLoading(String reportPath, String fileName, String query) {
 
         Stage loadingStage = new Stage();
@@ -119,36 +112,37 @@ public class ReportController implements Initializable {
 
 
     public void lblGetReportsOnAction(ActionEvent actionEvent) {
-        String SQL =null;
-        if (lblStartId.getText().equals("") || lblEndId.getText().equals("")){
-            new Alert(Alert.AlertType.ERROR,"Select Start and End").show();
+        String SQL = null;
+        if (lblStartId.getText().equals("") || lblEndId.getText().equals("")) {
+            new Alert(Alert.AlertType.ERROR, "Select Start and End").show();
             return;
         }
-        if(ComboBox.getValue() ==null){
-            new Alert(Alert.AlertType.ERROR,"Select the User").show();
+        if (ComboBox.getValue() == null) {
+            new Alert(Alert.AlertType.ERROR, "Select the User").show();
             return;
         }
         if (ComboBox.getValue().equals("Doctor")) {
 
-             SQL = "SELECT * FROM doctor WHERE doctor_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();
+            SQL = "SELECT * FROM doctor WHERE doctor_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();
             ReportController.generateReportWithLoading("src/main/resources/report/Doctor.jrxml", "Doctor.pdf", SQL);
         }
         if (ComboBox.getValue().equals("Patient")) {
             SQL = "SELECT * FROM patient WHERE patient_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();
             ReportController.generateReportWithLoading("src/main/resources/report/Patient.jrxml", "Patient.pdf", SQL);
         }
-        if (ComboBox.getValue().equals("Appointment")){
+        if (ComboBox.getValue().equals("Appointment")) {
             SQL = "SELECT * FROM appointment WHERE appointment_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();
             ReportController.generateReportWithLoading("src/main/resources/report/Appointment.jrxml", "Appointment.pdf", SQL);
         }
-        if (ComboBox.getValue().equals("Resource")){
+        if (ComboBox.getValue().equals("Resource")) {
             SQL = "SELECT * FROM Resources WHERE resource_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();
             ReportController.generateReportWithLoading("src/main/resources/report/Resources.jrxml", "Resources.pdf", SQL);
         }
-        if (ComboBox.getValue().equals("Billing")){
+        if (ComboBox.getValue().equals("Billing")) {
             SQL = "SELECT * FROM Billing WHERE bill_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();
             ReportController.generateReportWithLoading("src/main/resources/report/Billing.jrxml", "Billing.pdf", SQL);
-        } if (ComboBox.getValue().equals("Prescription")){
+        }
+        if (ComboBox.getValue().equals("Prescription")) {
             SQL = "SELECT * FROM Prescription WHERE prescription_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();
             ReportController.generateReportWithLoading("src/main/resources/report/Prescription.jrxml", "Prescription.pdf", SQL);
         }
@@ -158,11 +152,11 @@ public class ReportController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         pieCharts();
-        ComboBox.setItems(FXCollections.observableArrayList("Doctor", "Patient", "Resource","Appointment","Billing","Prescription"));
+        ComboBox.setItems(FXCollections.observableArrayList("Doctor", "Patient", "Resource", "Appointment", "Billing", "Prescription"));
     }
 
     public void pieCharts() {
-        // Clear the existing pie chart data
+
         pieChart.getData().clear();
 
         ObservableList<PieChart.Data> objects = FXCollections.observableArrayList();
@@ -174,7 +168,7 @@ public class ReportController implements Initializable {
         if (PatientCheckBox.isSelected()) {
             objects.add(new PieChart.Data("Patient", patientService.getNextId() - 1));
         }
-        if (ResourceCheckBox.isSelected()){
+        if (ResourceCheckBox.isSelected()) {
             objects.add(new PieChart.Data("Resource", resourceService.getNextId() - 1));
         }
 
@@ -192,10 +186,6 @@ public class ReportController implements Initializable {
         pieChart.getData().addAll(pieChartData);
     }
 
-
-    public void getPieChartReport(ActionEvent actionEvent) {
-    }
-
     public void btnDoctorCheckBox(ActionEvent actionEvent) {
         pieCharts();
     }
@@ -210,23 +200,23 @@ public class ReportController implements Initializable {
 
 
     public void ComboBoxonAction(ActionEvent actionEvent) {
-        if(ComboBox.getValue() ==null){
-          lblOFMaxSize.setText(null);
+        if (ComboBox.getValue() == null) {
+            lblOFMaxSize.setText(null);
         }
         if (ComboBox.getValue().equals("Doctor")) {
 
-            lblOFMaxSize.setText("OF :"+(doctorService.getNextId()-1));
-        }else if (ComboBox.getValue().equals("Patient")) {
-           lblOFMaxSize.setText("OF :"+(patientService.getNextId()-1));
-        }else if (ComboBox.getValue().equals("Appointment")){
-          lblOFMaxSize.setText("OF :"+(appointmentService.getNextId()-1));
-        }else if (ComboBox.getValue().equals("Resource")){
-            lblOFMaxSize.setText("OF :"+(resourceService.getNextId()-1));
-        }else if (ComboBox.getValue().equals("Billing")){
-            lblOFMaxSize.setText("OF :"+(billingService.getNextId()-1));
-        }else if (ComboBox.getValue().equals("Prescription")){
-            lblOFMaxSize.setText("OF :"+(prescriptionService.getNextId()-1));
-        } else{
+            lblOFMaxSize.setText("OF :" + (doctorService.getNextId() - 1));
+        } else if (ComboBox.getValue().equals("Patient")) {
+            lblOFMaxSize.setText("OF :" + (patientService.getNextId() - 1));
+        } else if (ComboBox.getValue().equals("Appointment")) {
+            lblOFMaxSize.setText("OF :" + (appointmentService.getNextId() - 1));
+        } else if (ComboBox.getValue().equals("Resource")) {
+            lblOFMaxSize.setText("OF :" + (resourceService.getNextId() - 1));
+        } else if (ComboBox.getValue().equals("Billing")) {
+            lblOFMaxSize.setText("OF :" + (billingService.getNextId() - 1));
+        } else if (ComboBox.getValue().equals("Prescription")) {
+            lblOFMaxSize.setText("OF :" + (prescriptionService.getNextId() - 1));
+        } else {
             lblOFMaxSize.setText(null);
         }
 
@@ -257,7 +247,6 @@ public class ReportController implements Initializable {
 
         ReportController.generateReportWithLoading(reportPath, "Chart.pdf", SQLForChart);
     }
-
 
 
 }

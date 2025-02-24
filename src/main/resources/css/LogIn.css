@@ -1,13 +1,12 @@
-/* Set a subtle gradient background using JavaFX syntax */
+
 .root {
     -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #f5f7fa, #124087);
 }
 
-/* --------------------- Button Styles --------------------- */
 
-/* Base style for all buttons (including JFXButton and regular Button) */
+
 .button, .jfx-button {
-    -fx-background-color: #3b5998; /* Modern dark blue */
+    -fx-background-color: #3b5998;
     -fx-text-fill: white;
     -fx-font-size: 16px;
     -fx-font-weight: bold;
@@ -18,12 +17,12 @@
     -fx-transition: all 0.2s ease;
 }
 
-/* Hover effect for buttons */
+
 .button:hover, .jfx-button:hover {
     -fx-background-color: #2d4373;
 }
 
-/* Specific override for the "Add New User" button */
+
 #btnAdd {
     -fx-background-color: #d9534f;
 }
@@ -32,9 +31,7 @@
     -fx-background-color: #c9302c;
 }
 
-/* --------------------- Text Field Styles --------------------- */
 
-/* Style for JFXTextField with a clear underline effect */
 .jfx-text-field {
     -fx-font-size: 18px;
     -fx-prompt-text-fill: rgba(0, 0, 0, 0.4);
@@ -45,27 +42,19 @@
     -fx-border-color: transparent transparent #3b5998 transparent;
 }
 
-/* Underline effect when focused */
+
 .jfx-text-field:focused {
     -fx-border-color: transparent transparent #3b5998 transparent;
 }
 
-/* --------------------- Label Styles --------------------- */
 
-/* Base style for labels with a dark, modern look */
-
-
-/* Style for the title label ("User Login") */
-
-
-/* Style for the Date label */
 #lblDate {
     -fx-font-family: "Blackadder ITC";
     -fx-font-size: 30px;
     -fx-text-fill: #15213A;
 }
 
-/* Style for the Time label */
+
 #LblTime {
     -fx-font-size: 24px;
     -fx-text-fill: #15213A;

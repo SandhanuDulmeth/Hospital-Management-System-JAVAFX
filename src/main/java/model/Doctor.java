@@ -12,10 +12,10 @@ import lombok.ToString;
 public class Doctor {
     private Integer id;
     private String name;
-    private String specialty ;
-    private String availability ;
-    private String qualifications ;
-    private String contact_details  ;
+    private String specialty;
+    private String availability;
+    private String qualifications;
+    private String contact_details;
 
     public Doctor(String name, String specialty, String availability, String qualifications, String contact_details) {
         this.name = name;

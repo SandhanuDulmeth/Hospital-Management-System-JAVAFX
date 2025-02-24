@@ -57,7 +57,7 @@ public class AppointmentFormController implements Initializable {
     private JFXTextField TxtId1;
 
 
-    private final AppointmentService appointmentService= ServiceFactory.getInstance().getServiceType(ServiceType.APPOINTMENT);
+    private final AppointmentService appointmentService = ServiceFactory.getInstance().getServiceType(ServiceType.APPOINTMENT);
 
     @FXML
     public void btnAddOnAction(ActionEvent event) throws SQLException {
@@ -65,8 +65,8 @@ public class AppointmentFormController implements Initializable {
         if (!(TxtId.getText().isEmpty())) {
             Appointment appointment = new Appointment(
                     Integer.valueOf(TxtId.getText()),
-                    getId((String) PIdComboBox.getValue()) ,
-                    getId((String)  DIdComboBox.getValue()),
+                    getId((String) PIdComboBox.getValue()),
+                    getId((String) DIdComboBox.getValue()),
                     String.valueOf(DatePicker.getValue()),
 
                     TxtTime.getText()
@@ -86,12 +86,14 @@ public class AppointmentFormController implements Initializable {
         }
 
     }
+
     public static int getId(String input) {
 
         String[] parts = input.split("[ -]");
 
         return Integer.parseInt(parts[1]);
     }
+
     @FXML
     public void btnClearOnAction(ActionEvent event) {
         clearAddForm();
@@ -105,24 +107,24 @@ public class AppointmentFormController implements Initializable {
 
     public void setNextId() {
 
-      TxtId.setText(String.valueOf(appointmentService.getNextId()));
+        TxtId.setText(String.valueOf(appointmentService.getNextId()));
     }
 
     @Override
     public void initialize(URL url, ResourceBundle appointmentBundle) {
-       setNextId();
+        setNextId();
 
 
         ObservableList<Object> objectsPatient = FXCollections.observableArrayList();
-        for (Patient patient :appointmentService.getPatientsID()) {
-            objectsPatient.add("ID-"+patient.getId()+" Name-"+patient.getName());
+        for (Patient patient : appointmentService.getPatientsID()) {
+            objectsPatient.add("ID-" + patient.getId() + " Name-" + patient.getName());
         }
         PIdComboBox.setItems(objectsPatient);
 
 
         ObservableList<Object> objectsDoc = FXCollections.observableArrayList();
         for (Doctor doctor : appointmentService.getDocID()) {
-            objectsDoc.add("ID-"+doctor.getId()+" Name-"+doctor.getName());
+            objectsDoc.add("ID-" + doctor.getId() + " Name-" + doctor.getName());
         }
         DIdComboBox.setItems(objectsDoc);
 
@@ -151,7 +153,8 @@ public class AppointmentFormController implements Initializable {
 
 
     }
-    public void clearRemoveForm(){
+
+    public void clearRemoveForm() {
         TxtPId1.clear();
         TxtDId1.clear();
         TxtDate1.clear();
@@ -178,7 +181,7 @@ public class AppointmentFormController implements Initializable {
 
     private void loadTable() {
         tblAppointment.getItems().clear();
-ObservableList<Appointment>appointmentObservableList=FXCollections.observableArrayList();
+        ObservableList<Appointment> appointmentObservableList = FXCollections.observableArrayList();
         appointmentService.getAll().forEach(appointment -> appointmentObservableList.add(appointment));
         tblAppointment.setItems(appointmentObservableList);
     }

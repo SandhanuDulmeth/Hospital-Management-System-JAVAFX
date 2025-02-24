@@ -118,7 +118,7 @@ public class LoginFormController implements Initializable {
         timeline.play();
     }
 
-    // This method is triggered when the user clicks "Forgot Password"
+
     public void ForgotPasswordOnAction(ActionEvent actionEvent) {
         if (isFieldEmpty(txtEmail, "Email")) {
             return;
@@ -128,7 +128,7 @@ public class LoginFormController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Invalid Email Address!").show();
             return;
         }
-        // Send OTP email asynchronously
+
         sendEmailWithLoading(recipientEmail, result -> {
             if (result) {
                 Platform.runLater(() -> {
@@ -167,10 +167,7 @@ public class LoginFormController implements Initializable {
         alert.showAndWait();
     }
 
-    /**
-     * Asynchronously sends an email while showing a loading animation.
-     * The callback is invoked with true if the email was sent successfully, false otherwise.
-     */
+
     private void sendEmailWithLoading(String recipientEmail, Consumer<Boolean> callback) {
         Stage loadingStage = new Stage();
         javafx.scene.control.ProgressIndicator progressIndicator = new javafx.scene.control.ProgressIndicator();

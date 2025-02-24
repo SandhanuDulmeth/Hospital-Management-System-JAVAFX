@@ -3,7 +3,6 @@ package dao.custom.impl;
 
 import dao.custom.PatientDao;
 import entity.PatientEntity;
-import model.Patient;
 import util.CrudUtil;
 
 
@@ -21,7 +20,7 @@ public class PatientDaoImpl implements PatientDao {
 
         try {
 
-          //  return CrudUtil.execute("INSERT INTO patient (name, age, gender, contact_details, emergency_contact, medical_history) VALUES (?,?,?,?,?,?);",
+
           return CrudUtil.execute("INSERT INTO patient VALUES(?,?,?,?,?,?,?)",
                     patientEntity.getId(),
                     patientEntity.getName(),

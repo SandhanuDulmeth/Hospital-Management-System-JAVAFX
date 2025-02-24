@@ -8,12 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 
-public interface PatientService  extends SuperService {
+public interface PatientService extends SuperService {
     boolean addPatient(Patient patient) throws SQLException;
 
     boolean deletePatient(Integer id) throws SQLException;
 
-   ArrayList<Patient> getAll();
+    ArrayList<Patient> getAll();
 
     boolean updatePatient(Patient patient);
 
@@ -21,5 +21,5 @@ public interface PatientService  extends SuperService {
 
     Integer getNextId();
 
-    ArrayList<Patient>getPatientsID();
+    ArrayList<Patient> getPatientsID();
 }

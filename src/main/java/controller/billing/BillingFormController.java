@@ -57,7 +57,7 @@ public class BillingFormController implements Initializable {
     private JFXTextField TxtId1;
 
 
-    private final BillingService billingService= ServiceFactory.getInstance().getServiceType(ServiceType.BILLING);
+    private final BillingService billingService = ServiceFactory.getInstance().getServiceType(ServiceType.BILLING);
 
     @FXML
     public void btnAddOnAction(ActionEvent event) throws SQLException {
@@ -111,7 +111,7 @@ public class BillingFormController implements Initializable {
     public void initialize(URL url, ResourceBundle billingBundle) {
         setNextId();
 
-PaymentStatusComboBox.setItems(FXCollections.observableArrayList("Paid","Unpaid"));
+        PaymentStatusComboBox.setItems(FXCollections.observableArrayList("Paid", "Unpaid"));
 
         ObservableList<Object> objectsPatient = FXCollections.observableArrayList();
         for (Patient patient : billingService.getPatientsID()) {
@@ -173,7 +173,7 @@ PaymentStatusComboBox.setItems(FXCollections.observableArrayList("Paid","Unpaid"
 
     private void loadTable() {
         tblBilling.getItems().clear();
-ObservableList<Billing>billingObservableList=FXCollections.observableArrayList();
+        ObservableList<Billing> billingObservableList = FXCollections.observableArrayList();
         billingService.getAll().forEach(billing -> billingObservableList.add(billing));
         tblBilling.setItems(billingObservableList);
     }

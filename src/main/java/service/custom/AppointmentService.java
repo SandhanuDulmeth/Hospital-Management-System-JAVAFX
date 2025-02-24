@@ -1,6 +1,5 @@
 package service.custom;
 
-import javafx.collections.ObservableList;
 import model.Appointment;
 import model.Doctor;
 import model.Patient;

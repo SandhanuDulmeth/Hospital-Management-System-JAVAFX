@@ -4,10 +4,6 @@ import dao.DaoFactory;
 import dao.custom.AppointmentDao;
 import entity.AppointmentEntity;
 import org.modelmapper.ModelMapper;
-import util.CrudUtil;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 
 import model.Appointment;
 import model.Doctor;
@@ -15,7 +11,6 @@ import model.Patient;
 import service.custom.AppointmentService;
 import util.DaoType;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 

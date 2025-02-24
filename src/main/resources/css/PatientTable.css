@@ -1,42 +1,42 @@
 .table-view {
-    -fx-background-color: #ffffff; /* White background for the entire table */
-    -fx-border-color: #004d40; /* Dark teal border for the table */
-    -fx-border-width: 2; /* Border thickness */
-    -fx-padding: 10; /* Padding around the table */
-    -fx-table-cell-border-color: #e0f2f1; /* Light teal cell borders */
-    -fx-table-header-border-color: #00796b; /* Medium teal header border */
+    -fx-background-color: #ffffff;
+    -fx-border-color: #004d40;
+    -fx-border-width: 2;
+    -fx-padding: 10;
+    -fx-table-cell-border-color: #e0f2f1;
+    -fx-table-header-border-color: #00796b;
 }
 
 .column-header-background {
-    -fx-background-color: #00796b; /* Medium teal background for column headers */
-    -fx-border-color: #004d40; /* Dark teal border for headers */
-    -fx-border-width: 0 0 2 0; /* Bottom border for headers */
-    -fx-text-fill: #ffffff; /* White text for column headers */
-    -fx-font-size: 14px; /* Font size for headers */
-    -fx-font-weight: bold; /* Bold text for headers */
-    -fx-alignment: CENTER; /* Center align text in headers */
+    -fx-background-color: #00796b;
+    -fx-border-color: #004d40;
+    -fx-border-width: 0 0 2 0;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
 }
 
 .table-row-cell {
-    -fx-background-color: #f0f8ff; /* Light blue-white background for rows */
-    -fx-border-color: #e0f2f1; /* Light teal border for cells */
-    -fx-text-fill: #004d40; /* Dark teal text color for rows */
-    -fx-font-size: 13px; /* Font size for rows */
-    -fx-alignment: CENTER; /* Center align text in rows */
+    -fx-background-color: #f0f8ff;
+    -fx-border-color: #e0f2f1;
+    -fx-text-fill: #004d40;
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER;
 }
 
 .table-row-cell:odd {
-    -fx-background-color: #e8f5e9; /* Light green background for odd rows */
+    -fx-background-color: #e8f5e9;
 }
 
 .table-row-cell:hover {
-    -fx-background-color: #b2dfdb; /* Light teal for row hover effect */
+    -fx-background-color: #b2dfdb;
 }
 
 .table-cell {
-    -fx-padding: 8 12 8 12; /* Padding inside each cell */
+    -fx-padding: 8 12 8 12;
 }
 
 .table-view:focused .table-row-cell:focused {
-    -fx-background-color: #b2ebf2; /* Highlighted row when focused */
+    -fx-background-color: #b2ebf2;
 }

@@ -2,7 +2,7 @@ package dao.custom.impl;
 
 import dao.custom.AppointmentDao;
 import entity.AppointmentEntity;
-import model.Appointment;
+
 import util.CrudUtil;
 
 import java.sql.ResultSet;

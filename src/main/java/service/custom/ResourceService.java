@@ -1,6 +1,6 @@
 package service.custom;
 
-import javafx.collections.ObservableList;
+
 import model.Resource;
 import service.SuperService;
 

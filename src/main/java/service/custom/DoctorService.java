@@ -1,6 +1,5 @@
 package service.custom;
 
-import javafx.collections.ObservableList;
 import model.Doctor;
 import service.SuperService;
 
@@ -12,7 +11,7 @@ public interface DoctorService extends SuperService {
 
     boolean deleteDoctor(Integer id) throws SQLException;
 
-   ArrayList<Doctor> getAll();
+    ArrayList<Doctor> getAll();
 
     boolean UpdateDoctor(Doctor doctor);
 

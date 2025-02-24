@@ -1,16 +1,10 @@
 package controller.doctor;
 
 
-import controller.report.ReportController;
-import db.DBConnection;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
-import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.design.JRDesignQuery;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
-import net.sf.jasperreports.view.JasperViewer;
 import util.ServiceType;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -21,7 +15,6 @@ import javafx.scene.input.KeyEvent;
 import model.Doctor;
 import service.ServiceFactory;
 import service.custom.DoctorService;
-
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -117,7 +110,6 @@ public class DoctorFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setNextId();
-
 
 
         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -221,18 +213,6 @@ public class DoctorFormController implements Initializable {
 
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

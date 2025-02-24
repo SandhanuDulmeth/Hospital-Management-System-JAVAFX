@@ -12,9 +12,9 @@ import lombok.ToString;
 public class Resource {
     private Integer id;
     private String type;
-    private String name ;
-    private String status ;
-    private Integer allocatedTo ;
+    private String name;
+    private String status;
+    private Integer allocatedTo;
 
     public Resource(String type, String name, String status, Integer allocatedTo) {
         this.type = type;

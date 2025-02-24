@@ -1,7 +1,5 @@
 package entity;
 
-
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +17,7 @@ public class PatientEntity {
     private Integer age;
     private String gender;
     private String contactDetails;
-    private String emergencyContact ;
+    private String emergencyContact;
     private String medicalHistory;
 
     public PatientEntity(String name, Integer age, String gender, String contactDetails, String emergencyContact, String medicalHistory) {

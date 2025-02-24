@@ -1,26 +1,26 @@
-/* Set the background color of the entire AnchorPane */
+
 AnchorPane {
-    /* Creates a smooth blend from green (#4CAF50) to blue (#2196F3) */
+
     -fx-background-color: linear-gradient(
         to right,
-        #4CAF50 0%,     /* solid green at 0%   */
-        #4CAF50 35%,    /* keep green until 45% */
-        #2196F3 65%,    /* start blue at 55%    */
-        #2196F3 100%    /* solid blue at 100%  */
+        #4CAF50 0%,
+        #4CAF50 35%,
+        #2196F3 65%,
+        #2196F3 100%
     );
     -fx-padding: 20px;
 }
 
 
-/* Style for Labels */
+
 .label {
-    -fx-text-fill: #ff5733; /* Orange */
+    -fx-text-fill: #ff5733;
     -fx-font-weight: bold;
 }
 
-/* Style for Buttons */
+
 .button {
-    -fx-background-color: #ff5733; /* Orange */
+    -fx-background-color: #ff5733;
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-padding: 8px 16px;
@@ -28,35 +28,34 @@ AnchorPane {
     -fx-background-radius: 5px;
 }
 .button:hover {
-    -fx-background-color: #c70039; /* Darker Red */
+    -fx-background-color: #c70039;
 }
 
-/* Style for JFXCheckBoxes */
+
 .jfx-check-box {
-    -fx-text-fill: #ff5733; /* Orange */
+    -fx-text-fill: #ff5733;
 }
 
-/* Style for ComboBox */
 .jfx-combo-box {
     -fx-background-color: white;
     -fx-border-color: #ff5733;
     -fx-border-radius: 5px;
 }
 
-/* Style for JFXTextFields */
+
 .jfx-text-field {
     -fx-border-color: #ff5733;
     -fx-border-radius: 5px;
     -fx-padding: 5px;
 }
 
-/* Style for PieChart */
+
 .pie-chart {
     -fx-background-color: transparent;
 }
 
-/* Style for Rectangle background */
+/
 .rectangle {
-    -fx-fill: #ff57334d; /* Transparent Orange */
+    -fx-fill: #ff57334d;
     -fx-stroke: #ff5733;
 }

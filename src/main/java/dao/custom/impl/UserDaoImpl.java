@@ -3,8 +3,6 @@ package dao.custom.impl;
 import dao.custom.UserDao;
 import entity.UserEntity;
 import javafx.scene.control.Alert;
-import model.Users;
-import org.checkerframework.checker.units.qual.A;
 import util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -98,12 +96,12 @@ public class UserDaoImpl implements UserDao {
                     userEntity.getPassword());
 
         } catch (SQLIntegrityConstraintViolationException e) {
-            // Handle duplicate email error
+
             Alert alert = new Alert(Alert.AlertType.ERROR, "Error: The email already exists. Please use a different email.");
             alert.show();
-            return false; // Indicate failure
+            return false;
         } catch (SQLException e) {
-            // Handle other SQL exceptions
+
             Alert alert = new Alert(Alert.AlertType.ERROR, "Database error: " + e.getMessage());
             alert.show();
             return false;

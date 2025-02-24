@@ -1,4 +1,4 @@
-// StageUtils.java
+
 package util;
 
 import javafx.scene.Node;
@@ -43,27 +43,16 @@ public class StageUtils {
         titleBar.setPadding(new Insets(5));
         titleBar.setStyle("-fx-background-color: linear-gradient(to right, #34495e, #2c3e50);");
 
-        // Buttons
-//        FontAwesomeIconView minimizeIcon = new FontAwesomeIconView(FontAwesomeIcon.WINDOW_MINIMIZE);
-//        minimizeIcon.setStyle("-fx-fill: #0073e6; -fx-font-size: 20px;");
-//
-//
-//// Set the icon on your button
-//        Button minimizeButton = new Button();
-//        minimizeButton.setGraphic(minimizeIcon);
+
         Button minimizeButton = createControlButton3("🔴");
         minimizeButton.setOnAction(e -> stage.setIconified(true));
-
-//        Button maximizeButton = createControlButton2("🔴");
-//        maximizeButton.setOnAction(e -> stage.setMaximized(!stage.isMaximized()));
 
         Button closeButton = createControlButton1("🔴");
         closeButton.setOnAction(e -> stage.close());
 
         titleBar.getChildren().addAll(minimizeButton, closeButton);
-//        titleBar.getChildren().addAll(minimizeButton, maximizeButton, closeButton);
 
-        // Drag handlers
+
         final double[] xOffset = new double[1];
         final double[] yOffset = new double[1];
 
@@ -80,23 +69,13 @@ public class StageUtils {
         return titleBar;
     }
 
-//    private static Button createControlButton(String label) {
-//        Button button = new Button(label);
-//        // Apply custom styles or properties here
-//        button.setStyle("-fx-background-color: transparent; -fx-font-size: 16px;");
-//        return button;
-//    }
 
     private static Button createControlButton1(String text) {
         Button button = new Button(text);
         button.setStyle("-fx-background-color: transparent; -fx-text-fill: red; -fx-font-size: 15px;");
         return button;
     }
-//    private static Button createControlButton2(String text) {
-//        Button button = new Button(text);
-//        button.setStyle("-fx-background-color: transparent; -fx-text-fill: yellow;");
-//        return button;
-//    }
+
     private static Button createControlButton3(String text) {
         Button button = new Button(text);
         button.setStyle("-fx-background-color: transparent; -fx-text-fill: green; -fx-font-size: 15px;");
@@ -109,7 +88,7 @@ public class StageUtils {
         roundedPane.setPadding(new Insets(10));
         roundedPane.getChildren().add(borderPane);
 
-        // Clip to enforce rounded corners
+
         Rectangle clip = new Rectangle();
         clip.setArcWidth(20);
         clip.setArcHeight(20);
@@ -117,7 +96,7 @@ public class StageUtils {
         clip.widthProperty().bind(roundedPane.widthProperty());
         clip.heightProperty().bind(roundedPane.heightProperty());
 
-        // Drop shadow
+
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(10);
         dropShadow.setOffsetX(0);

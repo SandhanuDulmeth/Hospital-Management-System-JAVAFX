@@ -3,7 +3,6 @@ package service;
 import util.ServiceType;
 import service.custom.impl.*;
 
-
 public class ServiceFactory {
     private static ServiceFactory instance;
 

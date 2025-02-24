@@ -2,7 +2,6 @@ package dao.custom.impl;
 
 import dao.custom.PrescriptionDao;
 import entity.PrescriptionEntity;
-import model.Prescription;
 import util.CrudUtil;
 
 import java.sql.ResultSet;

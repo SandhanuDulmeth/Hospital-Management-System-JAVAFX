@@ -5,8 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,7 +15,7 @@ public class Patient {
     private Integer age;
     private String gender;
     private String contactDetails;
-    private String emergencyContact ;
+    private String emergencyContact;
     private String medicalHistory;
 
     public Patient(String name, Integer age, String gender, String contactDetails, String emergencyContact, String medicalHistory) {

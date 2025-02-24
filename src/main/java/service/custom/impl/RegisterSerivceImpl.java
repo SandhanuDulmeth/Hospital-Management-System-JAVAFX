@@ -4,15 +4,11 @@ import dao.DaoFactory;
 import dao.custom.UserDao;
 import entity.UserEntity;
 import org.modelmapper.ModelMapper;
-import util.CrudUtil;
+
 import model.Users;
 import service.custom.RegisterService;
 import util.DaoType;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class RegisterSerivceImpl implements RegisterService {
     public static RegisterSerivceImpl insance;

@@ -8,12 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
 import util.StageUtils;
 
 import java.io.IOException;
@@ -95,7 +93,6 @@ public class DashBoardController {
     public void btnBillingOnAction(ActionEvent actionEvent) {
         loadFXMLAndShowStage("/view/Billing.fxml", "Billing Management", actionEvent, 810, 450);
     }
-
 
 
     public void btnReportOnAction(ActionEvent actionEvent) {

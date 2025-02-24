@@ -20,21 +20,21 @@ public class ForgetPasswordController implements Initializable {
 
     public JFXButton AddnewPasswordId;
     @FXML
-    private TextField txtOTP; // For user to enter received OTP
+    private TextField txtOTP;
 
     @FXML
-    private PasswordField txtNewPassword; // For new password input
+    private PasswordField txtNewPassword;
 
     @FXML
-    private Button btnSetNewPassword; // Button to confirm password change
+    private Button btnSetNewPassword;
 
-    private String expectedOTP; // OTP sent by email
-    private String email;       // Email of the user
+    private String expectedOTP;
+    private String email;
 
-    // Access the same login service used by LoginFormController.
+
     private final LoginService loginService = ServiceFactory.getInstance().getServiceType(ServiceType.LOGIN);
 
-    // This method is called right after the FXML is loaded.
+
     public void initData(String otp, String email) {
 
         this.expectedOTP = otp;
@@ -69,7 +69,7 @@ public class ForgetPasswordController implements Initializable {
             new Alert(Alert.AlertType.ERROR, "New password cannot be empty!").show();
             return;
         }
-        // Encrypt the new password.
+
         String key = "12345";
         BasicTextEncryptor basicTextEncryptor = new BasicTextEncryptor();
         basicTextEncryptor.setPassword(key);
@@ -78,14 +78,12 @@ public class ForgetPasswordController implements Initializable {
         boolean success = loginService.isInsertNewPassword(email, encryptedPassword);
         if (success) {
             new Alert(Alert.AlertType.INFORMATION, "Password updated successfully!").show();
-            // Optionally close this window.
+
             btnSetNewPassword.getScene().getWindow().hide();
         } else {
             new Alert(Alert.AlertType.ERROR, "Failed to update password. Please try again.").show();
         }
     }
-
-
 
 
 }

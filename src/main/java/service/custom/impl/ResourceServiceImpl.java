@@ -4,14 +4,12 @@ import dao.DaoFactory;
 import dao.custom.ResourceDao;
 import entity.ResourceEntity;
 import org.modelmapper.ModelMapper;
-import util.CrudUtil;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import model.Resource;
 import service.custom.ResourceService;
 import util.DaoType;
 
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -53,19 +51,19 @@ public class ResourceServiceImpl implements ResourceService {
     @Override
     public boolean UpdateResource(Resource resource) {
 
-       return resourceDao.update(new ModelMapper().map(resource,ResourceEntity.class));
+        return resourceDao.update(new ModelMapper().map(resource, ResourceEntity.class));
 
     }
 
     @Override
     public Resource searchResource(Integer id) {
 
-      return new ModelMapper().map(resourceDao.search(String.valueOf(id)),Resource.class);
+        return new ModelMapper().map(resourceDao.search(String.valueOf(id)), Resource.class);
     }
 
     @Override
     public Integer getNextId() {
-      return resourceDao.getNextId();
+        return resourceDao.getNextId();
 
 
     }

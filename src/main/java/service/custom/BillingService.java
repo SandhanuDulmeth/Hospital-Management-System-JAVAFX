@@ -1,6 +1,5 @@
 package service.custom;
 
-
 import model.Billing;
 import model.Patient;
 import service.SuperService;

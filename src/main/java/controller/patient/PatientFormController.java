@@ -1,6 +1,6 @@
 package controller.patient;
 
-import jakarta.inject.Inject;
+
 import javafx.collections.ObservableList;
 import util.ServiceType;
 import com.jfoenix.controls.JFXComboBox;

@@ -105,14 +105,13 @@ public class registerFormController implements Initializable {
         alert.showAndWait();
     }
 
-    // When the Get OTP button is clicked, the email is sent with a loading animation.
     public void btnGetOTPOnAction(ActionEvent actionEvent) {
         String recipientEmail = txtEmail.getText();
         sendEmailWithLoading(recipientEmail);
     }
 
     private void sendEmailWithLoading(String recipientEmail) {
-        // Create and display a loading stage with a ProgressIndicator.
+
         Stage loadingStage = new Stage();
         ProgressIndicator progressIndicator = new ProgressIndicator();
         StackPane loadingRoot = new StackPane(progressIndicator);
@@ -121,7 +120,7 @@ public class registerFormController implements Initializable {
         loadingStage.setTitle("Sending Email...");
         loadingStage.show();
 
-        // Run the email sending logic in a background thread.
+
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -166,7 +165,7 @@ public class registerFormController implements Initializable {
             }
         };
 
-        // Close the loading stage after the task is finished.
+
         task.setOnSucceeded(e -> loadingStage.close());
         task.setOnFailed(e -> loadingStage.close());
 

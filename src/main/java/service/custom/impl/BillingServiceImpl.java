@@ -4,20 +4,20 @@ import dao.DaoFactory;
 import dao.custom.BillingDao;
 import entity.BillingEntity;
 import org.modelmapper.ModelMapper;
-import util.CrudUtil;
+
 import model.Billing;
 import model.Patient;
 import service.custom.BillingService;
 import util.DaoType;
 
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class BillingServiceImpl implements BillingService {
     private static BillingServiceImpl instance;
 
-    BillingDao billingDao=DaoFactory.getInstance().getDaoType(DaoType.BILLING);
+    BillingDao billingDao = DaoFactory.getInstance().getDaoType(DaoType.BILLING);
 
     private BillingServiceImpl() {
     }
@@ -45,9 +45,9 @@ public class BillingServiceImpl implements BillingService {
     @Override
     public ArrayList<Billing> getAll() {
 
-        ArrayList<Billing> billingList =new ArrayList<>();
-        billingDao.gettAll().forEach(billingEntity -> billingList.add(new ModelMapper().map(billingEntity,Billing.class)));
-   return billingList;
+        ArrayList<Billing> billingList = new ArrayList<>();
+        billingDao.gettAll().forEach(billingEntity -> billingList.add(new ModelMapper().map(billingEntity, Billing.class)));
+        return billingList;
     }
 
     @Override
@@ -60,15 +60,14 @@ public class BillingServiceImpl implements BillingService {
     @Override
     public Billing searchBilling(Integer id) {
 
-      return new ModelMapper().map(billingDao.search(String.valueOf(id)),Billing.class);
+        return new ModelMapper().map(billingDao.search(String.valueOf(id)), Billing.class);
     }
 
 
     @Override
     public ArrayList<Patient> getPatientsID() {
-      return PatientServiceImpl.getInstance().getPatientsID();
+        return PatientServiceImpl.getInstance().getPatientsID();
     }
-
 
 
     @Override

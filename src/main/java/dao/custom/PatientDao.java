@@ -3,7 +3,7 @@ package dao.custom;
 
 import dao.CrudDao;
 import entity.PatientEntity;
-import model.Patient;
+
 
 import java.util.ArrayList;
 

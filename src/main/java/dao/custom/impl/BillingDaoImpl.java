@@ -2,7 +2,6 @@ package dao.custom.impl;
 
 import dao.custom.BillingDao;
 import entity.BillingEntity;
-import model.Billing;
 import util.CrudUtil;
 
 import java.sql.ResultSet;

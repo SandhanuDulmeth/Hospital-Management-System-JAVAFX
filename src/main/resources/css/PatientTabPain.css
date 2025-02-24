@@ -1,28 +1,28 @@
 .tab-pane {
-    -fx-background-color: #f0f8ff; /* Light blue-white (clean and calm background) */
+    -fx-background-color: #f0f8ff;
 }
 
 .tab {
-    -fx-background-color: #e0f2f1; /* Light teal for unselected tabs */
-    -fx-text-fill: #004d40; /* Dark teal text for tabs */
-    -fx-border-color: #004d40; /* Dark teal border for tabs */
-    -fx-border-width: 0 0 1 0; /* Bottom border */
+    -fx-background-color: #e0f2f1;
+    -fx-text-fill: #004d40;
+    -fx-border-color: #004d40;
+    -fx-border-width: 0 0 1 0;
 }
 
 .tab:selected {
-    -fx-background-color: #ffffff; /* White background for the selected tab */
-    -fx-text-fill: #00796b; /* Medium teal text for the selected tab */
-    -fx-border-color: #00796b; /* Medium teal border for the selected tab */
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #00796b;
+    -fx-border-color: #00796b;
 }
 
 .tab-header-area {
-    -fx-background-color: #e8f5e9; /* Light green for the header area */
-    -fx-border-color: #004d40; /* Dark teal border for the header */
-    -fx-border-width: 0 0 2 0; /* Bottom border for header */
+    -fx-background-color: #e8f5e9;
+    -fx-border-color: #004d40;
+    -fx-border-width: 0 0 2 0;
 }
 
 .tab-content-area {
-    -fx-background-color: #ffffff; /* White background for the content area */
-    -fx-border-color: #004d40; /* Dark teal border around content area */
-    -fx-border-width: 2; /* Border width */
+    -fx-background-color: #ffffff;
+    -fx-border-color: #004d40;
+    -fx-border-width: 2;
 }
