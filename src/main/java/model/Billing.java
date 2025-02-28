@@ -1,5 +1,6 @@
 package model;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Billing {
+    @NotEmpty(message = "Please enter a ID")
     private Integer id;
     private Integer pId;
     private Double totalAmount;
