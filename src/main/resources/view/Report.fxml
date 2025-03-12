@@ -16,8 +16,8 @@
       <JFXCheckBox fx:id="DoctorCheckBox" layoutX="397.0" layoutY="449.0" onAction="#btnDoctorCheckBox" selected="true" text="Doctor" />
       <PieChart fx:id="pieChart" layoutX="375.0" layoutY="51.0" prefHeight="391.0" prefWidth="486.0" />
       <JFXCheckBox fx:id="ResourceCheckBox" layoutX="488.0" layoutY="449.0" onAction="#btnResourceCheckBox" selected="true" text="Resource" />
-      <JFXComboBox fx:id="ComboBox" layoutX="91.0" layoutY="183.0" onAction="#ComboBoxonAction" prefHeight="36.0" prefWidth="132.0" promptText="Select the User" />
-      <Label layoutX="146.0" layoutY="240.0" prefHeight="28.0" prefWidth="39.0" text="TO :">
+      <JFXComboBox fx:id="ComboBox" layoutX="53.0" layoutY="44.0" onAction="#ComboBoxonAction" prefHeight="36.0" prefWidth="237.0" promptText="Select the User" />
+      <Label layoutX="127.0" layoutY="105.0" prefHeight="28.0" prefWidth="39.0" text="TO :">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -27,15 +27,16 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblOFMaxSize" layoutX="268.0" layoutY="246.0" text="Of :">
+      <Label fx:id="lblOFMaxSize" layoutX="253.0" layoutY="109.0" text="Of :">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Button fx:id="btnGetreport" layoutX="91.0" layoutY="317.0" mnemonicParsing="false" onAction="#lblGetReportsOnAction" text="GetReport" />
+      <Button fx:id="btnGetreport" layoutX="53.0" layoutY="160.0" mnemonicParsing="false" onAction="#lblGetReportsOnAction" text="GetReport" />
       <JFXButton layoutX="691.0" layoutY="451.0" onAction="#getPieChartReportOnAction" text="Get this Pie Chart Report" />
-      <JFXTextField fx:id="lblStartId" layoutX="84.0" layoutY="241.0" prefHeight="25.0" prefWidth="46.0" promptText="Start" />
-      <JFXTextField fx:id="lblEndId" layoutX="198.0" layoutY="241.0" prefHeight="25.0" prefWidth="46.0" promptText="End" />
-      <JFXButton layoutX="160.0" layoutY="437.0" onAction="#btnsendReportsOnAction" />
+      <JFXTextField fx:id="lblStartId" layoutX="53.0" layoutY="104.0" prefHeight="25.0" prefWidth="46.0" promptText="Start" />
+      <JFXTextField fx:id="lblEndId" layoutX="182.0" layoutY="105.0" prefHeight="25.0" prefWidth="46.0" promptText="End" />
+      <JFXTextField fx:id="sendReportEmailTextField" layoutX="54.0" layoutY="275.0" promptText="Send Report To This Maill" />
+      <JFXButton fx:id="btnsendReports" layoutX="54.0" layoutY="339.0" onAction="#btnsendReportsOnAction" text="Send Report" />
    </children>
 </AnchorPane>
