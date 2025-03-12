@@ -3,7 +3,17 @@ package controller.report;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import com.sendgrid.Method;
+import com.sendgrid.Request;
+import com.sendgrid.Response;
+import com.sendgrid.SendGrid;
+import com.sendgrid.helpers.mail.Mail;
+import com.sendgrid.helpers.mail.objects.Content;
+import com.sendgrid.helpers.mail.objects.Email;
 
+import java.io.IOException;
+
+import com.sendgrid.helpers.mail.objects.Personalization;
 import db.DBConnection;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -246,6 +256,46 @@ public class ReportController implements Initializable {
 
 
         ReportController.generateReportWithLoading(reportPath, "Chart.pdf", SQLForChart);
+    }
+
+
+
+    public void btnsendReportsOnAction(ActionEvent actionEvent) {
+        String apiKey = "";
+        String templateId = "d-f28cb7b6d09b41ee9717346e4805dc3c";
+        String fromEmail = "bruno12mendis740cj30x@gmail.com";
+        String toEmail = "sandhanu.dulmeth.mendis@gmail.com"; // Get recipient email
+
+//        String memberName = user.getEmail();
+//        if (memberName.isEmpty()) memberName = "Member";
+
+        Email from = new Email(fromEmail);
+        Email to = new Email(toEmail);
+        Mail mail = new Mail();
+        mail.setFrom(from);
+        mail.setTemplateId(templateId);
+
+        Personalization personalization = new Personalization();
+        personalization.addTo(to);
+
+//        personalization.addDynamicTemplateData("name", memberName);
+//        personalization.addDynamicTemplateData("message", "Thanks For Using Book Bridge! Come Again");
+//
+        mail.addPersonalization(personalization);
+
+        SendGrid sg = new SendGrid(apiKey);
+        Request request = new Request();
+        try {
+            request.setMethod(Method.POST);
+            request.setEndpoint("mail/send");
+            request.setBody(mail.build());
+            Response response = sg.api(request);
+
+
+        } catch (IOException e) {
+
+        }
+
     }
 
 

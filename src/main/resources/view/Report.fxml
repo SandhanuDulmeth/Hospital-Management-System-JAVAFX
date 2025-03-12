@@ -36,5 +36,6 @@
       <JFXButton layoutX="691.0" layoutY="451.0" onAction="#getPieChartReportOnAction" text="Get this Pie Chart Report" />
       <JFXTextField fx:id="lblStartId" layoutX="84.0" layoutY="241.0" prefHeight="25.0" prefWidth="46.0" promptText="Start" />
       <JFXTextField fx:id="lblEndId" layoutX="198.0" layoutY="241.0" prefHeight="25.0" prefWidth="46.0" promptText="End" />
+      <JFXButton layoutX="160.0" layoutY="437.0" onAction="#btnsendReportsOnAction" />
    </children>
 </AnchorPane>
