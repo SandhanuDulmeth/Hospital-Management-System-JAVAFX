@@ -1,5 +1,6 @@
 package controller.report;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -8,6 +9,7 @@ import com.sendgrid.Request;
 import com.sendgrid.Response;
 import com.sendgrid.SendGrid;
 import com.sendgrid.helpers.mail.Mail;
+import com.sendgrid.helpers.mail.objects.Attachments;
 import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
 
@@ -41,10 +43,10 @@ import util.ServiceType;
 import javafx.scene.control.Button;
 
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ReportController implements Initializable {
 
@@ -65,6 +67,8 @@ public class ReportController implements Initializable {
     public JFXCheckBox ResourceCheckBox;
     public JFXComboBox ComboBox;
     public Label lblOFMaxSize;
+    public JFXTextField sendReportEmailTextField;
+    public JFXButton btnsendReports;
 
     public static void generateReportWithLoading(String reportPath, String fileName, String query) {
 
@@ -134,27 +138,27 @@ public class ReportController implements Initializable {
         if (ComboBox.getValue().equals("Doctor")) {
 
             SQL = "SELECT * FROM doctor WHERE doctor_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();
-            ReportController.generateReportWithLoading("src/main/resources/report/Doctor.jrxml", "Doctor.pdf", SQL);
+            ReportController.generateReportWithLoading("src/main/resources/report/Doctor.jrxml", "src/main/resources/reportPDF/Doctor.pdf", SQL);
         }
         if (ComboBox.getValue().equals("Patient")) {
             SQL = "SELECT * FROM patient WHERE patient_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();
-            ReportController.generateReportWithLoading("src/main/resources/report/Patient.jrxml", "Patient.pdf", SQL);
+            ReportController.generateReportWithLoading("src/main/resources/report/Patient.jrxml", "src/main/resources/reportPDF/Patient.pdf", SQL);
         }
         if (ComboBox.getValue().equals("Appointment")) {
             SQL = "SELECT * FROM appointment WHERE appointment_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();
-            ReportController.generateReportWithLoading("src/main/resources/report/Appointment.jrxml", "Appointment.pdf", SQL);
+            ReportController.generateReportWithLoading("src/main/resources/report/Appointment.jrxml", "src/main/resources/reportPDF/Appointment.pdf", SQL);
         }
         if (ComboBox.getValue().equals("Resource")) {
             SQL = "SELECT * FROM Resources WHERE resource_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();
-            ReportController.generateReportWithLoading("src/main/resources/report/Resources.jrxml", "Resources.pdf", SQL);
+            ReportController.generateReportWithLoading("src/main/resources/report/Resources.jrxml", "src/main/resources/reportPDF/Resources.pdf", SQL);
         }
         if (ComboBox.getValue().equals("Billing")) {
             SQL = "SELECT * FROM Billing WHERE bill_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();
-            ReportController.generateReportWithLoading("src/main/resources/report/Billing.jrxml", "Billing.pdf", SQL);
+            ReportController.generateReportWithLoading("src/main/resources/report/Billing.jrxml", "src/main/resources/reportPDF/Billing.pdf", SQL);
         }
         if (ComboBox.getValue().equals("Prescription")) {
             SQL = "SELECT * FROM Prescription WHERE prescription_id BETWEEN " + lblStartId.getText() + " AND " + lblEndId.getText();
-            ReportController.generateReportWithLoading("src/main/resources/report/Prescription.jrxml", "Prescription.pdf", SQL);
+            ReportController.generateReportWithLoading("src/main/resources/report/Prescription.jrxml", "src/main/resources/reportPDF/Prescription.pdf", SQL);
         }
     }
 
@@ -260,14 +264,25 @@ public class ReportController implements Initializable {
 
 
 
-    public void btnsendReportsOnAction(ActionEvent actionEvent) {
-        String apiKey = "";
-        String templateId = "d-f28cb7b6d09b41ee9717346e4805dc3c";
-        String fromEmail = "bruno12mendis740cj30x@gmail.com";
-        String toEmail = "sandhanu.dulmeth.mendis@gmail.com"; // Get recipient email
 
-//        String memberName = user.getEmail();
-//        if (memberName.isEmpty()) memberName = "Member";
+    public void btnsendReportsOnAction(ActionEvent actionEvent) {
+        if (ComboBox.getValue() == null) {
+            new Alert(Alert.AlertType.ERROR, "Select the User").show();
+            return;
+        }
+        if (sendReportEmailTextField.getText().isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "Enter the Sender Email").show();
+            return;
+        }
+
+
+        String apiKey = "Replace with your actual SendGrid API Key";
+        String templateId = "d-fd8150babfaa4f6d937df091e148e078";
+        String fromEmail = "bruno12mendis740cj30x@gmail.com";
+        String toEmail = sendReportEmailTextField.getText();
+
+        String memberName = (String) ComboBox.getValue();
+        if (memberName.isEmpty()) memberName = "User";
 
         Email from = new Email(fromEmail);
         Email to = new Email(toEmail);
@@ -277,11 +292,53 @@ public class ReportController implements Initializable {
 
         Personalization personalization = new Personalization();
         personalization.addTo(to);
-
-//        personalization.addDynamicTemplateData("name", memberName);
-//        personalization.addDynamicTemplateData("message", "Thanks For Using Book Bridge! Come Again");
-//
+        personalization.addDynamicTemplateData("UserName", memberName);
+        personalization.addDynamicTemplateData("SenderEmail", toEmail);
         mail.addPersonalization(personalization);
+
+
+        String filePath = "";
+        String selectedReport = (String) ComboBox.getValue();
+        switch (selectedReport) {
+            case "Doctor":
+                filePath = "src/main/resources/reportPDF/Doctor.pdf";
+                break;
+            case "Patient":
+                filePath = "src/main/resources/reportPDF/Patient.pdf";
+                break;
+            case "Appointment":
+                filePath = "src/main/resources/reportPDF/Appointment.pdf";
+                break;
+            case "Resource":
+                filePath = "src/main/resources/reportPDF/Resources.pdf";
+                break;
+            case "Billing":
+                filePath = "src/main/resources/reportPDF/Billing.pdf";
+                break;
+            case "Prescription":
+                filePath = "src/main/resources/reportPDF/Prescription.pdf";
+                break;
+            default:
+                new Alert(Alert.AlertType.ERROR, "Invalid report type selected").show();
+                return;
+        }
+
+        try {
+
+            byte[] fileData = Files.readAllBytes(Paths.get(filePath));
+            String encodedFile = Base64.getEncoder().encodeToString(fileData);
+
+            Attachments attachment = new Attachments();
+            attachment.setContent(encodedFile);
+            attachment.setType("application/pdf");
+            attachment.setFilename("report.pdf");
+            attachment.setDisposition("attachment");
+            mail.addAttachments(attachment);
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.ERROR, "Error attaching file: " + e.getMessage()).show();
+            return;
+        }
+
 
         SendGrid sg = new SendGrid(apiKey);
         Request request = new Request();
@@ -291,14 +348,17 @@ public class ReportController implements Initializable {
             request.setBody(mail.build());
             Response response = sg.api(request);
 
-
+            if (response.getStatusCode() >= 200 && response.getStatusCode() < 300) {
+                new Alert(Alert.AlertType.INFORMATION, "Report sent successfully!").show();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Failed to send report. Response: " + response.getBody()).show();
+            }
         } catch (IOException e) {
-
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Error sending email: " + e.getMessage()).show();
         }
 
     }
-
-
 }
 
 
